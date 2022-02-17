@@ -1,5 +1,15 @@
-# Snapshot
+## Snapshot
 
-This is an image to create a snapshot of a Synapse table/view, intended to be used in scheduled jobs for versioning desired assets. 
-See https://python-docs.synapse.org/build/html/index.html?highlight=snapshot#synapseclient.Synapse.create_snapshot_version.
+This is used in a scheduled job to batch version selected portal assets (tables and views, currently). 
+
+### Secrets and env vars
+
+```
+SCHEDULED_JOB_SECRETS={"SYNAPSE_AUTH_TOKEN":"xxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+LABEL=snapshot
+SCHEDULE=weekly
+TARGETS="syn16787123,syn16858331"
+COMMENT="Scheduled snapshot"
+SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
 
