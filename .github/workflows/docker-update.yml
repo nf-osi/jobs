@@ -9,7 +9,10 @@ on:
     paths:
       - update_portal_tables/**
   pull_request:
-    branches: [ develop ]
+    branches:
+      - main
+    paths:
+      - update_portal_tables/**
 
 # Use ghcr registry
 env:

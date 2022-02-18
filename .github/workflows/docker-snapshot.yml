@@ -9,7 +9,10 @@ on:
     paths:
       - snapshot/**
   pull_request:
-    branches: [ develop ]
+    branches:
+      - main
+    paths:
+      - snapshot/**
 
 # Use ghcr registry
 env:
