@@ -13,3 +13,8 @@ COMMENT="Scheduled snapshot"
 SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
+### To do
+
+- Configure for other app webhooks, i.e. if something else needs to happen after snapshot
+- Better login checks
+
