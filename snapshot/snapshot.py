@@ -30,6 +30,7 @@ def slack_report(slack, success:bool, job_schedule, job_label, target, version):
     print(r.status_code)
 
 # Login
+# Need to handle login fails
 syn = synapseclient.Synapse()
 syn.login(authToken=auth_token)
 
@@ -43,4 +44,5 @@ for target in targets:
         traceback.print_exc()
         if slack is not None:
             slack_report(slack, success=False, job_schedule=job_schedule, job_label=job_label, target=target)
-            
+
+
