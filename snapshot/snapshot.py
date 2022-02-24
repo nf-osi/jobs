@@ -15,7 +15,7 @@ job_label = os.getenv("LABEL")
 slack = os.getenv("SLACK") # Slack webhook to send notifications
 
 # Targets could be multiple and need to be parsed
-targets = targets.split(","")
+targets = targets.split(" ")
 print(f"Targets: {targets}")
 
 def slack_report(slack, success:bool, job_schedule, job_label, target, version):
