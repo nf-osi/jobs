@@ -18,8 +18,8 @@ job <- list(
   subjob2 = paste(schedule, "update_study_annotations"), # (target table: portal_files)
   subjob3 = paste(schedule, "assign_study_data_types") #  (target table: portal_studies)
 )
-# Store job outputs to transmit to notification system 
-report <- lapply(job, function(x) paste(":white_check_mark:", x))
+
+report <- list()
 
 # Helper funs ------------------------------------------------------------------#
 
@@ -45,18 +45,26 @@ handleMessage <- function(m, subjob) {
   report[[subjob]] <<- paste(":white_check_mark:", job[[subjob]], "- completed with message:", m$message)
 }
 
+success <- function(subjob) {
+  report[[subjob]] <<- paste(":white_check_mark:", job[[subjob]])
+}
+
 # Main -------------------------------------------------------------------------#
+# Store job outputs to transmit to notification system 
 
 tryCatch({
   # Subjob 1: Update related studies column
     withCallingHandlers(
     {
       calculate_related_studies(study_tab_id, n_clust = 30, dry_run = FALSE)
+      success("subjob1")
     }, 
     # message = function(m) handleMessage(m, "subjob1"), # no useful messages currently
     error = function(e) handleError(e, "subjob1")
   )
-  
+})
+
+tryCatch({
   # Subjob 2: Update file annotations that can be derived from study table
   withCallingHandlers(
     {
@@ -64,11 +72,14 @@ tryCatch({
                                fileview_id = portal_fileview_id,
                                annotations = c("studyId","studyName","fundingAgency","initiative"),
                                dry_run = FALSE)
+      success("subjob2")
     }, 
     message = function(m) handleMessage(m, "subjob2"),
     error = function(e) handleError(e, "subjob2")
   )
-  
+})
+
+tryCatch({
   # Subjob 3: Update study "data type" summary values
   withCallingHandlers(
     {
@@ -77,14 +88,13 @@ tryCatch({
                               fileview_id = portal_fileview_id,
                               valid_values = data_types,
                               dry_run = FALSE)
+      success("subjob3")
     }, 
     # message = function(m) handleMessage(m, "subjob3"), # no useful messages currently
     error = function(e) handleError(e, "subjob3")
-  )},
-  
-  finally = slack_report(report)
-)
+  )
+})
 
-
+slack_report(report)
 
 
