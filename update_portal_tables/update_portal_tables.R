@@ -70,7 +70,7 @@ try({
   # Subjob 1: Update related studies column
     withCallingHandlers(
     {
-      calculate_related_studies(study_tab_id, n_clust = 30, dry_run = FALSE)
+      calculate_related_studies(study_tab_id, n_clust = 36, dry_run = FALSE)
     }, 
     # message = function(m) handleMessage(m, "subjob1"), # no useful messages currently
     error = function(e) handleError(e, "subjob1")
