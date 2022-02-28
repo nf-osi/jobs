@@ -19,52 +19,65 @@ job <- list(
   subjob3 = paste(schedule, "assign_study_data_types") #  (target table: portal_studies)
 )
 
-report <- list()
+# Store job results to transmit, which can be modified by handlers 
+report <- lapply(job, function(x) paste(":white_check_mark:", x))
 
 # Helper funs ------------------------------------------------------------------#
 
 # Optional functionality to send slack report
-# report = a list of messages
+# report = a list of messages that will be batched into a single payload
 slack_report <- function(report) {
   if(Sys.getenv("SLACK") != "") {
-    report <- list(text = paste(report, collapse = "\n"))
     slack_hook <- Sys.getenv("SLACK")
-    report <- jsonlite::toJSON(report, auto_unbox = TRUE)
-    post_status <- httr::POST(url = slack_hook, body = report, content_type_json())
+    
+    blocks <- lapply(report, function(text) {
+      list(type = "section", 
+           text = list(
+             type = "mrkdwn",
+             text = text
+             )
+          )
+      }
+    )
+    blocks <- unname(blocks) # for correct payload structure
+    payload <- list(blocks = blocks)
+    payload <- jsonlite::toJSON(payload, auto_unbox = TRUE)
+    print(payload)
+    post_status <- httr::POST(url = slack_hook, body = payload, content_type_json())
     cat(post_status$status_code)
   } 
 }
 
+blockquote <- function(txt) sprintf(">%s", txt) 
+
 # The final error or message output will replace default report status 
 handleError <- function(e, subjob) {
-  report[[subjob]] <<- paste(":x:", job[[subjob]], " failed!")
+  report[[subjob]] <<- paste(":x:", job[[subjob]], "failed!")
   traceback()
 }
 
 handleMessage <- function(m, subjob) {
-  report[[subjob]] <<- paste(":white_check_mark:", job[[subjob]], "- completed with message:", m$message)
-}
-
-success <- function(subjob) {
-  report[[subjob]] <<- paste(":white_check_mark:", job[[subjob]])
+  report[[subjob]] <<- paste0(":white_check_mark: ", job[[subjob]], " - with note\n", blockquote(m$message))
 }
 
 # Main -------------------------------------------------------------------------#
-# Store job outputs to transmit to notification system 
 
-tryCatch({
+# These (sub)jobs are actually independent and can be run in any order.
+# Some jobs have useful summary-level messages that the run will try to capture,
+# while others will only have messages from `dplyr` calls that should be ignored.
+
+try({
   # Subjob 1: Update related studies column
     withCallingHandlers(
     {
       calculate_related_studies(study_tab_id, n_clust = 30, dry_run = FALSE)
-      success("subjob1")
     }, 
     # message = function(m) handleMessage(m, "subjob1"), # no useful messages currently
     error = function(e) handleError(e, "subjob1")
   )
 })
 
-tryCatch({
+try({
   # Subjob 2: Update file annotations that can be derived from study table
   withCallingHandlers(
     {
@@ -72,14 +85,13 @@ tryCatch({
                                fileview_id = portal_fileview_id,
                                annotations = c("studyId","studyName","fundingAgency","initiative"),
                                dry_run = FALSE)
-      success("subjob2")
     }, 
     message = function(m) handleMessage(m, "subjob2"),
     error = function(e) handleError(e, "subjob2")
   )
 })
 
-tryCatch({
+try({
   # Subjob 3: Update study "data type" summary values
   withCallingHandlers(
     {
@@ -88,7 +100,6 @@ tryCatch({
                               fileview_id = portal_fileview_id,
                               valid_values = data_types,
                               dry_run = FALSE)
-      success("subjob3")
     }, 
     # message = function(m) handleMessage(m, "subjob3"), # no useful messages currently
     error = function(e) handleError(e, "subjob3")
