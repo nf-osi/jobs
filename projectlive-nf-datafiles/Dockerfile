@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:4.1.0
+FROM rocker/tidyverse:4.1.2
 
 ENV miniconda3_version="py39_4.9.2"
 ENV miniconda_bin_dir="/opt/miniconda/bin"
