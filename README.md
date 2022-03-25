@@ -6,10 +6,12 @@ Jobs and microservices for routine maintenance and reporting.
 
 #### General contribution flow
 
-- Create a new feature branch off `develop`.
-- Create a new directory for the job/service and put the script(s) and Dockerfile there.
-- Add a workflow to build an image (copy and adapt from current `.github/worflows`).
-- Make PR against `develop`.
+1. Create a new feature branch off `develop`.
+2. Create a new directory for the job/service and put the script(s) and Dockerfile there.
+3. Add a workflow to build an image (copy and adapt from current `.github/worflows`).
+- Change `on.paths` so that the Docker build will build specifically for the job
+- In the very last step, change `context` to the job directory
+4. Make PR against `develop`.
 
 #### How to interactively test and modify current jobs 
 
