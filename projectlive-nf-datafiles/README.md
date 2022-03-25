@@ -5,12 +5,7 @@ This image is used in a scheduled job to update backend data files powering proj
 
 ### Secrets and env vars
 
-
 SCHEDULED_JOB_SECRETS={"SYNAPSE_AUTH_TOKEN":"xxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
-LABEL=projectlive-nf-data
-SCHEDULE=daily
-COMMENT="Scheduled projectlive-nf-data"
-SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 ### Example run 
