@@ -8,7 +8,7 @@ on:
       - main
     paths:
       - projectlive-nf-datafiles/**
-      - .github/docker-projectlive-data.yml
+      - .github/workflows/docker-projectlive-data.yml
   pull_request:
     branches:
       - main
