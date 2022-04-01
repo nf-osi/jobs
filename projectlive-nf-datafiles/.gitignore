@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 *.RDS
+create_files_local.R
+install_local_conda.R
