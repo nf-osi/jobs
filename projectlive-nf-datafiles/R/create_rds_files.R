@@ -39,7 +39,57 @@ file.remove("studies.RDS")
 
 
 # files ----
-files <-
+dev_files <-
+  get_synapse_tbl(
+    syn,
+    "syn16858331",
+    columns = c(
+      "id",
+      "name",
+      "individualID",
+      "parentId",
+      "specimenID",
+      "assay",
+      "initiative",
+      "dataType",
+      "fileFormat",
+      "resourceType",
+      "accessType",
+      "tumorType",
+      "species",
+      "projectId",
+      "benefactorId",
+      "consortium",
+      "progressReportNumber",
+      "createdOn",
+      "type"
+    ),
+    col_types = readr::cols(
+      "consortium" = readr::col_character(),
+      "progressReportNumber" = readr::col_integer()
+    )
+  ) %>%
+  dplyr::rename("studyId" = "projectId") %>% 
+  dplyr::filter(type == "file") %>%
+  format_date_columns() %>%
+  dplyr::select(-c("createdOn")) %>%
+  dplyr::inner_join(
+    dplyr::select(
+      studies,
+      "studyName",
+      "studyLeads",
+      "fundingAgency",
+      "studyId"
+    ),
+    by = "studyId"
+  ) %>% 
+  dplyr::mutate("reportMilestone" = .data$progressReportNumber)
+
+saveRDS(dev_files, "files.RDS")
+store_file_in_synapse(syn, "files.RDS", dev_folder)
+file.remove("files.RDS")
+
+live_files <-
   get_synapse_tbl(
     syn,
     "syn16858331",
@@ -84,15 +134,67 @@ files <-
   ) %>% 
   dplyr::mutate("reportMilestone" = .data$progressReportNumber)
 
-saveRDS(files, "files.RDS")
-store_file_in_synapse(syn, "files.RDS", dev_folder)
+saveRDS(live_files, "files.RDS")
 store_file_in_synapse(syn, "files.RDS", live_folder)
 file.remove("files.RDS")
 
 
 # incoming data ----
+dev_incoming_data <-
+  get_synapse_tbl(
+    syn,
+    "syn23364404",
+    columns = c(
+      "fileFormat",
+      "date_uploadestimate",
+      "progressReportNumber",
+      "estimatedMinNumSamples",
+      "fundingAgency",
+      "projectSynID",
+      "dataType"
+    ),
+    col_types = readr::cols(
+      "estimatedMinNumSamples" = readr::col_integer(),
+      "progressReportNumber" = readr::col_integer()
+    )
+  ) %>%
+  dplyr::left_join(
+    dplyr::select(studies, "studyName", "studyId"),
+    by = c("projectSynID" = "studyId")
+  ) %>%
+  dplyr::mutate(
+    "date_uploadestimate" = lubridate::mdy(date_uploadestimate),
+  ) %>%
+  dplyr::rename("studyId" = "projectSynID") %>% 
+  dplyr::filter(
+    !is.na(.data$date_uploadestimate) | !is.na(.data$progressReportNumber)
+  ) %>%
+  tidyr::unnest("fileFormat") %>%
+  dplyr::group_by(
+    .data$fileFormat,
+    .data$date_uploadestimate,
+    .data$progressReportNumber,
+    .data$fundingAgency,
+    .data$studyName,
+    .data$dataType,
+    .data$studyId
+  ) %>%
+  dplyr::summarise("estimatedMinNumSamples" = sum(.data$estimatedMinNumSamples)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(
+    "estimatedMinNumSamples" = dplyr::if_else(
+      is.na(.data$estimatedMinNumSamples),
+      0L,
+      .data$estimatedMinNumSamples
+    ),
+    "reportMilestone" = .data$progressReportNumber
+  )
 
-incoming_data <-
+saveRDS(dev_incoming_data, "incoming_data.RDS")
+store_file_in_synapse(syn, "incoming_data.RDS", dev_folder)
+file.remove("incoming_data.RDS")
+
+live_incoming_data <-
   get_synapse_tbl(
     syn,
     "syn23364404",
@@ -141,10 +243,10 @@ incoming_data <-
     "reportMilestone" = .data$progressReportNumber
   )
 
-saveRDS(incoming_data, "incoming_data.RDS")
+saveRDS(live_incoming_data, "incoming_data.RDS")
 store_file_in_synapse(syn, "incoming_data.RDS", live_folder)
-store_file_in_synapse(syn, "incoming_data.RDS", dev_folder)
 file.remove("incoming_data.RDS")
+
 
 # publications ----
 pubs <- 
