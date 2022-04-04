@@ -12,7 +12,7 @@ try(withCallingHandlers({
   
   source("https://raw.githubusercontent.com/Sage-Bionetworks/projectlive.modules/231f14aa9a4c35a4cad46c851ff05eb07dff3f19/R/synapse_functions.R")
   source("https://raw.githubusercontent.com/Sage-Bionetworks/projectlive.modules/231f14aa9a4c35a4cad46c851ff05eb07dff3f19/R/data_manipulation_functions.R")
-  source("https://raw.githubusercontent.com/nf-osi/jobs/ba2b349359e68aecd1806dc73492dc0b406c5679/utils/slack.R")
+  source("https://raw.githubusercontent.com/nf-osi/jobs/764c62a94be9fd4dc2b0e04dd310c07472044faa/utils/slack.R")
 
   reticulate::use_condaenv("sage-bionetworks", required = T)
   synapseclient <- reticulate::import("synapseclient")
