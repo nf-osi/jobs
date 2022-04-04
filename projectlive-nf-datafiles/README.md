@@ -8,6 +8,7 @@ This image is used in a scheduled job to update backend data files powering proj
 Example envile
 ```
 SCHEDULED_JOB_SECRETS={"SYNAPSE_AUTH_TOKEN":"xxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ### Example run 
