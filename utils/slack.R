@@ -24,7 +24,7 @@ slack_report <- function(report) {
     payload <- list(blocks = blocks)
     payload <- jsonlite::toJSON(payload, auto_unbox = TRUE)
     print(payload)
-    post_status <- httr::POST(url = slack_hook, body = payload, content_type_json())
+    post_status <- httr::POST(url = slack_hook, body = payload, httr::content_type_json())
     cat(post_status$status_code)
   } 
 }
