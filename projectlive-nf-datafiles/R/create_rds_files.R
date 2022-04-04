@@ -279,3 +279,6 @@ try(withCallingHandlers({
   }, 
   error = function(e) handleError(e, "main"))
 )
+
+slack_report(report)
+
