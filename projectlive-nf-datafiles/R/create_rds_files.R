@@ -3,16 +3,16 @@ require(magrittr)
 live_folder <- "syn22281727"
 dev_folder  <- "syn24474593"
 
-source("https://raw.githubusercontent.com/Sage-Bionetworks/projectlive.modules/231f14aa9a4c35a4cad46c851ff05eb07dff3f19/R/synapse_functions.R")
-source("https://raw.githubusercontent.com/Sage-Bionetworks/projectlive.modules/231f14aa9a4c35a4cad46c851ff05eb07dff3f19/R/data_manipulation_functions.R")
-source("https://raw.githubusercontent.com/nf-osi/jobs/ba2b349359e68aecd1806dc73492dc0b406c5679/utils/slack.R")
+# Define job
+schedule <- if(Sys.getenv("SCHEDULE") != "") paste(Sys.getenv("SCHEDULE"), "-") else ""
+job <- list(
+  main = paste(schedule, "create_projectlive_rds"))
 
 try(withCallingHandlers({
   
-  # Define job
-  schedule <- if(Sys.getenv("SCHEDULE") != "") paste(Sys.getenv("SCHEDULE"), "-") else ""
-  job <- list(
-    main = paste(schedule, "create_projectlive_rds"))
+  source("https://raw.githubusercontent.com/Sage-Bionetworks/projectlive.modules/231f14aa9a4c35a4cad46c851ff05eb07dff3f19/R/synapse_functions.R")
+  source("https://raw.githubusercontent.com/Sage-Bionetworks/projectlive.modules/231f14aa9a4c35a4cad46c851ff05eb07dff3f19/R/data_manipulation_functions.R")
+  source("https://raw.githubusercontent.com/nf-osi/jobs/ba2b349359e68aecd1806dc73492dc0b406c5679/utils/slack.R")
 
   reticulate::use_condaenv("sage-bionetworks", required = T)
   synapseclient <- reticulate::import("synapseclient")
