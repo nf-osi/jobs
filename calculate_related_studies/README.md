@@ -1,6 +1,6 @@
-## Update Portal Tables
+## Calculate Related Studies
 
-This is a scheduled job that updates (augments and syncs annotations) for portal tables.
+This is a scheduled job that calculates related studies for each study in NF Portal Studies.
 
 ### Secrets and env vars
 
