@@ -1,24 +1,27 @@
-name: Dockerize update
+name: Dockerize calculate_related_studies
 
-# For only changes in snapshot code,
+# For only changes in calculate_related_studies code,
 # rebuild on push to main (which is already vetted in PR to develop)
 on:
   push:
     branches:
       - main
     paths:
-      - update_portal_tables/**
+      - calculate_related_studies/**
   pull_request:
     branches:
       - main
     paths:
-      - update_portal_tables/**
+      - calculate_related_studies/**
 
-# Use ghcr registry
 env:
+  # Use ghcr registry instead of DockerHub
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  CONTEXT: ./calculate_related_studies
+  # Job tag to append to image name; e.g. "snapshot" will create image "jobs-snapshot"
+  JOB_TAG: calculate-related-studies
 
 
 jobs:
@@ -55,7 +58,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: ./update_portal_tables
+          context: ${{ env.CONTEXT }}
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-update:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-update:${{steps.tag.outputs.sha7}}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-${{ env.JOB_TAG }}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-${{ env.JOB_TAG }}:${{steps.tag.outputs.sha7}}
           platforms: linux/amd64
