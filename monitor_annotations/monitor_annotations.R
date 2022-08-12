@@ -116,6 +116,7 @@ try({
       fail <- names(which(sapply(files, class) == "try-error"))
       if(length(fail)) {
         files <- files[!names(files) %in% fail]
+        # TODO: Update this to warning (needs handling by slack util)
         message("Encountered issues with some fileviews: ", paste(files, collapse = " "))
       }
       files <- lapply(files, function(x) as.data.table(x$asDataFrame()))
