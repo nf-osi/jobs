@@ -79,7 +79,7 @@ emailReAnnotation <- function(user,
                      msg_listing,
                      "\n\n-----\n\n")
   
-  msg_subj <- glue::glue("Please annotate files you've deposited for Synapse project {project}")
+  msg_subj <- glue::glue("Please annotate files for Synapse project '{project}'")
     
   recipients <- if(dcc) c(user, dcc) else user
   recipients <- as.character(recipients)
@@ -99,10 +99,10 @@ emailReAnnotation <- function(user,
 try({
     withCallingHandlers(
     {
-      dt <- .syn$tableQuery(glue::glue("SELECT studyId,studyFileviewId from {study_tab_id} WHERE studyStatus='Active'"))
-      dt <- dt$asDataFrame()
+      studies <- .syn$tableQuery(glue::glue("SELECT studyId,studyName,studyFileviewId from {study_tab_id} WHERE studyStatus='Active'"))
+      studies <- studies$asDataFrame()
       
-      for(fileview in dt$studyFileviewId) {
+      for(fileview in studies$studyFileviewId) {
         # Issues to handle:
         # 1) Fileviews can break and be unquery-able, the most common error something like: 
         # 'attribute X size is too small, needs to be __'
@@ -112,6 +112,9 @@ try({
             glue::glue("SELECT id,name,resourceType,createdBy from {fileview} WHERE type='file'")
           ))
       }
+      
+      # Use studyName instead of studyFileviewId as names
+      names(files) <- studies$studyName
       
       fail <- names(which(sapply(files, class) == "try-error"))
       if(length(fail)) {
