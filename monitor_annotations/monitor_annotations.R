@@ -119,8 +119,8 @@ try({
       fail <- names(which(sapply(files, class) == "try-error"))
       if(length(fail)) {
         files <- files[!names(files) %in% fail]
-        # TODO: Update this to warning (needs handling by slack util)
-        message("Encountered issues with some fileviews: ", paste(files, collapse = " "))
+        # TODO: Warning needs handling by slack util
+        warning("Encountered issues with some fileviews: ", paste(files, collapse = " "), call. = FALSE)
       }
       files <- lapply(files, function(x) as.data.table(x$asDataFrame()))
       todo <- checkNA(files)
