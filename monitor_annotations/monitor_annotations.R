@@ -4,10 +4,21 @@ library(nfportalutils)
 library(data.table)
 library(httr)
 
-# Values -----------------------------------------------------------------------#
+# Config -----------------------------------------------------------------------#
 # Extract and use token
 secrets <- jsonlite::fromJSON(Sys.getenv("SCHEDULED_JOB_SECRETS"))
 syn_login(authtoken = secrets[["SYNAPSE_AUTH_TOKEN"]])
+
+# Check whether running as DEV, TEST or PROD, with default being DEV. Behavior for:
+# PROD = Send out emails
+# TEST = Send emails to nf-osi-service (3421893)
+# DEV = Output emails to stout
+profile <- switch(Sys.getenv("PROFILE"),
+                  PROD = "PROD",
+                  TEST = "TEST",
+                  "DEV")
+                  
+
 
 # Input/target tables
 study_tab_id <- 'syn16787123'
@@ -21,8 +32,13 @@ job <- list(main = paste(schedule, "monitor_study_annotations"))
 
 source("https://raw.githubusercontent.com/nf-osi/jobs/e74a72ccebd8dc3480190c872b00ac5b8b6069ed/utils/slack.R")
 
-# Filter for non-annotated files
-#' @param dt Data.table with props `name`, `createdBy`, `resourceType`
+#' Uses the returned fileview query to generate a list with 
+#' `n` = Number of non-annotated files and 
+#' `na_files` = List of non-annotated filenames organized by the file creator, e.g. 
+#' `list(n = 3, na_files = list(`111` = c('team1_file1.csv', 'team2_file2.csv'), `222` = c('team2_file1.txt')))`. 
+#' Many projects have more than one uploader, and it would be more understandable
+#' to send individual, precise emails referencing only the relevant files for that user.
+#' @param dt Table query result with `name`, `createdBy`, `resourceType`.
 #' @param ignore_file File pattern to ignore.
 #' @param ignore_user List of user ids to ignore. Defaults to NF service accounts. 
 #' @param list_len Max length of list of files to return for each user. Default 50.
@@ -32,20 +48,14 @@ processNA <- function(dt,
                      list_len = 50
                      ) {
   
+  dt <- as.data.table(dt$asDataFrame())
   if(nrow(dt) == 0) return(list(n = 0, assigments = NULL))
   dt <- dt[!grepl(ignore, name, ignore.case = TRUE)][!createdBy %in% ignore_user]
   n <- dt[is.na(resourceType), .N]
-  # Assemble list of creator ~ files for clear list of assignments
-  assignments <- split(dt[is.na(resourceType)], by = "createdBy", keep.by = F)
-  assignments <- sapply(assignments, function(x) paste0(head(x$name, list_len), " (", head(x$id, list_len), ")"))
-  return(list(n = n, assignments = assignments))
-}
-
-# Wrapper helper
-checkNA <- function(files) {
-  result <- lapply(files, processNA)
-  result <- result[sapply(result, `[[`, 1) > 0] # filter out n=0
-  return(result)
+  # Assemble list of creator ~ files for clear list of na_files
+  na_files <- split(dt[is.na(resourceType)], by = "createdBy", keep.by = F)
+  na_files <- sapply(na_files, function(x) paste0(head(x$name, list_len), " (", head(x$id, list_len), ")"))
+  return(list(n = n, na_files = na_files))
 }
 
 
@@ -95,38 +105,49 @@ emailReAnnotation <- function(user,
   }
 }
 
+#' Main wrapper to generate a list of assignments after processing the study table
+#' @param study_tab_id
+studyAssignments <- function(study_tab_id) {
+  studies <- .syn$tableQuery(glue::glue("SELECT studyId,studyName,studyFileviewId from {study_tab_id} WHERE studyStatus='Active'"))
+  studies <- studies$asDataFrame()
+  
+  for(fileview in studies$studyFileviewId) {
+    # Issues to handle:
+    # 1) Fileviews can break and be unquery-able, the most common error something like: 
+    # 'attribute X size is too small, needs to be __'
+    # 2) Columns in query for may be missing for some reason
+    files[[fileview]] <- try(
+      .syn$tableQuery(
+        glue::glue("SELECT id,name,resourceType,createdBy from {fileview} WHERE type='file'")
+      ))
+  }
+  
+  # Use studyName instead of studyFileviewId as names
+  names(files) <- studies$studyName
+  
+  fail <- names(which(sapply(files, class) == "try-error"))
+  if(length(fail)) {
+    files <- files[!names(files) %in% fail]
+    warning("Encountered issues with some fileviews: ", paste(files, collapse = " "), call. = FALSE)
+  }
+  files <- lapply(files, processNA)
+  # filter out n=0
+  todo <- files[sapply(files, `[[`, 1) > 0] 
+  todo <- lapply(todo, function(x) x$na_files)
+  return(todo)
+}
+
 
 try({
     withCallingHandlers(
     {
-      studies <- .syn$tableQuery(glue::glue("SELECT studyId,studyName,studyFileviewId from {study_tab_id} WHERE studyStatus='Active'"))
-      studies <- studies$asDataFrame()
-      
-      for(fileview in studies$studyFileviewId) {
-        # Issues to handle:
-        # 1) Fileviews can break and be unquery-able, the most common error something like: 
-        # 'attribute X size is too small, needs to be __'
-        # 2) Columns in query for may be missing for some reason
-        files[[fileview]] <- try(
-          .syn$tableQuery(
-            glue::glue("SELECT id,name,resourceType,createdBy from {fileview} WHERE type='file'")
-          ))
-      }
-      
-      # Use studyName instead of studyFileviewId as names
-      names(files) <- studies$studyName
-      
-      fail <- names(which(sapply(files, class) == "try-error"))
-      if(length(fail)) {
-        files <- files[!names(files) %in% fail]
-        warning("Encountered issues with some fileviews: ", paste(files, collapse = " "), call. = FALSE)
-      }
-      files <- lapply(files, function(x) as.data.table(x$asDataFrame()))
-      todo <- checkNA(files)
-      assignments <- lapply(todo, function(x) x$assignments)
-      for(project in names(assignments)) {
-        for(user in names(assignments[[project]]) ) {
-          emailReAnnotation(user = user, files = assignments[[project]][[user]], project = project, dry_run = TRUE)
+      todo <- studyAssignments(study_tab_id) 
+      for(project in names(todo)) {
+        for(user in names(todo[[project]]) ) {
+          emailReAnnotation(user = user, 
+                            files = todo[[project]][[user]], 
+                            project = project, 
+                            dry_run = TRUE)
         }
       }
       
