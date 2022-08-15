@@ -6,17 +6,6 @@
 # The default result is modified by the handlers if errors, etc. are thrown during run  
 report <- lapply(job, function(x) paste(":white_check_mark:", x))
 
-# Handlers --------------------------------------------------------------------#
-# The final error or message output will replace default report status 
-handleError <- function(e, subjob) {
-  report[[subjob]] <<- paste(":x:", job[[subjob]], "failed!")
-  traceback()
-}
-
-handleMessage <- function(m, subjob) {
-  report[[subjob]] <<- paste0(":white_check_mark: ", job[[subjob]], " - with note\n", blockquote(m$message))
-}
-
 # Slack msg build --------------------------------------------------------------#
 
 # Optional functionality to send slack report
@@ -44,3 +33,18 @@ slack_report <- function(report) {
 }
 
 blockquote <- function(txt) sprintf(">%s", txt) 
+
+# Handlers --------------------------------------------------------------------#
+# The final error or message output will replace default report status 
+handleError <- function(e, subjob) {
+  report[[subjob]] <<- paste(":x:", job[[subjob]], "failed!")
+  traceback()
+}
+
+handleMessage <- function(m, subjob) {
+  report[[subjob]] <<- paste0(":white_check_mark: ", job[[subjob]], " - with note\n", blockquote(m$message))
+}
+
+handleWarning <- function(w, subjob) {
+  report[[subjob]] <<- paste0(":warning: ", job[[subjob]], " - with warning\n", blockquote(w$message))
+}
