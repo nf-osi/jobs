@@ -19,7 +19,7 @@ job <- list(main = paste(schedule, "monitor_study_annotations"))
 
 # Main -------------------------------------------------------------------------#
 
-source("https://raw.githubusercontent.com/nf-osi/jobs/764c62a94be9fd4dc2b0e04dd310c07472044faa/utils/slack.R")
+source("https://raw.githubusercontent.com/nf-osi/jobs/e74a72ccebd8dc3480190c872b00ac5b8b6069ed/utils/slack.R")
 
 # Filter for non-annotated files
 #' @param dt Data.table with props `name`, `createdBy`, `resourceType`
@@ -119,7 +119,6 @@ try({
       fail <- names(which(sapply(files, class) == "try-error"))
       if(length(fail)) {
         files <- files[!names(files) %in% fail]
-        # TODO: Warning needs handling by slack util
         warning("Encountered issues with some fileviews: ", paste(files, collapse = " "), call. = FALSE)
       }
       files <- lapply(files, function(x) as.data.table(x$asDataFrame()))
