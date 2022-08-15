@@ -1,12 +1,26 @@
 # Slack module
+# Functionality to forward job script status outputs to a Slack channel 
 
-# Store job results to transmit, which can be modified by handlers 
+# Create a `report` entity with default success result
+# Jobs may have subjobs, but usually this is a single-element list with name "main"
+# The default result is modified by the handlers if errors, etc. are thrown during run  
 report <- lapply(job, function(x) paste(":white_check_mark:", x))
 
-# Slack funs ------------------------------------------------------------------#
+# Handlers --------------------------------------------------------------------#
+# The final error or message output will replace default report status 
+handleError <- function(e, subjob) {
+  report[[subjob]] <<- paste(":x:", job[[subjob]], "failed!")
+  traceback()
+}
+
+handleMessage <- function(m, subjob) {
+  report[[subjob]] <<- paste0(":white_check_mark: ", job[[subjob]], " - with note\n", blockquote(m$message))
+}
+
+# Slack msg build --------------------------------------------------------------#
 
 # Optional functionality to send slack report
-# report = a list of messages that will be batched into a single payload
+# Report, created above, becomes a list of messages batched into a single payload
 slack_report <- function(report) {
   if(Sys.getenv("SLACK") != "") {
     slack_hook <- Sys.getenv("SLACK")
@@ -30,13 +44,3 @@ slack_report <- function(report) {
 }
 
 blockquote <- function(txt) sprintf(">%s", txt) 
-
-# The final error or message output will replace default report status 
-handleError <- function(e, subjob) {
-  report[[subjob]] <<- paste(":x:", job[[subjob]], "failed!")
-  traceback()
-}
-
-handleMessage <- function(m, subjob) {
-  report[[subjob]] <<- paste0(":white_check_mark: ", job[[subjob]], " - with note\n", blockquote(m$message))
-}
