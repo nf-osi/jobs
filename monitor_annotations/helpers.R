@@ -17,7 +17,7 @@ processNA <- function(dt,
 ) {
   
   dt <- as.data.table(dt$asDataFrame())
-  if(nrow(dt) == 0) return(list(n = 0, assigments = NULL))
+  if(nrow(dt) == 0) return(list(n = 0, na_files = NULL))
   dt <- dt[!grepl(ignore, name, ignore.case = TRUE)][!createdBy %in% ignore_user]
   n <- dt[is.na(resourceType), .N]
   # Assemble list of creator ~ files for clear list of na_files
@@ -62,7 +62,7 @@ emailReAnnotation <- function(user,
   # If length of recipient = 1, need to use list to become JSON array
   recipients <- if(dcc) as.character(c(user, dcc)) else list(as.character(user))
   if(dry_run) {
-    cat("to:", recipients, "\n",
+    cat("to:", paste(recipients, collapse = " "), "\n",
         "subject:", msg_subj, "\n\n",
         msg_body)
   } else {
