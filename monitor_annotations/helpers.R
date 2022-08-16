@@ -59,14 +59,14 @@ emailReAnnotation <- function(user,
   
   msg_subj <- glue::glue("Please annotate files for Synapse project '{project}'")
   
-  recipients <- if(dcc) c(user, dcc) else user
-  recipients <- as.character(recipients)
+  # If length of recipient = 1, need to use list to become JSON array
+  recipients <- if(dcc) as.character(c(user, dcc)) else list(as.character(user))
   if(dry_run) {
     cat("to:", recipients, "\n",
         "subject:", msg_subj, "\n\n",
         msg_body)
   } else {
-    .syn$sendMessage(userIds = list(recipients),
+    .syn$sendMessage(userIds = recipients,
                      messageSubject = msg_subj, 
                      messageBody = msg_body,
                      contentType = "text/plain")
