@@ -18,7 +18,7 @@ processNA <- function(dt,
   
   dt <- as.data.table(dt$asDataFrame())
   if(nrow(dt) == 0) return(list(n = 0, na_files = NULL))
-  dt <- dt[!grepl(ignore, name, ignore.case = TRUE)][!createdBy %in% ignore_user]
+  dt <- dt[!grepl(ignore_file, name, ignore.case = TRUE)][!createdBy %in% ignore_user]
   n <- dt[is.na(resourceType), .N]
   # Assemble list of creator ~ files for clear list of na_files
   na_files <- split(dt[is.na(resourceType)], by = "createdBy", keep.by = F)
