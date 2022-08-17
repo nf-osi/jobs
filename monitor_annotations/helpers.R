@@ -78,7 +78,7 @@ emailReAnnotation <- function(user,
 studyAssignments <- function(study_tab_id) {
   studies <- .syn$tableQuery(glue::glue("SELECT studyId,studyName,studyFileviewId from {study_tab_id} WHERE studyStatus='Active'"))
   studies <- studies$asDataFrame()
-  
+  files <-
   for(fileview in studies$studyFileviewId) {
     # Issues to handle:
     # 1) Fileviews can break and be unquery-able, the most common error something like: 
@@ -98,10 +98,8 @@ studyAssignments <- function(study_tab_id) {
     files <- files[!names(files) %in% fail]
     warning("Encountered issues with some fileviews: ", paste(files, collapse = " "), call. = FALSE)
   }
-  files <- lapply(files, processNA)
-  # filter out n=0
-  todo <- files[sapply(files, `[[`, 1) > 0] 
-  todo <- lapply(todo, function(x) x$na_files)
+  todo <- lapply(files, processNA)
+  todo <- Filter(function(x) x$n > 0, todo)
   return(todo)
 }
 
