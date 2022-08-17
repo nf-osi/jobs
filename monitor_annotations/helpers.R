@@ -33,7 +33,7 @@ processNA <- function(dt,
 #' @param project Optional project name or id for context (goes into message subject).
 #' @param dcc The DCC Synapse profile id (numeric) to cc on the message. Use FALSE to not copy the DCC.  
 #' @param dry_run If TRUE, output message instead of emailing. 
-emailReAnnotation <- function(user,
+emailReAnnotation <- function(recipient,
                               files,
                               project = NULL, 
                               dcc = DCC_USER,
@@ -60,7 +60,7 @@ emailReAnnotation <- function(user,
   msg_subj <- glue::glue("Please annotate files for Synapse project '{project}'")
   
   # If length of recipient = 1, need to use list to become JSON array
-  recipients <- if(dcc) as.character(c(user, dcc)) else list(as.character(user))
+  recipients <- if(dcc) as.character(c(recipient, dcc)) else list(as.character(recipient))
   if(dry_run) {
     cat("to:", paste(recipients, collapse = " "), "\n",
         "subject:", msg_subj, "\n\n",
@@ -108,7 +108,7 @@ studyAssignments <- function(study_tab_id, verbose = TRUE) {
   }
   todo <- lapply(files, processNA)
   todo <- Filter(function(x) x$n > 0, todo)
-  if(verbose) cat("Number of projects with non-annotated files found:", length(todo))
+  if(verbose) cat("Number of projects with non-annotated files found:", length(todo), "\n")
   return(todo)
 }
 

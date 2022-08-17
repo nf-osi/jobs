@@ -40,9 +40,13 @@ try({
       todo <- studyAssignments(study_tab_id) 
       for(project in names(todo)) {
         for(user in names(todo[[project]][["na_files"]]) ) {
-          # Override actual USER for TEST
-          if(PROFILE == "TEST") user <- DCC_USER
-          emailReAnnotation(user = user, 
+          # Override actual recipient for TEST
+          if(PROFILE == "TEST") {
+            recipient <- DCC_USER
+          } else {
+            recipient <- user
+          }
+          emailReAnnotation(recipient = recipient, 
                             files = todo[[project]][["na_files"]][[user]], 
                             project = project, 
                             dry_run = DRY_RUN)
