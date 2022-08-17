@@ -74,12 +74,14 @@ emailReAnnotation <- function(user,
 }
 
 #' Main wrapper to generate a list of assignments for missing annotations for each study/user
-#' @param study_tab_id
-studyAssignments <- function(study_tab_id) {
+#' @param study_tab_id Study table id.
+#' @param verbose Whether to output progress messages.
+studyAssignments <- function(study_tab_id, verbose = TRUE) {
   studies <- .syn$tableQuery(glue::glue("SELECT studyId,studyName,studyFileviewId from {study_tab_id} WHERE studyStatus='Active'"))
   studies <- studies$asDataFrame()
   files <-
   for(fileview in studies$studyFileviewId) {
+    if(verbose) cat("Querying fileview", fileview)
     # Issues to handle:
     # 1) Fileviews can break and be unquery-able, the most common error something like: 
     # 'attribute X size is too small, needs to be __'
@@ -87,7 +89,8 @@ studyAssignments <- function(study_tab_id) {
     files[[fileview]] <- try(
       .syn$tableQuery(
         glue::glue("SELECT id,name,resourceType,createdBy from {fileview} WHERE type='file'")
-      ))
+      )
+    )
   }
   
   # Use studyName instead of studyFileviewId as names
@@ -100,6 +103,8 @@ studyAssignments <- function(study_tab_id) {
   }
   todo <- lapply(files, processNA)
   todo <- Filter(function(x) x$n > 0, todo)
+  if(verbose) cat("Number of projects assessed in this run:", length(files), "\n",
+                  "Number of projects with non-annotated files:", length(todo))
   return(todo)
 }
 
