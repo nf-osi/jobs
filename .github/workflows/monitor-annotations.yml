@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - develop
     paths:
       - monitor_annotations/**
   pull_request:
@@ -22,6 +23,7 @@ env:
   CONTEXT: ./monitor_annotations
   # Job tag to append to image name; e.g. "snapshot" will create image "jobs-snapshot"
   JOB_TAG: monitor-annotations
+  IMAGE: ghcr.io/${{ github.repository }}-monitor-annotations
 
 
 jobs:
@@ -60,5 +62,5 @@ jobs:
         with:
           context: ${{ env.CONTEXT }}
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-${{ env.JOB_TAG }}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-${{ env.JOB_TAG }}:${{steps.tag.outputs.sha7}}
+          tags: ${{ env.IMAGE }}:latest,${{ env.IMAGE }}:${{steps.tag.outputs.sha7}}
           platforms: linux/amd64
