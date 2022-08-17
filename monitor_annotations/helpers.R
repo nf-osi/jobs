@@ -79,9 +79,14 @@ emailReAnnotation <- function(user,
 studyAssignments <- function(study_tab_id, verbose = TRUE) {
   studies <- .syn$tableQuery(glue::glue("SELECT studyId,studyName,studyFileviewId from {study_tab_id} WHERE studyStatus='Active'"))
   studies <- studies$asDataFrame()
-  files <-
-  for(fileview in studies$studyFileviewId) {
-    if(verbose) cat("Querying fileview", fileview)
+  all_fileviews <- studies$studyFileviewId
+  if(verbose) {
+    time_est <- round((length(all_fileviews) * 3.2) / 60, 1) # heuristics
+    cat("Estimated time to query", length(all_fileviews), "active studies:", time_est, "minutes\n")
+  }
+  files <- list()
+  for(fileview in all_fileviews) {
+    if(verbose) cat("Querying fileview", fileview, "\n")
     # Issues to handle:
     # 1) Fileviews can break and be unquery-able, the most common error something like: 
     # 'attribute X size is too small, needs to be __'
@@ -103,8 +108,7 @@ studyAssignments <- function(study_tab_id, verbose = TRUE) {
   }
   todo <- lapply(files, processNA)
   todo <- Filter(function(x) x$n > 0, todo)
-  if(verbose) cat("Number of projects assessed in this run:", length(files), "\n",
-                  "Number of projects with non-annotated files:", length(todo))
+  if(verbose) cat("Number of projects with non-annotated files found:", length(todo))
   return(todo)
 }
 
