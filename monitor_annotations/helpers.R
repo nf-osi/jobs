@@ -36,7 +36,7 @@ processNA <- function(dt,
 emailReAnnotation <- function(recipient,
                               files,
                               project = NULL, 
-                              dcc = DCC_USER,
+                              dcc = FALSE,
                               dry_run = TRUE
 ) {
   msg_template <- 

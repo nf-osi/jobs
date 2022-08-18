@@ -48,7 +48,8 @@ try({
           }
           emailReAnnotation(recipient = recipient, 
                             files = todo[[project]][["na_files"]][[user]], 
-                            project = project, 
+                            project = project,
+                            dcc = DCC_USER,
                             dry_run = DRY_RUN)
         }
       }
