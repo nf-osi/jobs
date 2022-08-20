@@ -40,7 +40,7 @@ emailReAnnotation <- function(recipient,
                               dry_run = TRUE
 ) {
   msg_template <- 
-    "Dear contributor,
+    "Dear NF Data Portal contributor,
   
   Our system shows you have uploaded files which are presently unannotated (some files appended below for reference). 
   NF-OSI encourages that data files be annotated according to the docs here: https://help.nf.synapse.org/NFdocs/how-to-annotate-data.
