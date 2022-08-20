@@ -43,7 +43,8 @@ emailReAnnotation <- function(recipient,
     "Dear NF Data Portal contributor,
   
   Our system shows you have uploaded files which are presently unannotated (some files appended below for reference). 
-  NF-OSI encourages that data files be annotated according to the docs here: https://help.nf.synapse.org/NFdocs/how-to-annotate-data.
+  NF-OSI encourages (and many NF funders mandate) that data files are annotated so that they and future data users can understand what the data are.
+  Please follow the annotation instructions here: https://help.nf.synapse.org/NFdocs/how-to-annotate-data.
   You can ignore this reminder for any non-data files such as analyses and presentations.
   If you believe you have received this message in error, please contact nf-osi@sagebionetworks.org.
   
