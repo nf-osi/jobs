@@ -50,6 +50,6 @@ nfportalutils::register_study(name = NAME,
 nfportalutils::register_study_files(PROJECT_ID)
 
 # Output variables
-cat("SYNAPSE_PROJECT_ID=",PROJECT_ID,
+cat("SYNAPSE_PROJECT_ID=",PROJECT_ID, "\n",
     "SYNAPSE_FILEVIEW_ID=",FILEVIEW_ID, 
-    file = "new_project.log") 
+    file = "new_project.log", sep = "") 
