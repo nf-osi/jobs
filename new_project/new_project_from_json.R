@@ -33,6 +33,7 @@ PROJECT_ID <- created_project$properties$id
 FILEVIEW_ID <- attr(created_project, "fileview")
 
 # Register
+STUDY_TABLE_ID <- if(Sys.getenv("PROFILE") == "TEST") "syn27353709" else "syn16787123"
 nfportalutils::register_study(name = NAME,
                               project_id = PROJECT_ID,
                               abstract = SUMMARY, 
@@ -44,7 +45,7 @@ nfportalutils::register_study(name = NAME,
                               funder = FUNDER,
                               initiative = INITIATIVE,
                               grant_doi = GRANT_DOI,
-                              study_table_id = "syn27353709")
+                              study_table_id = STUDY_TABLE_ID)
 
 # Add to scope of master portal fileview
 nfportalutils::register_study_files(PROJECT_ID)
