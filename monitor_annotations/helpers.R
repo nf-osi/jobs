@@ -6,7 +6,7 @@
 #' `list(n = 3, na_files = list(`111` = c('team1_file1.csv', 'team2_file2.csv'), `222` = c('team2_file1.txt')))`. 
 #' Many projects have more than one uploader, and it would be more understandable
 #' to send individual, precise emails referencing only the relevant files for that user.
-#' @param dt Table query result with `name`, `createdBy`, `resourceType`.
+#' @param dt Table query result with `name`, `createdBy`, `assay`.
 #' @param ignore_file File pattern to ignore.
 #' @param ignore_user List of user ids to ignore. Defaults to NF service accounts. 
 #' @param list_len Max length of list of files to return for each user. Default 50
@@ -19,9 +19,9 @@ processNA <- function(dt,
   dt <- as.data.table(dt$asDataFrame())
   if(nrow(dt) == 0) return(list(n = 0, na_files = NULL))
   dt <- dt[!grepl(ignore_file, name, ignore.case = TRUE)][!createdBy %in% ignore_user]
-  n <- dt[is.na(resourceType), .N]
+  n <- dt[is.na(assay), .N]
   # Assemble list of creator ~ files for clear list of na_files
-  na_files <- split(dt[is.na(resourceType)], by = "createdBy", keep.by = F)
+  na_files <- split(dt[is.na(assay)], by = "createdBy", keep.by = F)
   na_files <- sapply(na_files, function(x) paste0(head(x$name, list_len), " (", head(x$id, list_len), ")"))
   return(list(n = n, na_files = na_files))
 }
@@ -94,7 +94,7 @@ studyAssignments <- function(study_tab_id, verbose = TRUE) {
     # 2) Columns in query for may be missing for some reason
     files[[fileview]] <- try(
       .syn$tableQuery(
-        glue::glue("SELECT id,name,resourceType,createdBy from {fileview} WHERE type='file'")
+        glue::glue("SELECT id,name,assay,createdBy from {fileview} WHERE type='file'")
       )
     )
   }
