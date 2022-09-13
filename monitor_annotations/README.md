@@ -16,8 +16,14 @@ It does the following:
 ### Secrets and env vars
 
 ```
+PROFILE=DEV # Or TEST for test and PROD for production
 SCHEDULED_JOB_SECRETS={"SYNAPSE_AUTH_TOKEN":"xxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
 SCHEDULE=bimonthly
 SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+### Testing Notes
+
+- Build the image with e.g. docker build -t nfosi/jobs-monitor-anno . (or pull image -- to be auto-built soon)
+- Create an envfile envfile-monitor-anno as above and run `docker run --env-file envfile-monitor-anno nfosi/jobs-monitor-anno`
 
