@@ -22,6 +22,8 @@ DCC_USER <- if(Sys.getenv("DCC_USER") == "") FALSE else Sys.getenv("DCC_USER")
                    
 DRY_RUN <- if(PROFILE == "DEV") TRUE else FALSE 
 
+SLEEP_INTERVAL <- 6 # seconds
+
 # Input/target tables
 study_tab_id <- 'syn16787123'
 
@@ -52,6 +54,7 @@ try({
                             project = project,
                             dcc = DCC_USER,
                             dry_run = DRY_RUN)
+          Sys.sleep(SLEEP_INTERVAL)
         }
       }
       
