@@ -15,9 +15,13 @@ It does the following:
 
 ### Secrets and env vars
 
+Note that `DCC_USER` is conditionally required for `PROFILE=TEST` or `PROFILE=PROD`.
+It is not used for `PROFILE=DEV`.
+For local testing, using with your Synapse userid might be more convenient.
+
 ```
 PROFILE=DEV # Or TEST for test and PROD for production
-DCC_USER=3421893 # nf-osi-service / not needed for PROFILE=DEV
+DCC_USER=3421893 # nf-osi-service
 SCHEDULED_JOB_SECRETS={"SYNAPSE_AUTH_TOKEN":"xxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
 SCHEDULE=bimonthly
 SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
