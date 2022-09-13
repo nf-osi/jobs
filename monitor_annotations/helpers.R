@@ -39,6 +39,7 @@ emailReAnnotation <- function(recipient,
                               dcc = FALSE,
                               dry_run = TRUE
 ) {
+  
   msg_template <- 
     "Dear NF Data Portal contributor,
   
@@ -75,6 +76,8 @@ emailReAnnotation <- function(recipient,
 }
 
 #' Main wrapper to generate a list of assignments for missing annotations for each study/user
+#' 
+#' TODO: As number of fileviews increase, this should be parallelized
 #' @param study_tab_id Study table id.
 #' @param verbose Whether to output progress messages.
 studyAssignments <- function(study_tab_id, verbose = TRUE) {
