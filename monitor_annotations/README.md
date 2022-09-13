@@ -17,7 +17,7 @@ It does the following:
 
 ```
 SCHEDULED_JOB_SECRETS={"SYNAPSE_AUTH_TOKEN":"xxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
-SCHEDULE=biweekly
+SCHEDULE=bimonthly
 SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
