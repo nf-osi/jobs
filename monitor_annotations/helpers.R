@@ -108,7 +108,7 @@ studyAssignments <- function(study_tab_id, verbose = TRUE) {
   fail <- names(which(sapply(files, class) == "try-error"))
   if(length(fail)) {
     files <- files[!names(files) %in% fail]
-    warning("Encountered issues with some fileviews: ", paste(fail, collapse = " "), call. = FALSE)
+    warning("Successful except for ", length(fail),  " projects with bad fileviews: ", paste(fail, collapse = ", "), call. = FALSE)
   }
   todo <- lapply(files, processNA)
   todo <- Filter(function(x) x$n > 0, todo)
