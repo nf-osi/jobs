@@ -18,7 +18,7 @@ PROFILE <- switch(Sys.getenv("PROFILE"),
                   TEST = "TEST",
                   "DEV")
                   
-DCC_USER <- if(Sys.getenv("DCC_USER") == "") FALSE else Sys.getenv("DCC_USER")
+DCC_USER <- if(Sys.getenv("DCC_USER") == "") FALSE else as.integer(Sys.getenv("DCC_USER"))
                    
 DRY_RUN <- if(PROFILE == "DEV") TRUE else FALSE 
 

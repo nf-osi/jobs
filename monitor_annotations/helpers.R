@@ -62,7 +62,7 @@ emailReAnnotation <- function(recipient,
   msg_subj <- glue::glue("Please annotate files for Synapse project '{project}'")
   
   # If length of recipient = 1, need to use list to become JSON array
-  recipients <- if(dcc) as.character(c(recipient, dcc)) else list(as.character(recipient))
+  recipients <- if(dcc) list(as.character(unique(c(recipient, dcc)))) else list(as.character(recipient))
   if(dry_run) {
     cat("to:", paste(recipients, collapse = " "), "\n",
         "subject:", msg_subj, "\n\n",
@@ -108,7 +108,7 @@ studyAssignments <- function(study_tab_id, verbose = TRUE) {
   fail <- names(which(sapply(files, class) == "try-error"))
   if(length(fail)) {
     files <- files[!names(files) %in% fail]
-    warning("Encountered issues with some fileviews: ", paste(files, collapse = " "), call. = FALSE)
+    warning("Encountered issues with some fileviews: ", paste(fail, collapse = " "), call. = FALSE)
   }
   todo <- lapply(files, processNA)
   todo <- Filter(function(x) x$n > 0, todo)
