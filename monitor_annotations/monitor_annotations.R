@@ -18,7 +18,8 @@ PROFILE <- switch(Sys.getenv("PROFILE"),
                   TEST = "TEST",
                   "DEV")
                   
-DCC_USER <- 3421893 # nf-osi-service
+DCC_USER <- if(Sys.getenv("DCC_USER") == "") FALSE else Sys.getenv("DCC_USER")
+                   
 DRY_RUN <- if(PROFILE == "DEV") TRUE else FALSE 
 
 # Input/target tables

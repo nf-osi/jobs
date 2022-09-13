@@ -17,6 +17,7 @@ It does the following:
 
 ```
 PROFILE=DEV # Or TEST for test and PROD for production
+DCC_USER=3421893 # nf-osi-service / not needed for PROFILE=DEV
 SCHEDULED_JOB_SECRETS={"SYNAPSE_AUTH_TOKEN":"xxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
 SCHEDULE=bimonthly
 SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
