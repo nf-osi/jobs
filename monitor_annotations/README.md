@@ -7,7 +7,7 @@ It does the following:
 - Query Study table for **active** projects and select relevant studyFileViews
 - Check file entities in studyFileView
     - If no files, don't do anything
-    - If files present, check for core required annotations (e.g. resourceType)
+    - If files present, check for core required annotations (e.g. assay)
 - Make list subset of files without any annotations
 - Get user id(s) who uploaded the data
 - Send email with list
