@@ -5,8 +5,9 @@ name: pre-build-docker
 
 on:
 
-  pull_request:   # default types: opened, synchronize, reopened
-    branches: [ main, develop ]
+  push:
+    branches:    
+      - '**'
     paths: 
       - '**/Dockerfile'
 
@@ -17,6 +18,7 @@ env:
 
 jobs:
   build:
+    if: "contains(github.event.head_commit.message, '[pre-build]')"
     runs-on: ubuntu-latest
     env: 
       environment: "review"
@@ -52,6 +54,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./${{ env.CONTEXT }}
-          tags: ${{ env.IMAGE }}:latest,
+          tags: ${{ env.IMAGE }}:latest
+          push: true
           platforms: linux/amd64
 
