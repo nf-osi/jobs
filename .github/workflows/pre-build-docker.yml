@@ -11,6 +11,7 @@ on:
       - '**/Dockerfile'
 
 env:
+  REGISTRY: ghcr.io
   # all pr-builds are called pre-build 
   IMAGE: ghcr.io/${{ github.repository }}-pre-build
   # PR should be same as name of folder
