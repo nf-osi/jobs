@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-config <- commandArgs(trailingOnly = TRUE)
+configs <- commandArgs(trailingOnly = TRUE)
 
 library(nfportalutils)
 syn_login()
@@ -52,13 +52,15 @@ setup_from_config <- function(config) {
   # Add to scope of master portal fileview
   nfportalutils::register_study_files(PROJECT_ID)
   
-  # Output variables
-  cat("SYNAPSE_PROJECT_ID=",PROJECT_ID, "\n",
-      "SYNAPSE_FILEVIEW_ID=",FILEVIEW_ID, 
-      file = "new_project.log", sep = "") 
+  # Write new syn id to config 
+  cat("Writing", PROJECT_ID, "to", config, "\n")
+  command <- paste0('jq \'. += { "studyId" : "',  PROJECT_ID, '" }\' ', config, ' > tmp.json && mv tmp.json ' , config)
+  system(command)
 }
 
-for(i in config) {
-  cat("--- Preparing using", i, "---\n")
-  setup_from_config(i)
+for(config in configs) {
+  cat("--- Preparing using", config, "---\n")
+  try({
+    setup_from_config(config)
+  })
 }
