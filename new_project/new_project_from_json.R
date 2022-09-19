@@ -5,9 +5,9 @@ configs <- commandArgs(trailingOnly = TRUE)
 library(nfportalutils)
 syn_login()
 
-setup_from_config <- function(config) {
+setup_from_config <- function(config_file) {
   
-  config <- jsonlite::read_json(config)
+  config <- jsonlite::read_json(config_file)
   
   NAME <- config$name
   PI <- config$PI
@@ -53,8 +53,8 @@ setup_from_config <- function(config) {
   nfportalutils::register_study_files(PROJECT_ID)
   
   # Write new syn id to config 
-  cat("Writing", PROJECT_ID, "to", config, "\n")
-  command <- paste0('jq \'. += { "studyId" : "',  PROJECT_ID, '" }\' ', config, ' > tmp.json && mv tmp.json ' , config)
+  cat("Writing", PROJECT_ID, "to", config_file, "\n")
+  command <- paste0('jq \'. += { "studyId" : "',  PROJECT_ID, '" }\' ', config_file, ' > tmp.json && mv tmp.json ' , config_file)
   system(command)
 }
 
