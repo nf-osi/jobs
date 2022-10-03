@@ -62,7 +62,7 @@ emailReAnnotation <- function(recipient,
   msg_subj <- glue::glue("Please annotate files for Synapse project '{project}'")
   
   # If length of recipient = 1, need to use list to become JSON array
-  recipients <- if(dcc) list(as.character(unique(c(recipient, dcc)))) else list(as.character(recipient))
+  recipients <- if(dcc) as.list(as.character(unique(c(recipient, dcc)))) else list(as.character(recipient))
   if(dry_run) {
     cat("to:", paste(recipients, collapse = " "), "\n",
         "subject:", msg_subj, "\n\n",
