@@ -21,7 +21,7 @@ source("https://raw.githubusercontent.com/nf-osi/jobs/764c62a94be9fd4dc2b0e04dd3
 try({
     withCallingHandlers(
     {
-      calculate_related_studies(study_tab_id, n_clust = 40, dry_run = FALSE)
+      calculate_related_studies(study_tab_id, n_k = 4, dry_run = FALSE)
     }, 
     # message = function(m) handleMessage(m, "main"), # no useful messages currently
     error = function(e) handleError(e, "main")
