@@ -1,24 +1,29 @@
 # Helpers for `monitor_annotations.R`
 
-#' Parses the returned fileview query to generate a list for non-annotated files, with elements:
+#' Parse non-annotated files
+#' 
+#' Given fileview query result, generate a list for non-annotated files, with elements:
 #' `n` = Number of non-annotated files and 
 #' `na_files` = List of non-annotated filenames organized by the file creator, e.g. 
 #' `list(n = 3, na_files = list(`111` = c('team1_file1.csv', 'team2_file2.csv'), `222` = c('team2_file1.txt')))`. 
 #' Many projects have more than one uploader, and it would be more understandable
 #' to send individual, precise emails referencing only the relevant files for that user.
-#' @param dt Table query result with `name`, `createdBy`, `assay`.
+#' @param dt Table query result with `name`, `createdBy`, `resourceType`, `assay`.
 #' @param ignore_file File pattern to ignore.
+#' @param ignore_type Known types to ignore.
 #' @param ignore_user List of user ids to ignore. Defaults to NF service accounts. 
 #' @param list_len Max length of list of files to return for each user. Default 50
 processNA <- function(dt,
-                      ignore_file = "^DSP|data sharing plan|synapse_storage_manifest|.*report|\\.pdf$|\\.docx?$|\\.pptx?$",
+                      ignore_file = "^DSP|data sharing plan|synapse_storage_manifest|.*report|\\.pdf$|\\.docx?$|\\.pptx?$|_annotation\\.csv|md5$",
+                      ignore_type = c("curatedData", "result", "tool", "report", "metadata", "protocol", "workflow report"),
                       ignore_user = c(DCC_USER),
                       list_len = 50
 ) {
   
   dt <- as.data.table(dt$asDataFrame())
   if(nrow(dt) == 0) return(list(n = 0, na_files = NULL))
-  dt <- dt[!grepl(ignore_file, name, ignore.case = TRUE)][!createdBy %in% ignore_user]
+  # ignore using both resourceType AND name pattern matching
+  dt <- dt[!grepl(ignore_file, name, ignore.case = TRUE)][!resourceType %in% ignore_type][!createdBy %in% ignore_user]
   n <- dt[is.na(assay), .N]
   # Assemble list of creator ~ files for clear list of na_files
   na_files <- split(dt[is.na(assay)], by = "createdBy", keep.by = F)
@@ -97,7 +102,7 @@ studyAssignments <- function(study_tab_id, verbose = TRUE) {
     # 2) Columns in query for may be missing for some reason
     files[[fileview]] <- try(
       .syn$tableQuery(
-        glue::glue("SELECT id,name,assay,createdBy from {fileview} WHERE type='file'")
+        glue::glue("SELECT id,name,resourceType,assay,createdBy from {fileview} WHERE type='file'")
       )
     )
   }
