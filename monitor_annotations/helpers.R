@@ -11,7 +11,7 @@
 #' @param ignore_user List of user ids to ignore. Defaults to NF service accounts. 
 #' @param list_len Max length of list of files to return for each user. Default 50
 processNA <- function(dt,
-                      ignore_file = "^DSP|data sharing plan|synapse_storage_manifest|.*report|\\.pdf$|\\.docx?$|\\.pptx?$",
+                      ignore_file = "^DSP|data sharing plan|synapse_storage_manifest|.*report|\\.pdf$|\\.docx?$|\\.pptx?$|_annotation\\.csv|md5$",
                       ignore_user = c(DCC_USER),
                       list_len = 50
 ) {
