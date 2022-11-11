@@ -60,6 +60,19 @@ try({
     warning = function(w) handleWarning(w, "main"),
     error = function(e) handleError(e, "main")
   )
+  
+  # Create and send digest
+  if(Sys.getenv("DIGEST_SUBSCRIBERS") != "") {
+    digest_recipients <- strsplit(Sys.getenv("DIGEST_SUBSCRIBERS"), ",")[[1]]
+    table_digest <- data.table(Project = names(todo), 
+                               NA_files = sapply(todo, `[[`, "n"), 
+                               Users = sapply(todo, function(x) glue::glue_collapse(names(x[["na_files"]]), ",")))
+    html_digest <- print(xtable::xtable(table_digest), type = "html")
+    .syn$sendMessage(digest_recipients, 
+                     messageSubject = glue::glue("{schedule} digest for monitor annotations"), 
+                     messageBody = html_digest, 
+                     contentType = "text/html")
+  }
 })
 
 
