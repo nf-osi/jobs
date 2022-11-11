@@ -17,11 +17,8 @@ PROFILE <- switch(Sys.getenv("PROFILE"),
                   PROD = "PROD",
                   TEST = "TEST",
                   "DEV")
-                  
 DCC_USER <- if(Sys.getenv("DCC_USER") == "") FALSE else as.integer(Sys.getenv("DCC_USER"))
-                   
 DRY_RUN <- if(PROFILE == "DEV") TRUE else FALSE 
-
 SLEEP_INTERVAL <- 6 # seconds
 
 # Input/target tables
@@ -40,7 +37,8 @@ source("helpers.R")
 try({
     withCallingHandlers(
     {
-      todo <- studyAssignments(study_tab_id) 
+      fileviews <- crawl_active_fileviews(study_tab_id) 
+      todo <- filter_na(fileviews)
       for(project in names(todo)) {
         for(user in names(todo[[project]][["na_files"]]) ) {
           # Override actual recipient for TEST
@@ -49,7 +47,7 @@ try({
           } else {
             recipient <- user
           }
-          emailReAnnotation(recipient = recipient, 
+          email_re_annotation(recipient = recipient, 
                             files = todo[[project]][["na_files"]][[user]], 
                             project = project,
                             dcc = DCC_USER,
@@ -62,6 +60,19 @@ try({
     warning = function(w) handleWarning(w, "main"),
     error = function(e) handleError(e, "main")
   )
+  
+  # Create and send digest
+  if(Sys.getenv("DIGEST_SUBSCRIBERS") != "") {
+    digest_recipients <- strsplit(Sys.getenv("DIGEST_SUBSCRIBERS"), ",")[[1]]
+    table_digest <- data.table(Project = names(todo), 
+                               NA_files = sapply(todo, `[[`, "n"), 
+                               Users = sapply(todo, function(x) glue::glue_collapse(names(x[["na_files"]]), ",")))
+    html_digest <- print(xtable::xtable(table_digest), type = "html")
+    .syn$sendMessage(digest_recipients, 
+                     messageSubject = glue::glue("{schedule} digest for monitor annotations"), 
+                     messageBody = html_digest, 
+                     contentType = "text/html")
+  }
 })
 
 
