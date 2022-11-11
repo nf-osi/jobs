@@ -13,7 +13,7 @@
 #' @param ignore_type Known types to ignore.
 #' @param ignore_user List of user ids to ignore. Defaults to NF service accounts. 
 #' @param list_len Max length of list of files to return for each user. Default 50
-processNA <- function(dt,
+process_na <- function(dt,
                       ignore_file = "^DSP|data sharing plan|synapse_storage_manifest|.*report|\\.pdf$|\\.docx?$|\\.pptx?$|_annotation\\.csv|md5$",
                       ignore_type = c("curatedData", "result", "tool", "report", "metadata", "protocol", "workflow report"),
                       ignore_user = c(DCC_USER),
@@ -21,13 +21,14 @@ processNA <- function(dt,
 ) {
   
   dt <- as.data.table(dt$asDataFrame())
-  if(nrow(dt) == 0) return(list(n = 0, na_files = NULL))
+  if(nrow(dt) == 0) return(list(n = 0, na_files = NULL)) 
   # ignore using both resourceType AND name pattern matching
   dt <- dt[!grepl(ignore_file, name, ignore.case = TRUE)][!resourceType %in% ignore_type][!createdBy %in% ignore_user]
-  n <- dt[is.na(assay), .N]
+  dt <- dt[is.na(assay)]
+  n <- dt[, .N]
   # Assemble list of creator ~ files for clear list of na_files
-  na_files <- split(dt[is.na(assay)], by = "createdBy", keep.by = F)
-  na_files <- sapply(na_files, function(x) paste0(head(x$name, list_len), " (", head(x$id, list_len), ")"))
+  na_files <- split(dt, by = "createdBy", keep.by = F)
+  na_files <- lapply(na_files, function(x) paste0(head(x$name, list_len), " (", head(x$id, list_len), ")"))
   return(list(n = n, na_files = na_files))
 }
 
@@ -80,12 +81,12 @@ emailReAnnotation <- function(recipient,
   }
 }
 
-#' Main wrapper to generate a list of assignments for missing annotations for each study/user
+#' Crawl active study fileviews
 #' 
 #' TODO: As number of fileviews increase, this should be parallelized
 #' @param study_tab_id Study table id.
 #' @param verbose Whether to output progress messages.
-studyAssignments <- function(study_tab_id, verbose = TRUE) {
+crawl_active_fileviews <- function(study_tab_id, verbose = TRUE) {
   studies <- .syn$tableQuery(glue::glue("SELECT studyId,studyName,studyFileviewId from {study_tab_id} WHERE studyStatus='Active'"))
   studies <- studies$asDataFrame()
   all_fileviews <- studies$studyFileviewId
@@ -115,7 +116,12 @@ studyAssignments <- function(study_tab_id, verbose = TRUE) {
     files <- files[!names(files) %in% fail]
     warning("Successful except for ", length(fail),  " projects with bad fileviews: ", paste(fail, collapse = ", "), call. = FALSE)
   }
-  todo <- lapply(files, processNA)
+  return(files)
+}
+
+#' Wrapper to run list of fileview results through `process_na`
+filter_na <- function(fileviews, verbose = TRUE) {
+  todo <- lapply(fileviews, process_na)
   todo <- Filter(function(x) x$n > 0, todo)
   if(verbose) cat("Number of projects with non-annotated files found:", length(todo), "\n")
   return(todo)

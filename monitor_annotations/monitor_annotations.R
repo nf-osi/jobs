@@ -40,7 +40,8 @@ source("helpers.R")
 try({
     withCallingHandlers(
     {
-      todo <- studyAssignments(study_tab_id) 
+      fileviews <- crawl_active_fileviews(study_tab_id) 
+      todo <- filter_na(fileviews)
       for(project in names(todo)) {
         for(user in names(todo[[project]][["na_files"]]) ) {
           # Override actual recipient for TEST
