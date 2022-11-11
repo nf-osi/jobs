@@ -90,7 +90,7 @@ studyAssignments <- function(study_tab_id, verbose = TRUE) {
   studies <- studies$asDataFrame()
   all_fileviews <- studies$studyFileviewId
   if(verbose) {
-    time_est <- round((length(all_fileviews) * 3.2) / 60, 1) # heuristics
+    time_est <- round((length(all_fileviews) * 3.15) / 60, 1) # heuristics
     cat("Estimated time to query", length(all_fileviews), "active studies:", time_est, "minutes\n")
   }
   files <- list()
