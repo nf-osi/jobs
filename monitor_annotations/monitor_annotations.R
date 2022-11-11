@@ -17,11 +17,8 @@ PROFILE <- switch(Sys.getenv("PROFILE"),
                   PROD = "PROD",
                   TEST = "TEST",
                   "DEV")
-                  
 DCC_USER <- if(Sys.getenv("DCC_USER") == "") FALSE else as.integer(Sys.getenv("DCC_USER"))
-                   
 DRY_RUN <- if(PROFILE == "DEV") TRUE else FALSE 
-
 SLEEP_INTERVAL <- 6 # seconds
 
 # Input/target tables
@@ -50,7 +47,7 @@ try({
           } else {
             recipient <- user
           }
-          emailReAnnotation(recipient = recipient, 
+          email_re_annotation(recipient = recipient, 
                             files = todo[[project]][["na_files"]][[user]], 
                             project = project,
                             dcc = DCC_USER,

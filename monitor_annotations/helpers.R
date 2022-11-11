@@ -39,7 +39,7 @@ process_na <- function(dt,
 #' @param project Optional project name or id for context (goes into message subject).
 #' @param dcc The DCC Synapse profile id (numeric) to cc on the message. Use FALSE to not copy the DCC.  
 #' @param dry_run If TRUE, output message instead of emailing. 
-emailReAnnotation <- function(recipient,
+email_re_annotation <- function(recipient,
                               files,
                               project = NULL, 
                               dcc = FALSE,
