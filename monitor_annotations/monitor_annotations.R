@@ -63,7 +63,7 @@ try({
   
   # Create and send digest
   if(Sys.getenv("DIGEST_SUBSCRIBERS") != "") {
-    digest_recipients <- strsplit(Sys.getenv("DIGEST_SUBSCRIBERS"), ",")[[1]]
+    digest_recipients <- strsplit(Sys.getenv("DIGEST_SUBSCRIBERS"), ";")[[1]]
     table_digest <- data.table(Project = names(todo), 
                                NA_files = sapply(todo, `[[`, "n"), 
                                Users = sapply(todo, function(x) glue::glue_collapse(names(x[["na_files"]]), ",")))
