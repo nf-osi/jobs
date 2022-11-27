@@ -25,12 +25,20 @@ Note that `DCC_USER` is therefore conditionally required only for `PROFILE=TEST`
 It is not used for `PROFILE=DEV`.
 For local testing, using with your Synapse userid might be more convenient.
 
+#### Optional 
+
+- `SCHEDULE`: Used for message display labels only.
+- `SLACK`: Slack channel webhook to report basic job status.
+- `DIGEST_SUBSCRIBERS`: Semicolon-delimited Synapse user ids who want to receive an additional summary table to their email.
+
+
 ```
 PROFILE=DEV # Or TEST for test and PROD for production
 DCC_USER=3421893 # nf-osi-service
 SCHEDULED_JOB_SECRETS={"SYNAPSE_AUTH_TOKEN":"xxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
 SCHEDULE=monthly
 SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+DIGEST_SUBSCRIBERS=1111111;2222222
 ```
 
 ### Testing Notes
