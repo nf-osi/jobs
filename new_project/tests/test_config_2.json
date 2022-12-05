@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "v0.9000",
+  "NFID": "syn22410511",
+  "name": "Neurofibromatosis Test 2",
+  "summary": "A test project.",
+  "fundingAgency": "NTAP",
+  "initiative": "",
+  "grantDOI": "http://doi.org/xxx",
+  "grantStartDate": "2020-01-01",
+  "grantEndDate": "2021-01-01",
+  "embargoEndDate": "2022-10-01",
+  "diseaseFocus": "Neurofibromatosis type 1",
+  "diseaseManifestation": "Behavioral",
+  "PI": "Jane Doe",
+  "PIEmail": "jd@example.org",
+  "dataLead": "Jane Doe",
+  "dataLeadEmail": "Jane Doe",
+  "synPrincipal": "",
+  "institution": [
+    "Sage Bionetworks"
+  ],
+  "dataDeposit": [
+    {
+      "dataRelatedAim": "Aim 1",
+      "dataLabel": "Dataset 1",
+      "dataType": "chromatinActivity",
+      "dataAssay": "ChIPseq",
+      "notes": ""
+    },
+    {
+      "dataRelatedAim": "Aim 2",
+      "dataLabel": "Dataset 2",
+      "dataType": "geneExpression",
+      "dataAssay": "RNA-seq",
+      "notes": ""
+    }
+  ],
+  "studyId": "syn47737347"
+}

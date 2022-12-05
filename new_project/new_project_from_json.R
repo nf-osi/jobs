@@ -21,6 +21,10 @@ setup_from_config <- function(config_file) {
   FOCUS <-  paste(config$diseaseFocus, sep = ",")
   MANIFESTATIONS <- paste(config$diseaseManifestations, sep = ",")
   GRANT_DOI <- paste(config$grantDOI, sep = ",")
+  DATASETS <- config$dataDeposit
+  if(!is.null(DATASETS)) {
+    DATASETS <- sapply(DATASETS, function(x) paste(x$dataLabel, "(", x$dataAssay,")")) 
+  }
   
   # Create
   created_project <- new_project(name = NAME,
@@ -29,7 +33,8 @@ setup_from_config <- function(config_file) {
                                  abstract = SUMMARY,
                                  institution = INSTITUTION,
                                  funder = FUNDER,
-                                 initiative = INITIATIVE)
+                                 initiative = INITIATIVE,
+                                 datasets = DATASETS)
   
   PROJECT_ID <- created_project$properties$id
   FILEVIEW_ID <- attr(created_project, "fileview")
