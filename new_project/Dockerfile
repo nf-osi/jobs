@@ -1,4 +1,4 @@
-FROM ghcr.io/nf-osi/nfportalutils:develop@sha256:2efc3ce7986e96780340ef221e05cfbd8c763db07cf2fa270c62219e1e87bc67
+FROM ghcr.io/nf-osi/nfportalutils:develop@sha256:cea97ae04ae48ba8b47b5a0e34b69f3795a2500b586c9c23f9f4c0236e2d8c27
 
 
 ARG USERNAME=nfosi
