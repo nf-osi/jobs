@@ -6,17 +6,17 @@ Jobs and microservices for routine maintenance and reporting.
 
 ### General contribution flow for a *new* job
 
-1. Create a branch off `develop` with prefix `feat/`.
+1. Create a branch off `main` with prefix `feat/`.
 2. Create a new directory for the job/service and put the script(s), Dockerfile, and job-specific README there.
 3. Add a workflow to build an image (copy and adapt from current `.github/worflows`).
 - Change `on.paths` so that the Docker build will build specifically for the job
 - In the very last step, change `context` to the new job directory
 4. (Optional) In your final commit, add `[pre-build]` in commit message if you want to provide a test image for the reviewers in the PR. 
-5. Make PR against `develop` and add reviewer.
+5. Make PR against `main` and add reviewer.
 
 ### Contributions to **existing** jobs
 
-Create a branch off `develop` with prefix `patch/`, `fix/`, etc.
+Create a branch off `main` with prefix `patch/`, `fix/`, etc.
 Ignore steps 2-4 because the directory and workflow will already exist.
 
 ### Testing
