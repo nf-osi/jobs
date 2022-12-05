@@ -1,9 +1,9 @@
 {
   "schemaVersion": "v0.9000",
   "NFID": "syn22410511",
-  "name": "Neurofibromatosis Test",
+  "name": "Neurofibromatosis Test 2",
   "summary": "A test project.",
-  "fundingAgency": "test",
+  "fundingAgency": "NTAP",
   "initiative": "",
   "grantDOI": "http://doi.org/xxx",
   "grantStartDate": "2020-01-01",
@@ -34,5 +34,6 @@
       "dataAssay": "RNA-seq",
       "notes": ""
     }
-  ]
+  ],
+  "studyId": "syn47737347"
 }
