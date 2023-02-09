@@ -10,16 +10,16 @@ setup_from_config <- function(config_file) {
   config <- jsonlite::read_json(config_file)
   
   NAME <- config$name
-  PI <- config$PI
-  LEAD <- config$dataLead
+  PI <- unlist(config$PI)
+  LEAD <- unlist(config$dataLead)
   # Combined field for study table
-  LEADS <- paste(unique(c(PI, LEAD), sep = ",")) 
+  LEADS <- paste(unique(c(PI, LEAD), sep = ","))
   SUMMARY <- config$summary
   FUNDER <- config$fundingAgency
   INITIATIVE <- config$initiative
-  INSTITUTION <- paste(config$institution, sep = ";")
-  FOCUS <-  paste(config$diseaseFocus, sep = ",")
-  MANIFESTATIONS <- paste(config$diseaseManifestations, sep = ",")
+  INSTITUTION <- paste(unlist(config$institution), sep = ";")
+  FOCUS <-  paste(unlist(config$diseaseFocus), sep = ",")
+  MANIFESTATIONS <- paste(unlist(config$diseaseManifestations), sep = ",")
   GRANT_DOI <- paste(config$grantDOI, sep = ",")
   DATASETS <- config$dataDeposit
   if(!is.null(DATASETS)) {
