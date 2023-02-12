@@ -1,0 +1,26 @@
+{
+    "schemaVersion": "v0.9",
+    "NFID": "Test_Project",
+    "name": "Test Project of Collaborative Study",
+    "summary": "Collaborative studies are complex entities...",
+    "fundingAgency": "NIH-NCI",
+    "initiative": "Developmental and HyperActive Ras Tumor Specialized Programs of Research Excellence",
+    "grantID": "",
+    "grantStartDate": "2020-09-01",
+    "grantEndDate": "2030-08-31",
+    "diseaseFocus": "Neurofibromatosis type 1",
+    "diseaseManifestation": "Plexiform Neurofibroma",
+    "PI": [
+        "John Doe",
+        "Jane Doe"
+    ],
+    "PIEmail": "jd@example.org",
+    "dataLead": [
+        "John Doe",
+        "Jane Doe"
+    ],
+    "institution": [
+        "Stanford University",
+        "Harvard University"
+    ]
+}
