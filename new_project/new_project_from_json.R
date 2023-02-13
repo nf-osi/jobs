@@ -11,16 +11,17 @@ setup_from_config <- function(config_file) {
   
   NAME <- config$name
   PI <- unlist(config$PI)
+  PI_CSV <- paste(PI, collapse = ", ")
   LEAD <- unlist(config$dataLead)
   # Combined field for study table
-  LEADS <- paste(unique(c(PI, LEAD), sep = ","))
+  LEAD_CSV <- paste(unique(c(PI, LEAD)), collapse = ", ")
   SUMMARY <- config$summary
   FUNDER <- config$fundingAgency
   INITIATIVE <- config$initiative
-  INSTITUTION <- paste(unlist(config$institution), sep = ";")
-  FOCUS <-  paste(unlist(config$diseaseFocus), sep = ",")
-  MANIFESTATIONS <- paste(unlist(config$diseaseManifestations), sep = ",")
-  GRANT_DOI <- paste(config$grantDOI, sep = ",")
+  INSTITUTION <- paste(unlist(config$institution), collapse = "; ")
+  FOCUS <-  paste(unlist(config$diseaseFocus), collapse = ",")
+  MANIFESTATIONS <- paste(unlist(config$diseaseManifestations), collapse = ", ")
+  GRANT_DOI <- paste(config$grantDOI, collapse = ", ")
   DATASETS <- config$dataDeposit
   if(!is.null(DATASETS)) {
     DATASETS <- sapply(DATASETS, function(x) paste(x$dataLabel, "(", x$dataAssay,")")) 
@@ -28,8 +29,8 @@ setup_from_config <- function(config_file) {
   
   # Create
   created_project <- new_project(name = NAME,
-                                 pi = PI,
-                                 lead = LEAD,
+                                 pi = PI_CSV,
+                                 lead = LEAD_CSV,
                                  abstract = SUMMARY,
                                  institution = INSTITUTION,
                                  funder = FUNDER,
@@ -44,7 +45,7 @@ setup_from_config <- function(config_file) {
   nfportalutils::register_study(name = NAME,
                                 project_id = PROJECT_ID,
                                 abstract = SUMMARY, 
-                                lead = LEADS,
+                                lead =  LEAD_CSV,
                                 institution = INSTITUTION, 
                                 focus = FOCUS, 
                                 manifestation = MANIFESTATIONS,
