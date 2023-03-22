@@ -25,6 +25,7 @@
       "dataLabel": "Dataset 1",
       "dataType": "chromatinActivity",
       "dataAssay": "ChIP-seq",
+      "dataDescription": "Some ChIP-seq data",
       "notes": ""
     },
     {
@@ -32,6 +33,7 @@
       "dataLabel": "Dataset 2",
       "dataType": "geneExpression",
       "dataAssay": "RNA-seq",
+      "dataDescription": "Some RNA-seq data",
       "notes": ""
     }
   ]
