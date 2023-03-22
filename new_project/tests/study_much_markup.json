@@ -1,8 +1,8 @@
 {
   "schemaVersion": "v0.9000",
   "NFID": "syn22410511",
-  "name": "Neurofibromatosis Demo",
-  "summary": "A demo project.",
+  "name": "Test Study - Much Markup About Nothing",
+  "summary": "## Much Markup About Nothing ### Institution: Oxford University ### Description: blah",
   "fundingAgency": "demo",
   "initiative": "",
   "grantDOI": "http://doi.org/xxx",

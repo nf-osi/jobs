@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "v0.9",
+  "NFID": "Test_Project",
+  "name": "Test Study - Multiple Datasets of Mice and Men",
+  "summary": "This study has several sets of data of the same type and not very distinguishing labels. We want to make sure that dataset folder setup doesn't fail when this happens.",
+  "fundingAgency": "NIH-NCI",
+  "initiative": "Developmental and HyperActive Ras Tumor Specialized Programs of Research Excellence",
+  "grantID": "",
+  "grantStartDate": "2020-09-01",
+  "grantEndDate": "2030-08-31",
+  "diseaseFocus": "Neurofibromatosis type 1",
+  "diseaseManifestation": "Plexiform Neurofibroma",
+  "PI": [
+    "John Doe",
+    "Jane Doe"
+  ],
+  "PIEmail": "jd@example.org",
+  "dataLead": [
+    "John Doe",
+    "Jane Doe"
+  ],
+  "institution": [
+    "Stanford University",
+    "Harvard University"
+  ],
+  "dataDeposit": [
+    {
+      "dataRelatedAim": "Aim 1",
+      "dataLabel": "ChIP-seq",
+      "dataType": "chromatinActivity",
+      "dataAssay": "ChIP-seq",
+      "dataSpecies": "Homo sapiens",
+      "notes": ""
+    },
+    {
+      "dataRelatedAim": "Aim 1",
+      "dataLabel": "ChIP-seq",
+      "dataType": "chromatinActivity",
+      "dataAssay": "ChIP-seq",
+      "dataSpecies": "Mus musculus",
+      "notes": "Even more ChIP-seq! Label is duplicated on purpose."
+    },
+    {
+      "dataRelatedAim": "Aim 2",
+      "dataLabel": "RNA-seq Batch 1",
+      "dataType": "geneExpression",
+      "dataAssay": "RNA-seq",
+      "dataSpecies": "Homo sapiens",
+      "notes": ""
+    },
+    {
+      "dataRelatedAim": "Aim 2",
+      "dataLabel": "RNA-seq Batch 2",
+      "dataType": "geneExpression",
+      "dataAssay": "RNA-seq",
+      "dataSpecies": "Homo sapiens",
+      "notes": ""
+    }
+  ]
+}
