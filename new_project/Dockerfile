@@ -1,4 +1,4 @@
-FROM ghcr.io/nf-osi/nfportalutils:develop@sha256:04bc3e3210bb43f18714b4cbedabb465a57032b4f759962daee31936391aa3e0
+FROM ghcr.io/nf-osi/nfportalutils:develop@sha256:f9a7e1a0bdef751e037da5173341e5a56216169e5f50fcc653f70d31df5fa16e
 
 
 ARG USERNAME=nfosi
@@ -16,7 +16,7 @@ USER $USERNAME
 
 WORKDIR /app
 
-COPY new_project_from_json.R /new_project_from_json.R
+COPY new_project_from_json.R new_project_from_json.R
 
-ENTRYPOINT ["Rscript", "/new_project_from_json.R"]
+ENTRYPOINT ["Rscript", "./new_project_from_json.R"]
 
