@@ -26,9 +26,10 @@ setup_from_config <- function(config_file) {
   GRANT_DOI <- paste(config$grantDOI, collapse = ", ")
   DATA_DEPOSIT <- config$dataDeposit
   if(!is.null(DATA_DEPOSIT)) {
-    DATASETS <- list()
+    DATASETS <- sapply(DATA_DEPOSIT, function(x) x$dataLabel)
+    DATASETS <- make.unique(DATASETS, sep = " ")
+    DATASETS <- as.list(DATASETS)
     for(i in seq_along(DATA_DEPOSIT)) {
-      DATASETS[[i]] <- DATA_DEPOSIT[[i]]$dataLabel
       # Set attributes -- note that properties not present resolve to NULL, which is OK 
       attr(DATASETS[[i]], "assay") <- DATA_DEPOSIT[[i]]$dataAssay
       attr(DATASETS[[i]], "description") <- DATA_DEPOSIT[[i]]$dataDescription
@@ -36,6 +37,7 @@ setup_from_config <- function(config_file) {
       attr(DATASETS[[i]], "contentType") <- "dataset"
     }
   }
+  
   
   # Create
   created_project <- new_project(name = NAME,
