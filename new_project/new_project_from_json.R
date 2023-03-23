@@ -5,6 +5,8 @@ configs <- commandArgs(trailingOnly = TRUE)
 library(nfportalutils)
 syn_login()
 
+# Note that dataset folders must have unique names (Synapse won't create duplicates)
+# Since this can't be enforced at the JSON schema level, we adjust folder names using `make.unique` as necessary
 setup_from_config <- function(config_file) {
   
   config <- jsonlite::read_json(config_file)
@@ -22,10 +24,20 @@ setup_from_config <- function(config_file) {
   FOCUS <-  paste(unlist(config$diseaseFocus), collapse = ",")
   MANIFESTATIONS <- paste(unlist(config$diseaseManifestations), collapse = ", ")
   GRANT_DOI <- paste(config$grantDOI, collapse = ", ")
-  DATASETS <- config$dataDeposit
-  if(!is.null(DATASETS)) {
-    DATASETS <- sapply(DATASETS, function(x) paste(x$dataLabel, "(", x$dataAssay,")")) 
+  DATA_DEPOSIT <- config$dataDeposit
+  if(!is.null(DATA_DEPOSIT)) {
+    DATASETS <- sapply(DATA_DEPOSIT, function(x) x$dataLabel)
+    DATASETS <- make.unique(DATASETS, sep = " ")
+    DATASETS <- as.list(DATASETS)
+    for(i in seq_along(DATA_DEPOSIT)) {
+      # Set attributes -- note that properties not present resolve to NULL, which is OK 
+      attr(DATASETS[[i]], "assay") <- DATA_DEPOSIT[[i]]$dataAssay
+      attr(DATASETS[[i]], "description") <- DATA_DEPOSIT[[i]]$dataDescription
+      attr(DATASETS[[i]], "progressReportNumber") <- DATA_DEPOSIT[[i]]$dataProgressReportNumber
+      attr(DATASETS[[i]], "contentType") <- "dataset"
+    }
   }
+  
   
   # Create
   created_project <- new_project(name = NAME,

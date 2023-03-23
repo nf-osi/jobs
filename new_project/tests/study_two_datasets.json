@@ -1,8 +1,8 @@
 {
   "schemaVersion": "v0.9000",
   "NFID": "syn22410511",
-  "name": "Neurofibromatosis Test 2",
-  "summary": "A test project.",
+  "name": "Test Study - A Tale of Two Datasets",
+  "summary": "We test a simple project with two uniquely labeled datasets",
   "fundingAgency": "NTAP",
   "initiative": "",
   "grantDOI": "http://doi.org/xxx",
@@ -24,7 +24,8 @@
       "dataRelatedAim": "Aim 1",
       "dataLabel": "Dataset 1",
       "dataType": "chromatinActivity",
-      "dataAssay": "ChIPseq",
+      "dataAssay": "ChIP-seq",
+      "dataDescription": "Some ChIP-seq data",
       "notes": ""
     },
     {
@@ -32,8 +33,8 @@
       "dataLabel": "Dataset 2",
       "dataType": "geneExpression",
       "dataAssay": "RNA-seq",
+      "dataDescription": "Some RNA-seq data",
       "notes": ""
     }
-  ],
-  "studyId": "syn47737347"
+  ]
 }
