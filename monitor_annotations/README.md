@@ -18,12 +18,11 @@ It does the following:
 #### Profiles
 
 - `DEV`: print emails to stdout
-- `TEST`: send emails to `DCC_USER` only
-- `PROD`: send emails to `DCC_USER` and real user
+- `TEST`: send emails to `TEST_USER` only
+- `PROD`: send emails to real user OR (real user + cc the DCC if `DCC_USER` is provided) 
 
-Note that `DCC_USER` is therefore conditionally required only for `PROFILE=TEST` or `PROFILE=PROD`.
-It is not used for `PROFILE=DEV`.
-For local testing, using with your Synapse userid might be more convenient.
+With `PROFILE=TEST`, you *must* provide an id for `TEST_USER`.
+With `PROFILE=PROD`, you *may* provide a `DCC_USER` for which to cc the messages sent.
 
 #### Optional 
 
