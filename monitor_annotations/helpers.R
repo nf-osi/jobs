@@ -117,7 +117,7 @@ email_re_annotation <- function(recipient,
     NF-OSI encourages (and many NF funders mandate) that data files be annotated so that they and future data users can understand the data.
     At minimum please provide “resourceType”, “dataType”, “specimenID” and “assay” to help make the data findable. 
     You can find annotation instructions <a target="_blank" href="https://help.nf.synapse.org/NFdocs/how-to-annotate-data">here</a>.
-    If you need help, feel free to reach out to us at nf-osi@sagebionetworks.org.
+    If you need help with annotation, please reach out to us at nf-osi@sagebionetworks.org.
     <br/><br/>
     Thank you,
     <br/>
