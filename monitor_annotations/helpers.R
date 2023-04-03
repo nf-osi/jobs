@@ -80,6 +80,14 @@ as_syn_link <- function(name, id, label = " ") {
   glue::glue('<a target="_blank" href="https://www.synapse.org/#!Synapse:{id}">{label}{name}</a><br/>')
 }
 
+
+get_profile_name <- function(user) {
+  uprofile <- .syn$getUserProfile(user)
+  # Empty strings if unset by user
+  name <- paste(uprofile$firstName, uprofile$lastName) 
+  return(name)
+}
+
 # EMAIL/MESSAGING --------------------------------------------------------------#
 
 #' Email reminder regarding annotation
@@ -103,8 +111,8 @@ email_re_annotation <- function(recipient,
 ) {
   
   if(personalize) {
-    uprofile <- .syn$getUserProfile(recipient)
-    addressee <- paste(uprofile$firstName, uprofile$lastName) 
+    addressee <- get_profile_name(recipient)
+    if(addressee == " ") addressee <- "NF Data Portal contributor" 
   } else {
     addressee <- "NF Data Portal contributor"
   }
