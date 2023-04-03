@@ -112,7 +112,7 @@ email_re_annotation <- function(recipient,
   msg_template <- glue::glue( 
     'Dear {addressee},
     <br/><br/>
-    Please annotate files that you have uploaded to this project in Synapse.
+    This is a friendly reminder to please annotate files that you have uploaded to this project in Synapse.
     The files which need annotation are listed {details} below.
     NF-OSI encourages (and many NF funders mandate) that data files be annotated so that they and future data users can understand the data.
     At minimum please provide “resourceType”, “dataType”, “specimenID” and “assay” to help make the data findable. 
