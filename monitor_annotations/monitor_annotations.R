@@ -5,9 +5,6 @@ library(data.table)
 library(httr)
 
 # Config -----------------------------------------------------------------------#
-# Extract and use token
-secrets <- jsonlite::fromJSON(Sys.getenv("SCHEDULED_JOB_SECRETS"))
-syn_login(authtoken = secrets[["SYNAPSE_AUTH_TOKEN"]])
 
 # Check whether running as DEV, TEST or PROD, with DEV being default and catch-all. Behavior for:
 # PROD = Send emails to actual users
@@ -17,12 +14,24 @@ PROFILE <- switch(Sys.getenv("PROFILE"),
                   PROD = "PROD",
                   TEST = "TEST",
                   "DEV")
-DCC_USER <- if(Sys.getenv("DCC_USER") == "") FALSE else as.integer(Sys.getenv("DCC_USER"))
+
+cat("PROFILE:", PROFILE, "\n")
+
+# Extract and use token
+secrets <- jsonlite::fromJSON(Sys.getenv("SCHEDULED_JOB_SECRETS"))
+syn_login(authtoken = secrets[["SYNAPSE_AUTH_TOKEN"]])
+
+DCC_USER <- Sys.getenv("DCC_USER")
+TEST_USER <- as.character(Sys.getenv("TEST_USER"))
+
+if(PROFILE == "TEST" && TEST_USER == "") error("For PROFILE=TEST you must set TEST_USER=xxx")
+
 DRY_RUN <- if(PROFILE == "DEV") TRUE else FALSE 
 SLEEP_INTERVAL <- 6 # seconds
 
 # Input/target tables
 study_tab_id <- 'syn16787123'
+fileview_tab_id <- 'syn16858331'
 
 # Define job
 schedule <- if(Sys.getenv("SCHEDULE") != "") paste(Sys.getenv("SCHEDULE"), "-") else ""
@@ -37,21 +46,18 @@ source("helpers.R")
 try({
     withCallingHandlers(
     {
-      fileviews <- crawl_active_fileviews(study_tab_id) 
-      todo <- filter_na(fileviews)
+      todo <- make_active_study_reminder_list(study_tab_id, fileview_tab_id)
       for(project in names(todo)) {
-        for(user in names(todo[[project]][["na_files"]]) ) {
-          # Override actual recipient for TEST
-          if(PROFILE == "TEST") {
-            recipient <- DCC_USER
-          } else {
-            recipient <- user
-          }
-          email_re_annotation(recipient = recipient, 
-                            files = todo[[project]][["na_files"]][[user]], 
-                            project = project,
-                            dcc = DCC_USER,
-                            dry_run = DRY_RUN)
+        for(user in names(todo[[project]][["naf"]]) ) {
+          TEST_USER <- if(PROFILE == "TEST") TEST_USER else NULL
+          email_re_annotation(recipient = user, 
+                              list = todo[[project]][["naf"]][[user]],
+                              type = "folder",
+                              project = project,
+                              test_user = TEST_USER,
+                              dcc = DCC_USER,
+                              dry_run = DRY_RUN)
+          cat("Email composed for:", user, "\n")
           Sys.sleep(SLEEP_INTERVAL)
         }
       }
@@ -63,11 +69,11 @@ try({
   
   # Create and send digest
   if(Sys.getenv("DIGEST_SUBSCRIBERS") != "") {
-    digest_recipients <- strsplit(Sys.getenv("DIGEST_SUBSCRIBERS"), ";")[[1]]
+    digest_recipients <- as.list(strsplit(Sys.getenv("DIGEST_SUBSCRIBERS"), ";")[[1]])
     table_digest <- data.table(Project = names(todo), 
-                               NA_files = sapply(todo, `[[`, "n"), 
-                               Users = sapply(todo, function(x) glue::glue_collapse(names(x[["na_files"]]), ",")))
-    html_digest <- print(xtable::xtable(table_digest), type = "html")
+                               NAF = sapply(todo, `[[`, "n"), 
+                               Users = sapply(todo, function(x) glue::glue_collapse(names(x[["naf"]]), " ")))
+    html_digest <- print(xtable::xtable(table_digest), type = "html", html.table.attributes = "border='1px solid gray' cellpadding='6' cellspacing='0'", print.results = FALSE)
     .syn$sendMessage(digest_recipients, 
                      messageSubject = glue::glue("{schedule} digest for monitor annotations"), 
                      messageBody = html_digest, 
