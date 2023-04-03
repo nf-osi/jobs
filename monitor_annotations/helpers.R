@@ -109,11 +109,18 @@ email_re_annotation <- function(recipient,
     addressee <- "NF Data Portal contributor"
   }
   details <- if(type == "folder") "in the folders" else "as a representative selection" 
+  msg_listing <- paste(list, collapse = "\n")
   msg_template <- glue::glue( 
     'Dear {addressee},
     <br/><br/>
     This is a friendly reminder to please annotate files that you have uploaded to this project in Synapse.
-    The files which need annotation are listed {details} below.
+    They can be annotated using the <a target="_blank" href="https://sagebio.shinyapps.io/NF_data_curator">Data Curator App</a>. 
+    The files which need annotation are listed {details} below:
+    
+    <br/><br/>
+    {msg_listing}
+    <br/><br/>
+    
     NF-OSI encourages (and many NF funders mandate) that data files be annotated so that they and future data users can understand the data.
     At minimum please provide “resourceType”, “dataType”, “specimenID” and “assay” to help make the data findable. 
     You can find annotation instructions <a target="_blank" href="https://help.nf.synapse.org/NFdocs/how-to-annotate-data">here</a>.
@@ -122,13 +129,6 @@ email_re_annotation <- function(recipient,
     Thank you,
     <br/>
     NF-OSI Service')
-  
-  msg_listing <- paste(list, collapse = "\n")
-  
-  msg_body <- paste0(msg_template,
-                     "<br/><br/><hr/><br/>",
-                     msg_listing,
-                     "<br/><hr/><br/>")
   
   msg_subj <- glue::glue("Please annotate files for Synapse project '{project}'")
   
@@ -139,11 +139,11 @@ email_re_annotation <- function(recipient,
   if(dry_run) {
     cat("to:", paste(recipients, collapse = " "), "\n",
         "subject:", msg_subj, "\n\n",
-        msg_body)
+        msg_template)
   } else {
     .syn$sendMessage(userIds = recipients,
                      messageSubject = msg_subj, 
-                     messageBody = msg_body,
+                     messageBody = msg_template,
                      contentType = "text/html")
   }
 }
