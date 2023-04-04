@@ -84,7 +84,7 @@ as_syn_link <- function(name, id, label = " ") {
 get_profile_name <- function(user) {
   uprofile <- .syn$getUserProfile(user)
   # Empty strings if unset by user
-  name <- paste(uprofile$firstName, uprofile$lastName) 
+  name <- tryCatch(paste(uprofile$firstName, uprofile$lastName), error=function(e) return(" "))
   return(name)
 }
 
