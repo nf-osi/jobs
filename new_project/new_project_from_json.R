@@ -25,7 +25,8 @@ setup_from_config <- function(config_file) {
   MANIFESTATIONS <- paste(unlist(config$diseaseManifestations), collapse = ", ")
   GRANT_DOI <- paste(config$grantDOI, collapse = ", ")
   DATA_DEPOSIT <- config$dataDeposit
-  if(!is.null(DATA_DEPOSIT)) {
+  DATASETS <- NULL
+  if(!is.null(DATA_DEPOSIT) && length(DATA_DEPOSIT[[1]])) {
     DATASETS <- sapply(DATA_DEPOSIT, function(x) x$dataLabel)
     DATASETS <- make.unique(DATASETS, sep = " ")
     DATASETS <- as.list(DATASETS)
@@ -37,7 +38,6 @@ setup_from_config <- function(config_file) {
       attr(DATASETS[[i]], "contentType") <- "dataset"
     }
   }
-  
   
   # Create
   created_project <- new_project(name = NAME,

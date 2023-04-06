@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "v0.9000",
+  "NFID": "Basic_Study_2",
+  "name": "A Basic Study 2",
+  "summary": "A demo project.",
+  "fundingAgency": "demo",
+  "initiative": "",
+  "grantDOI": "http://doi.org/xxx",
+  "grantStartDate": "2020-01-01",
+  "grantEndDate": "2021-01-01",
+  "embargoEndDate": "2022-10-01",
+  "diseaseFocus": "Neurofibromatosis type 1",
+  "diseaseManifestation": "Behavioral",
+  "PI": "Robert Allaway",
+  "PIEmail": "allawayr@synapse.org",
+  "dataLead": "Robert Allaway",
+  "dataDeposit": [{}],
+  "dataLeadEmail": "allawayr@synapse.org",
+  "synPrincipal": "",
+  "institution": [
+    "Sage Bionetworks"
+  ],
+  "notes": ""
+}
