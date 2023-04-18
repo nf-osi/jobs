@@ -12,11 +12,16 @@ setup_from_config <- function(config_file) {
   config <- jsonlite::read_json(config_file)
   
   NAME <- config$name
+  
+  # People
   PI <- unlist(config$PI)
   PI_CSV <- paste(PI, collapse = ", ")
   LEAD <- unlist(config$dataLead)
-  # Combined field for study table
   LEAD_CSV <- paste(unique(c(PI, LEAD)), collapse = ", ")
+  ADMIN <- config$synPrincipal
+  
+  
+  # Other meta
   SUMMARY <- config$summary
   FUNDER <- config$fundingAgency
   INITIATIVE <- config$initiative
@@ -24,6 +29,13 @@ setup_from_config <- function(config_file) {
   FOCUS <-  paste(unlist(config$diseaseFocus), collapse = ",")
   MANIFESTATIONS <- paste(unlist(config$diseaseManifestations), collapse = ", ")
   GRANT_DOI <- paste(config$grantDOI, collapse = ", ")
+  
+  # Other governance
+  INITPUBLICVIEW <- config$governance$initPublicView
+  INITPUBLICVIEW <- if(!is.null(INITPUBLICVIEW) && is.logical(INITPUBLICVIEW)) INITPUBLICVIEW else FALSE
+  ADMIN <- config$synPrincipal
+  
+  # Data
   DATA_DEPOSIT <- config$dataDeposit
   DATASETS <- NULL
   if(!is.null(DATA_DEPOSIT) && length(DATA_DEPOSIT[[1]])) {
@@ -43,11 +55,14 @@ setup_from_config <- function(config_file) {
   created_project <- new_project(name = NAME,
                                  pi = PI_CSV,
                                  lead = LEAD_CSV,
+                                 admin_user = ADMIN,
                                  abstract = SUMMARY,
                                  institution = INSTITUTION,
                                  funder = FUNDER,
                                  initiative = INITIATIVE,
-                                 datasets = DATASETS)
+                                 publicview = INITPUBLICVIEW,
+                                 datasets = DATASETS,
+                                 )
   
   PROJECT_ID <- created_project$properties$id
   FILEVIEW_ID <- attr(created_project, "fileview")
