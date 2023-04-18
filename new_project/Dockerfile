@@ -1,16 +1,14 @@
-FROM ghcr.io/nf-osi/nfportalutils:develop@sha256:f9a7e1a0bdef751e037da5173341e5a56216169e5f50fcc653f70d31df5fa16e
-
+FROM ghcr.io/nf-osi/nfportalutils:develop@sha256:103c21eea8c9a2c0e438880f28b03827e4285bc4e71f3141f5fdcf28a6b813ce
 
 ARG USERNAME=nfosi
 ARG USER_UID=1001
 ARG USER_GID=1000
 
+RUN apt-get update -qq && \
+    apt-get install -y jq
+
 # Create the user
-RUN useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && apt-get update \
-    && apt-get install -y sudo jq \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME
+RUN useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
 USER $USERNAME
 

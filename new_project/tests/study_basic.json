@@ -1,23 +1,26 @@
 {
   "schemaVersion": "v0.9000",
-  "NFID": "syn22410511",
+  "NFID": "Test_Study_Basic",
   "name": "A Basic Study",
-  "summary": "A demo project.",
-  "fundingAgency": "demo",
+  "summary": "An NF Demo Project.",
+  "fundingAgency": "Demo",
   "initiative": "",
-  "grantDOI": "http://doi.org/xxx",
+  "grantDOI": "https://doi.org/xxx",
   "grantStartDate": "2020-01-01",
   "grantEndDate": "2021-01-01",
   "embargoEndDate": "2022-10-01",
   "diseaseFocus": "Neurofibromatosis type 1",
   "diseaseManifestation": "Behavioral",
-  "PI": "Robert Allaway",
-  "PIEmail": "allawayr@synapse.org",
-  "dataLead": "Robert Allaway",
-  "dataLeadEmail": "allawayr@synapse.org",
-  "synPrincipal": "",
+  "PI": "NF Service",
+  "PIEmail": "nf-osi-service@synapse.org",
+  "dataLead": "NF Service",
+  "dataLeadEmail": "nf-osi-service@synapse.org",
+  "synPrincipal": "nf-osi-service",
   "institution": [
     "Sage Bionetworks"
   ],
+  "governance": {
+    "initPublicView": true
+  },
   "notes": ""
 }

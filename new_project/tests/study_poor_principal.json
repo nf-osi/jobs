@@ -1,11 +1,11 @@
 {
   "schemaVersion": "v0.9000",
-  "NFID": "syn22410511",
-  "name": "Test Study - Much Markup About Nothing",
-  "summary": "## Much Markup About Nothing ### Institution: Oxford University ### Description: blah",
-  "fundingAgency": "demo",
+  "NFID": "Test_Poor_Principal",
+  "name": "A Basic Study",
+  "summary": "An NF Demo Project.",
+  "fundingAgency": "Demo",
   "initiative": "",
-  "grantDOI": "http://doi.org/xxx",
+  "grantDOI": "https://doi.org/xxx",
   "grantStartDate": "2020-01-01",
   "grantEndDate": "2021-01-01",
   "embargoEndDate": "2022-10-01",
@@ -15,7 +15,7 @@
   "PIEmail": "nf-osi-service@synapse.org",
   "dataLead": "NF Service",
   "dataLeadEmail": "nf-osi-service@synapse.org",
-  "synPrincipal": "",
+  "synPrincipal": "-1",
   "institution": [
     "Sage Bionetworks"
   ],
