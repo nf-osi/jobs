@@ -12,6 +12,12 @@ COMMENT="Scheduled snapshot"
 SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
+### Example build
+
+`docker build -t ghcr.io/nf-osi/jobs-snapshot .`
+
+See images with `docker image ls`
+
 ### Example run 
 
 `docker run --env-file envfile run ghcr.io/nf-osi/jobs-snapshot syn27242487 syn27242485`
