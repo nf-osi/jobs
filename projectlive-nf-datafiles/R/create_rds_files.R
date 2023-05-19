@@ -1,7 +1,7 @@
 require(magrittr)
 
 incoming_data_table <- "syn51471723" # used to be syn23364404
-live_folder <- "syn24474593" # "syn22281727"
+live_folder <- "syn22281727"
 dev_folder  <- "syn24474593"
 
 # Define job
