@@ -116,7 +116,7 @@ try(withCallingHandlers({
         "progressReportNumber",
         "estimatedMinNumSamples",
         "fundingAgency",
-        "projectSynID",
+        "studyId",
         "dataType"
       ),
       col_types = readr::cols(
@@ -126,12 +126,11 @@ try(withCallingHandlers({
     ) %>%
     dplyr::left_join(
       dplyr::select(studies, "studyName", "studyId"),
-      by = c("projectSynID" = "studyId")
+      by = c("studyId" = "studyId")
     ) %>%
     dplyr::mutate(
       "date_uploadestimate" = lubridate::mdy(date_uploadestimate),
     ) %>%
-    dplyr::rename("studyId" = "projectSynID") %>% 
     dplyr::filter(
       !is.na(.data$date_uploadestimate) | !is.na(.data$progressReportNumber)
     ) %>%
