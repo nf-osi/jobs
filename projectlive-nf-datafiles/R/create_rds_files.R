@@ -1,5 +1,6 @@
 require(magrittr)
 
+incoming_data_table <- "syn51471723" # used to be syn23364404
 live_folder <- "syn22281727"
 dev_folder  <- "syn24474593"
 
@@ -108,14 +109,14 @@ try(withCallingHandlers({
   dev_incoming_data <-
     get_synapse_tbl(
       syn,
-      "syn23364404",
+      incoming_data_table,
       columns = c(
         "fileFormat",
         "date_uploadestimate",
         "progressReportNumber",
         "estimatedMinNumSamples",
         "fundingAgency",
-        "projectSynID",
+        "studyId",
         "dataType"
       ),
       col_types = readr::cols(
@@ -125,12 +126,11 @@ try(withCallingHandlers({
     ) %>%
     dplyr::left_join(
       dplyr::select(studies, "studyName", "studyId"),
-      by = c("projectSynID" = "studyId")
+      by = c("studyId" = "studyId")
     ) %>%
     dplyr::mutate(
       "date_uploadestimate" = lubridate::mdy(date_uploadestimate),
     ) %>%
-    dplyr::rename("studyId" = "projectSynID") %>% 
     dplyr::filter(
       !is.na(.data$date_uploadestimate) | !is.na(.data$progressReportNumber)
     ) %>%

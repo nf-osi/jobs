@@ -5,7 +5,7 @@ name: pre-build-docker
 
 on:
 
-  push:
+  pull_request:
     branches:    
       - '**'
 
