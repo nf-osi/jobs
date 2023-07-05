@@ -43,7 +43,7 @@ ids_to_names <- function(ids) {
 #' To avoid user cognitive overload, we can fine tune to the new-ish files using `within_days`. 
 #' 
 #' MUST provide `createdOn` for the files.
-filter_by_date <- function(files, within_days = 365) {
+filter_by_date <- function(files, within_days = 90) {
   cutoff_date <- Sys.Date() - within_days
   files[, createdOn := lubridate::as_datetime(createdOn / 1000)]
   files <- files[createdOn > cutoff_date]
