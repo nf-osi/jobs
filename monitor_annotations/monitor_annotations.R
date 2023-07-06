@@ -9,7 +9,7 @@ library(httr)
 # Check whether running as DEV, TEST or PROD, with DEV being default and catch-all. Behavior for:
 # PROD = Send emails to actual users
 # TEST = Send emails to nf-osi-service (3421893)
-# DEV = Print emails to stout
+# DEV = Print emails to stout and save in messages.log only
 PROFILE <- switch(Sys.getenv("PROFILE"),
                   PROD = "PROD",
                   TEST = "TEST",
@@ -47,6 +47,7 @@ try({
     withCallingHandlers(
     {
       todo <- make_active_study_reminder_list(study_tab_id, fileview_tab_id)
+      if(DRY_RUN) sink("messages.log", append = TRUE, split = TRUE)
       for(project in names(todo)) {
         for(user in names(todo[[project]][["naf"]]) ) {
           TEST_USER <- if(PROFILE == "TEST") TEST_USER else NULL
