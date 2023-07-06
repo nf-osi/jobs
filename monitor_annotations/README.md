@@ -8,9 +8,9 @@ It does the following:
 - How each studyFileView is checked:
     - If no files, don't do anything
     - If files present, check for core required annotations (e.g. `assay`)
-- Make list of the subset of files without required annotations
+- Reference which folders have files without required annotations
 - Get user id(s) who uploaded the data
-- Send email to user with list of files
+- Send email to user with folders referenced
 
 
 ### Secrets and env vars
@@ -42,6 +42,11 @@ DIGEST_SUBSCRIBERS=1111111;2222222
 
 ### Testing Notes
 
+#### With Docker image
+
 - Build the image with e.g. `docker build -t ghcr.io/nfosi/jobs-monitor-annotations .` (or pull current/pre-build image if available)
 - Create an envfile `envfile-monitor-anno` as above and run `docker run --env-file envfile-monitor-anno ghcr.io/nf-osi/jobs-monitor-annotations`
 
+#### Unit tests
+
+- See tests in `tests` folder
