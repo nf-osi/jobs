@@ -55,6 +55,7 @@ try({
                         test_user = TEST_USER,
                         no_email_list_users = no_email_list_users,
                         dry_run = DRY_RUN)
+      sink()
       
     }, 
     warning = function(w) handleWarning(w, "main"),
