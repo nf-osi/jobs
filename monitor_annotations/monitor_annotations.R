@@ -26,8 +26,7 @@ TEST_USER <- as.character(Sys.getenv("TEST_USER"))
 
 if(PROFILE == "TEST" && TEST_USER == "") error("For PROFILE=TEST you must set TEST_USER=xxx")
 
-DRY_RUN <- if(PROFILE == "DEV") TRUE else FALSE 
-SLEEP_INTERVAL <- 6 # seconds
+DRY_RUN <- if(PROFILE == "DEV") TRUE else FALSE
 
 # Reference tables
 study_tab_id <- 'syn16787123'
@@ -51,29 +50,11 @@ try({
     {
       todo <- make_active_study_reminder_list(study_tab_id, fileview_tab_id)
       if(DRY_RUN) sink("messages.log", append = TRUE, split = TRUE)
-      for(project in names(todo)) {
-        for(user in names(todo[[project]][["naf"]]) ) {
-          # Check user against no-email-list
-          if(user %in% no_email_list_users) {
-            
-            message("Skipping reminder for: ", user)
-            
-          } else {
-            
-            TEST_USER <- if(PROFILE == "TEST") TEST_USER else NULL
-            email_re_annotation(recipient = user, 
-                                list = todo[[project]][["naf"]][[user]],
-                                type = "folder",
-                                project = project,
-                                test_user = TEST_USER,
-                                dcc = DCC_USER,
-                                dry_run = DRY_RUN)
-            cat("Email composed for:", user, "\n")
-            Sys.sleep(SLEEP_INTERVAL)
-            
-          }
-        }
-      }
+      send_message_list(todo,
+                        dcc_user = DCC_USER,
+                        test_user = TEST_USER,
+                        no_email_list_users = no_email_list_users,
+                        dry_run = DRY_RUN)
       
     }, 
     warning = function(w) handleWarning(w, "main"),
