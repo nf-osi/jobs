@@ -1,0 +1,20 @@
+.invalid {
+  color: #fff;
+  background-color: red;
+  padding: 2px 3px 2px 3px;
+  margin-right: 5px;
+}
+
+.neutral {
+  color: #000;
+  background-color: lightgray;
+  padding: 2px 3px 2px 3px;
+  margin-right: 5px;
+}
+
+.valid {
+  color: #000;
+  background-color: mediumspringgreen;
+  padding: 2px 3px 2px 3px;
+  margin-right: 5px;
+}

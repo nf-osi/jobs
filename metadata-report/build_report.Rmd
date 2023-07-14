@@ -1,0 +1,65 @@
+---
+title: "Report"
+author: "NF Service"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    theme: lumen
+    css: custom.css
+params:
+  schema_csv: "https://raw.githubusercontent.com/nf-osi/nf-metadata-dictionary/main/NF.csv"
+  report_data_bin: report_data.rds # compiled summary over all fileviews
+  update: FALSE # rerun compilation of fileviews to update `report_data_bin`
+  fileviews: fileviews # file containing fileview ids on separated lines
+  authtoken: authtoken # only needed if update = TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+options(readr.show_col_types = FALSE)
+
+library(data.table)
+library(reactable)
+library(htmltools)
+
+source("qc_helpers.R")
+
+# Pull schema as reference lookup
+schema <- fread(params$schema_csv)
+lookup <- asLookup(schema)
+```
+
+
+```{r compile, include=FALSE, eval=params$update}
+
+library(nfportalutils) # required only for compile
+# reticulate::use_condaenv("/r-reticulate", required = T)
+nfportalutils::syn_login(authtoken = params$authtoken)
+
+fileview_ids <- readLines(params$fileviews)
+
+exclude <- c(c("name", "fileName", "studyId", "studyName", "modifiedOn", "entityId",
+               "eTag", "dataFileHandleId", "dataFileMD5Hex", "dataFileSizeBytes"),
+             schema[Parent %in% c("dccProperty", "synapseProperty"), Attribute])
+metadata <- compileFileviews(fileview_ids, exclude)
+metadata <- metadata[, .(validMeta(key, value, lookup), .id, .r)]
+# assign CSS classes
+metadata[, valueCSS := fifelse(valid, yes = "valid", no = "invalid", na = "neutral") ]
+# comma-sep values need to be re-listed
+metadata <- metadata[, .(value = list(value), valid = list(valid), valueCSS = list(valueCSS)), 
+                      by = .(key, validkey, .r, .id)]
+
+# Save as RDS
+saveRDS(metadata, file = params$report_data_bin)
+```
+
+
+```{r render, echo=FALSE}
+
+report_data <- readRDS(params$report_data_bin)
+# Render only problematic keys/values
+qc_report <- report_data_subset(report_data)
+reportTable(qc_report)
+
+```
