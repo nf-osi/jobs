@@ -44,7 +44,7 @@ DIGEST_SUBSCRIBERS=1111111;2222222
 
 #### With Docker image
 
-- Build the image with e.g. `docker build -t ghcr.io/nfosi/jobs-monitor-annotations .` (or pull current/pre-build image if available)
+- Build the image with e.g. `docker build --no-cache -t ghcr.io/nf-osi/jobs-monitor-annotations .` (or pull current/pre-build image if available)
 - Create an envfile `envfile-monitor-anno` as above and run `docker run --env-file envfile-monitor-anno ghcr.io/nf-osi/jobs-monitor-annotations`
 
 #### Unit tests

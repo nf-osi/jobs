@@ -6,6 +6,8 @@ library(httr)
 
 # Config -----------------------------------------------------------------------#
 
+# Run profile --------#
+
 # Check whether running as DEV, TEST or PROD, with DEV being default and catch-all. Behavior for:
 # PROD = Send emails to actual users
 # TEST = Send emails to nf-osi-service (3421893)
@@ -22,13 +24,18 @@ secrets <- jsonlite::fromJSON(Sys.getenv("SCHEDULED_JOB_SECRETS"))
 syn_login(authtoken = secrets[["SYNAPSE_AUTH_TOKEN"]])
 
 DCC_USER <- Sys.getenv("DCC_USER")
-TEST_USER <- as.character(Sys.getenv("TEST_USER"))
 
-if(PROFILE == "TEST" && TEST_USER == "") error("For PROFILE=TEST you must set TEST_USER=xxx")
+if(PROFILE == "TEST") {
+  TEST_USER <- as.character(Sys.getenv("TEST_USER"))
+  if(TEST_USER == "") error("For PROFILE=TEST you must set TEST_USER=xxx")
+} else {
+  TEST_USER <- NULL
+}
 
 DRY_RUN <- if(PROFILE == "DEV") TRUE else FALSE
 
-# Reference tables
+# Reference tables --------#
+
 study_tab_id <- 'syn16787123'
 fileview_tab_id <- 'syn16858331'
 no_email_list <- 'syn51907919'
@@ -49,13 +56,13 @@ try({
     withCallingHandlers(
     {
       todo <- make_active_study_reminder_list(study_tab_id, fileview_tab_id)
-      if(DRY_RUN) sink("messages.log", append = TRUE, split = TRUE)
+      # if(DRY_RUN) sink("messages.log", append = TRUE, split = TRUE)
       send_message_list(todo,
                         dcc_user = DCC_USER,
                         test_user = TEST_USER,
                         no_email_list_users = no_email_list_users,
                         dry_run = DRY_RUN)
-      sink()
+      # sink()
       
     }, 
     warning = function(w) handleWarning(w, "main"),
