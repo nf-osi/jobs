@@ -10,7 +10,7 @@ job <- list(
   main = paste(schedule, "create_projectlive_rds"))
 
 try(withCallingHandlers({
-  
+
   source("https://raw.githubusercontent.com/Sage-Bionetworks/projectlive.modules/231f14aa9a4c35a4cad46c851ff05eb07dff3f19/R/synapse_functions.R")
   source("https://raw.githubusercontent.com/Sage-Bionetworks/projectlive.modules/231f14aa9a4c35a4cad46c851ff05eb07dff3f19/R/data_manipulation_functions.R")
   source("https://raw.githubusercontent.com/nf-osi/jobs/764c62a94be9fd4dc2b0e04dd310c07472044faa/utils/slack.R")
@@ -20,33 +20,33 @@ try(withCallingHandlers({
   syn <- synapseclient$Synapse()
   auth_token <- rjson::fromJSON(Sys.getenv("SCHEDULED_JOB_SECRETS"))$SYNAPSE_AUTH_TOKEN
   syn$login(authToken=auth_token)
-  
+
   store_file_in_synapse <- function(syn, file, parent_id){
     file <- reticulate::import("synapseclient")$File(file, parent_id)
     syn$store(file)
   }
-  
-  
-  
+
+
+
   # studies ----
-  studies <- get_synapse_tbl(syn, "syn16787123")
+  studies <- get_synapse_tbl(syn, "syn52694652")
   saveRDS(studies, "studies.RDS")
-  
+
   store_file_in_synapse(
     syn,
     "studies.RDS",
     dev_folder
   )
-  
+
   store_file_in_synapse(
     syn,
     "studies.RDS",
     live_folder
   )
-  
+
   file.remove("studies.RDS")
-  
-  
+
+
   # files ----
   dev_files <-
     get_synapse_tbl(
@@ -78,7 +78,7 @@ try(withCallingHandlers({
         "progressReportNumber" = readr::col_integer()
       )
     ) %>%
-    dplyr::rename("studyId" = "projectId") %>% 
+    dplyr::rename("studyId" = "projectId") %>%
     dplyr::filter(type == "file") %>%
     format_date_columns() %>%
     dplyr::select(-c("createdOn")) %>%
@@ -91,20 +91,20 @@ try(withCallingHandlers({
         "studyId"
       ),
       by = "studyId"
-    ) %>% 
+    ) %>%
     dplyr::mutate("reportMilestone" = .data$progressReportNumber)
-  
+
   saveRDS(dev_files, "files.RDS")
   store_file_in_synapse(syn, "files.RDS", dev_folder)
   file.remove("files.RDS")
-  
+
   live_files <- dev_files
-  
+
   saveRDS(live_files, "files.RDS")
   store_file_in_synapse(syn, "files.RDS", live_folder)
   file.remove("files.RDS")
-  
-  
+
+
   # incoming data ----
   dev_incoming_data <-
     get_synapse_tbl(
@@ -154,22 +154,22 @@ try(withCallingHandlers({
       ),
       "reportMilestone" = .data$progressReportNumber
     )
-  
+
   saveRDS(dev_incoming_data, "incoming_data.RDS")
   store_file_in_synapse(syn, "incoming_data.RDS", dev_folder)
   file.remove("incoming_data.RDS")
-  
+
   live_incoming_data <- dev_incoming_data
 
-  
+
   saveRDS(live_incoming_data, "incoming_data.RDS")
   store_file_in_synapse(syn, "incoming_data.RDS", live_folder)
   file.remove("incoming_data.RDS")
-  
-  
+
+
   # publications ----
-  pubs <- 
-    get_synapse_tbl(syn, "syn16857542") %>% 
+  pubs <-
+    get_synapse_tbl(syn, "syn16857542") %>%
     dplyr::mutate(
       "year" = forcats::as_factor(.data$year),
       "year" = forcats::fct_expand(.data$year, "2015"),
@@ -179,15 +179,15 @@ try(withCallingHandlers({
   store_file_in_synapse(syn, "pubs.RDS", live_folder)
   store_file_in_synapse(syn, "pubs.RDS", dev_folder)
   file.remove("pubs.RDS")
-  
+
   # tools ----
   tools <- get_synapse_tbl(syn, "syn16859448")
   saveRDS(tools, "tools.RDS")
   store_file_in_synapse(syn, "tools.RDS", live_folder)
   store_file_in_synapse(syn, "tools.RDS", dev_folder)
   file.remove("tools.RDS")
-  
-  }, 
+
+  },
   error = function(e) handleError(e, "main"))
 )
 
