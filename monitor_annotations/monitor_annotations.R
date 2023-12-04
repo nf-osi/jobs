@@ -36,7 +36,7 @@ DRY_RUN <- if(PROFILE == "DEV") TRUE else FALSE
 
 # Reference tables --------#
 
-study_tab_id <- 'syn16787123'
+study_tab_id <- 'syn52694652'
 fileview_tab_id <- 'syn16858331'
 no_email_list <- 'syn51907919'
 
