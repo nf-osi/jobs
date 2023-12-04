@@ -9,7 +9,7 @@ secrets <- jsonlite::fromJSON(Sys.getenv("SCHEDULED_JOB_SECRETS"))
 syn_login(authtoken = secrets[["SYNAPSE_AUTH_TOKEN"]])
 
 # Input/target tables
-study_tab_id <- 'syn16787123'
+study_tab_id <- 'syn52694652'
 portal_fileview_id <- 'syn16858331'
 
 # Define job
