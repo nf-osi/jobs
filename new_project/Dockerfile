@@ -1,10 +1,10 @@
-FROM ghcr.io/nf-osi/nfportalutils:develop@sha256:103c21eea8c9a2c0e438880f28b03827e4285bc4e71f3141f5fdcf28a6b813ce
+FROM ghcr.io/nf-osi/nfportalutils:develop@sha256:32e4820eb9e5a7aecc51413a796c7d470c215182ffc3f20f3d2148c55de49077
 
 ARG USERNAME=nfosi
 ARG USER_UID=1001
 ARG USER_GID=1000
 
-RUN apt-get update -qq && \
+RUN apt-get update && \
     apt-get install -y jq
 
 # Create the user
