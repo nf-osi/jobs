@@ -43,8 +43,9 @@ setup_from_config <- function(config_file) {
     DATASETS <- make.unique(DATASETS, sep = " ")
     DATASETS <- as.list(DATASETS)
     for(i in seq_along(DATA_DEPOSIT)) {
-      # Set attributes -- note that properties not present resolve to NULL, which is OK 
+      # Set selected attributes -- note that properties not present resolve to NULL, which is OK 
       attr(DATASETS[[i]], "assay") <- DATA_DEPOSIT[[i]]$dataAssay
+      attr(DATASETS[[i]], "dataType") <- DATA_DEPOSIT[[i]]$dataType
       attr(DATASETS[[i]], "description") <- DATA_DEPOSIT[[i]]$dataDescription
       attr(DATASETS[[i]], "progressReportNumber") <- DATA_DEPOSIT[[i]]$dataProgressReportNumber
       attr(DATASETS[[i]], "contentType") <- "dataset"
@@ -67,28 +68,21 @@ setup_from_config <- function(config_file) {
   PROJECT_ID <- created_project$properties$id
   FILEVIEW_ID <- attr(created_project, "fileview")
   
-  # Register
-  STUDY_TABLE_ID <- if(Sys.getenv("PROFILE") == "TEST") "syn27353709" else "syn16787123"
-  nfportalutils::register_study(name = NAME,
-                                project_id = PROJECT_ID,
-                                abstract = SUMMARY, 
-                                lead =  LEAD_CSV,
-                                institution = INSTITUTION, 
-                                focus = FOCUS, 
-                                manifestation = MANIFESTATIONS,
-                                fileview_id = FILEVIEW_ID,
-                                funder = FUNDER,
-                                initiative = INITIATIVE,
-                                grant_doi = GRANT_DOI,
-                                study_table_id = STUDY_TABLE_ID)
-  
-  # Add to scope of master portal fileview
-  nfportalutils::register_study_files(PROJECT_ID)
-  
   # Write new syn id to config 
   cat("Writing", PROJECT_ID, "to", config_file, "\n")
   command <- paste0('jq \'. += { "studyId" : "',  PROJECT_ID, '" }\' ', config_file, ' > tmp.json && mv tmp.json ' , config_file)
   system(command)
+  
+  # Register
+  nfportalutils::register_study(id = PROJECT_ID,
+                                study_meta = config,
+                                summary = SUMMARY,
+                                study_summary_table = "syn16787123",
+                                portal_project_view = "syn52677631")
+  
+  # Add to scope of master portal fileview
+  nfportalutils::register_study_files(PROJECT_ID)
+  
 }
 
 for(config in configs) {
