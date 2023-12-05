@@ -73,7 +73,12 @@ setup_from_config <- function(config_file) {
   command <- paste0('jq \'. += { "studyId" : "',  PROJECT_ID, '" }\' ', config_file, ' > tmp.json && mv tmp.json ' , config_file)
   system(command)
   
-  # Register
+  # Register with some translations
+  config$studyLeads <- config$PI
+  config$studyFileviewId <- FILEVIEW_ID
+  config$studyName <- config$name
+  config$institutions <- config$institution
+  config$manifestation <- config$diseaseManifestation
   nfportalutils::register_study(id = PROJECT_ID,
                                 study_meta = config,
                                 summary = SUMMARY,
