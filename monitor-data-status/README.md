@@ -7,7 +7,6 @@ This job is intended to be run on service catalog.
 ### Secrets and env vars
 
 - `SYNAPSE_AUTH_TOKEN`: (Required) This needs to have edit access to update the projects' annotations.
-- `SLACK`: (Optional) Slack channel webhook for notifications of changed projects in Slack. Since projects should only change from "Data Pending" to "Under Embargo" once in their lifetime, this should theoretically not be too noisy.
 
 
 ### Run params
@@ -23,7 +22,6 @@ This job is intended to be run on service catalog.
 
 ```
 SCHEDULED_JOB_SECRETS={"SYNAPSE_AUTH_TOKEN":"xxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
-SLACK=https://hooks.slack.com/services/xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 - To run with `--dry`: `docker run --env-file envfile-monitor-ds ghcr.io/nf-osi/jobs-monitor-data-status --dry`
