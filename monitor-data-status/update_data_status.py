@@ -29,7 +29,7 @@ def main(dry_run, update_df):
         print(f"Checking production table for {len(ids)} projects with status 'Data Pending'...")
         fileview_df = syn.tableQuery(f"SELECT projectId,count(*) as N FROM {FILE_VIEW_ID} WHERE type='file' and createdBy not in ('3421893', '3459953', '3434950', '3342573') and projectId in {QUERY_IDS} group by projectId").asDataFrame()
     
-    print(f"Of {len(ids)} projects, found {len(fileview_df.index)} that qualifying for transition:")
+    print(f"Found {len(fileview_df.index)} that qualifying for transition:")
     print(fileview_df)
 
     for idx, p in fileview_df.iterrows():
