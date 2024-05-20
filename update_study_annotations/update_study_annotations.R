@@ -61,7 +61,6 @@ handleUpdateError <- function(e, subjob, portal_fileview = portal_fileview_id) {
   } else {
     report[[subjob]] <<- paste(":x:", job[[subjob]], "failed!")
   }
-  # traceback()
 }
 
 try({
