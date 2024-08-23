@@ -5,9 +5,12 @@ configs <- commandArgs(trailingOnly = TRUE)
 library(nfportalutils)
 syn_login()
 
+
+register_check <- Sys.getenv("PROFILE") == "TEST"
 # Note that dataset folders must have unique names (Synapse won't create duplicates)
 # Since this can't be enforced at the JSON schema level, we adjust folder names using `make.unique` as necessary
-setup_from_config <- function(config_file) {
+#' @param register_study Depends on whether PROFILE=TEST. 
+setup_from_config <- function(config_file, skip_register = register_check) {
   
   config <- jsonlite::read_json(config_file)
   
@@ -52,6 +55,17 @@ setup_from_config <- function(config_file) {
     }
   }
   
+  # Non-data -- see schema for allowed resources
+  OTHER_RESOURCES <- NULL
+  if(length(config$nonDataResources)) {
+    resources <- unique(sapply(config$nonDataResources, `[[`, "resourceType"))
+    cat("Non-data resources:", resources, "\n")
+    if(length(resources)) {
+      if(grep("protocol", resources)) OTHER_RESOURCES <- append(OTHER_RESOURCES, "Protocols")
+      if(grep("tool", resources)) OTHER_RESOURCES <- append(OTHER_RESOURCES, "Tools")
+    }
+  }
+  
   # Create
   created_project <- new_project(name = NAME,
                                  pi = PI_CSV,
@@ -63,6 +77,7 @@ setup_from_config <- function(config_file) {
                                  initiative = INITIATIVE,
                                  publicview = INITPUBLICVIEW,
                                  datasets = DATASETS,
+                                 other_resources = OTHER_RESOURCES
                                  )
   
   PROJECT_ID <- created_project$properties$id
@@ -79,14 +94,16 @@ setup_from_config <- function(config_file) {
   config$studyName <- config$name
   config$institutions <- config$institution
   config$manifestation <- config$diseaseManifestation
-  nfportalutils::register_study(id = PROJECT_ID,
+  
+  if(skip_register) cat("Study not registered since profile detected is TEST", "\n")
+  if(!skip_register) nfportalutils::register_study(id = PROJECT_ID,
                                 study_meta = config,
                                 summary = SUMMARY,
                                 study_summary_table = "syn16787123",
                                 portal_project_view = "syn52677631")
   
   # Add to scope of master portal fileview
-  nfportalutils::register_study_files(PROJECT_ID)
+  if(!skip_register) nfportalutils::register_study_files(PROJECT_ID)
   
 }
 

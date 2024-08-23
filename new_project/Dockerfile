@@ -1,4 +1,4 @@
-FROM ghcr.io/nf-osi/nfportalutils:develop-reticulate-1.28
+FROM ghcr.io/nf-osi/nfportalutils@sha256:b16251a7091aebcb8a789589b4adfbcea0fb23b50bbc20031dde8733fce1ac98
 
 ARG USERNAME=nfosi
 ARG USER_UID=1001

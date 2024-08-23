@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "v0.9000",
+  "NFID": "Test_Multiple_Principals",
+  "name": "NF Test Study - A Basic Study With Multiple PIs",
+  "summary": "An NF Demo Project with multiple `synPrincipal`s.",
+  "fundingAgency": "Demo",
+  "initiative": "",
+  "grantDOI": "https://doi.org/xxx",
+  "grantStartDate": "2020-01-01",
+  "grantEndDate": "2021-01-01",
+  "embargoEndDate": "2022-10-01",
+  "diseaseFocus": "Neurofibromatosis type 1",
+  "diseaseManifestation": "Behavioral",
+  "PI": "NF Service",
+  "PIEmail": "nf-osi-service@synapse.org",
+  "dataLead": "NF Service",
+  "dataLeadEmail": "nf-osi-service@synapse.org",
+  "synPrincipal": ["avu", "anngvu"],
+  "institution": [
+    "Sage Bionetworks"
+  ],
+  "notes": ""
+}
