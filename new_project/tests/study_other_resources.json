@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "v0.9",
+  "NFID": "Test_Project",
+  "name": "NF Test Study - Other Resources",
+  "summary": "This study has non-data resources included.",
+  "fundingAgency": "NIH-NCI",
+  "initiative": "Developmental and HyperActive Ras Tumor Specialized Programs of Research Excellence",
+  "grantID": "",
+  "grantStartDate": "2020-09-01",
+  "grantEndDate": "2030-08-31",
+  "diseaseFocus": "Neurofibromatosis type 1",
+  "diseaseManifestation": "Plexiform Neurofibroma",
+  "PI": [
+    "John Doe",
+    "Jane Doe"
+  ],
+  "PIEmail": "jd@example.org",
+  "dataLead": [
+    "John Doe",
+    "Jane Doe"
+  ],
+  "institution": [
+    "Stanford University",
+    "Harvard University"
+  ],
+  "dataDeposit": [
+    {
+      "dataRelatedAim": "Aim 1",
+      "dataLabel": "ChIP-seq",
+      "dataType": "chromatinActivity",
+      "dataAssay": "ChIP-seq",
+      "dataSpecies": "Homo sapiens"
+    }
+  ],
+  "nonDataResources": [
+    {
+      "relatedAim": "Aim 1",
+      "resourceType": "protocol",
+      "label": "Protocol 1"
+    },
+    {
+        "relatedAim": "Aim 2",
+        "resourceType": "protocol",
+        "label": "Protocol 2"
+    }
+  ]
+}
