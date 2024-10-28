@@ -80,11 +80,7 @@ setup_from_config <- function(config_file, skip_register = register_check) {
                                  initiative = INITIATIVE,
                                  publicview = INITPUBLICVIEW,
                                  datasets = DATASETS,
-                                 other_resources = OTHER_RESOURCES,
-                                 grant_start_date=GRANT_START,
-                                 grant_end_date=GRANT_END,
-                                 embargo_end_date=EMBARGO_END
-                                 )
+                                 other_resources = OTHER_RESOURCES)
   
   PROJECT_ID <- created_project$properties$id
   FILEVIEW_ID <- attr(created_project, "fileview")
