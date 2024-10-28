@@ -32,6 +32,9 @@ setup_from_config <- function(config_file, skip_register = register_check) {
   FOCUS <-  paste(unlist(config$diseaseFocus), collapse = ",")
   MANIFESTATIONS <- paste(unlist(config$diseaseManifestations), collapse = ", ")
   GRANT_DOI <- paste(config$grantDOI, collapse = ", ")
+  GRANT_START <- config$grantStartDate
+  GRANT_END <- config$grantEndDate
+  EMBARGO_END <- config$embargoEndDate
   
   # Other governance
   INITPUBLICVIEW <- config$governance$initPublicView
@@ -77,8 +80,7 @@ setup_from_config <- function(config_file, skip_register = register_check) {
                                  initiative = INITIATIVE,
                                  publicview = INITPUBLICVIEW,
                                  datasets = DATASETS,
-                                 other_resources = OTHER_RESOURCES
-                                 )
+                                 other_resources = OTHER_RESOURCES)
   
   PROJECT_ID <- created_project$properties$id
   FILEVIEW_ID <- attr(created_project, "fileview")
