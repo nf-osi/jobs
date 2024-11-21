@@ -20,7 +20,7 @@ See images with `docker image ls`
 
 ### Example run 
 
-`docker run --env-file envfile run ghcr.io/nf-osi/jobs-snapshot syn27242487 syn27242485`
+`docker run --env-file envfile ghcr.io/nf-osi/jobs-snapshot syn27242487 syn27242485`
 
 ### To do
 
