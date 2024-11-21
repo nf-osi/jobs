@@ -20,7 +20,9 @@ See images with `docker image ls`
 
 ### Example run 
 
-`docker run --env-file envfile ghcr.io/nf-osi/jobs-snapshot syn27242487 syn27242485`
+Note: replace the ids with your own test entities in case the example tables no longer exist
+
+`docker run --env-file envfile ghcr.io/nf-osi/jobs-snapshot syn51907919 syn25585549`
 
 ### To do
 
