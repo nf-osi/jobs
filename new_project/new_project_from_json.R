@@ -64,8 +64,8 @@ setup_from_config <- function(config_file, skip_register = register_check) {
     resources <- unique(sapply(config$nonDataResources, `[[`, "resourceType"))
     cat("Non-data resources:", resources, "\n")
     if(length(resources)) {
-      if(grep("protocol", resources)) OTHER_RESOURCES <- append(OTHER_RESOURCES, "Protocols")
-      if(grep("tool", resources)) OTHER_RESOURCES <- append(OTHER_RESOURCES, "Tools")
+      if(grepl("protocol", resources)) OTHER_RESOURCES <- append(OTHER_RESOURCES, "Protocols")
+      if(grepl("tool", resources)) OTHER_RESOURCES <- append(OTHER_RESOURCES, "Tools")
     }
   }
   
