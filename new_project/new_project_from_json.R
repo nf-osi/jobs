@@ -60,8 +60,8 @@ setup_from_config <- function(config_file, skip_register = register_check) {
   
   # Non-data -- see schema for allowed resources
   OTHER_RESOURCES <- NULL
-  if(length(config$nonDataResources)) {
-    resources <- unique(sapply(config$nonDataResources, `[[`, "resourceType"))
+  if(length(config$nonDataDeposit)) {
+    resources <- unique(sapply(config$nonDataDeposit, `[[`, "resourceType"))
     cat("Non-data resources:", resources, "\n")
     if(length(resources)) {
       if(grepl("protocol", resources)) OTHER_RESOURCES <- append(OTHER_RESOURCES, "Protocols")

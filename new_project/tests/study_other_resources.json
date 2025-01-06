@@ -32,16 +32,16 @@
       "dataSpecies": "Homo sapiens"
     }
   ],
-  "nonDataResources": [
+  "nonDataDeposit": [
     {
       "relatedAim": "Aim 1",
       "resourceType": "protocol",
       "label": "Protocol 1"
     },
     {
-        "relatedAim": "Aim 2",
-        "resourceType": "protocol",
-        "label": "Protocol 2"
+      "relatedAim": "Aim 2",
+      "resourceType": "protocol",
+      "label": "Protocol 2"
     }
   ]
 }
