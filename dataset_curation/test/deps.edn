@@ -1,0 +1,16 @@
+{:paths ["."]
+ :aliases {:run {:exec-fn curate-datasets/run-batch!}}
+ 
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        cheshire/cheshire {:mvn/version "5.13.0"}
+        com.github.anngvu/accent {:git/url "https://github.com/anngvu/accent"
+                                  :git/sha "f6603abfc2a708016682f691bfac71e9cc9f2ba7"
+                                  :deps/root ""}
+        org.sagebionetworks/synapseJavaClient {:mvn/version "500.0"
+                                               :repos ["sagebionetworks-artifactory"]}}
+
+ :mvn/repos {"sagebionetworks-artifactory" {:url "https://sagebionetworks.jfrog.io/artifactory/libs-releases-local/"}}
+                                  
+ :description "FIXME: write description"
+ :url "http://example.com/FIXME"
+ :version "0.0.0"}
