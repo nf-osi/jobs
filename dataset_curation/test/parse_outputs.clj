@@ -2,7 +2,9 @@
   (:require [babashka.http-client :as http]
             [accent.state :refer [setup u]]
             [cheshire.core :as json]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io])
+  (:import [com.fasterxml.jackson.core JsonParser$Feature]
+           [com.fasterxml.jackson.databind ObjectMapper]))
 
 (defn read-jsonl
   "Reads a JSONL file, skipping invalid lines and returning valid JSON objects"
@@ -22,6 +24,15 @@
 (def output-c
   (read-jsonl "output/batch/msgbatch_01PGaff3EPbQJbpw6JeWoQR5_results.jsonl"))
 
+(defn parse-json-with-comments [json-str]
+  (let [mapper (doto (ObjectMapper.)
+                 (.configure JsonParser$Feature/ALLOW_COMMENTS true)
+                 (.configure JsonParser$Feature/ALLOW_SINGLE_QUOTES true)
+                 (.configure JsonParser$Feature/ALLOW_UNQUOTED_FIELD_NAMES true))]
+    (->(.readValue mapper json-str Object)
+       (json/generate-string)
+       (json/parse-string true))))
+
 (defn get-json
   [message provider]
   (let [path (if (= "Anthropic" provider)
@@ -30,8 +41,8 @@
         text (get-in message path)
         pattern #"\[(?s).*\]"]
     (try
-      (json/parse-string (re-find pattern text))
-      (catch _ e nil))))
+      (parse-json-with-comments (re-find pattern text))
+      (catch com.fasterxml.jackson.core.JsonParseException _ nil))))
 
 (def json-b (mapv #(get-json % "OpenAI") output-b))
 
