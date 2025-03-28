@@ -2,7 +2,9 @@
   (:require [babashka.http-client :as http]
             [accent.state :refer [setup u]]
             [cheshire.core :as json]
-            [clojure.java.io :as io])
+            [clojure.java.io :as io]
+            [curate.synapse :refer [new-syn syn set-annotations]]
+            [json-schema.core :as json-schema])
   (:import [com.fasterxml.jackson.core JsonParser$Feature]
            [com.fasterxml.jackson.databind ObjectMapper]))
 
@@ -14,10 +16,11 @@
      (map #(json/parse-string % true)
             (line-seq rdr)))))
 
-(def input-b (json/parse-string (slurp "input/batch/B.json")))
+(def input-b (into {} (json/parse-string (slurp "input/batch/B.json") true)))
 
-(def input-c (json/parse-string (slurp "input/batch/C.json")))
+(def input-c (into {} (json/parse-string (slurp "input/batch/C.json") true)))
 
+;; note that output order is NOT guaranteed same as input and should use custom ids
 (def output-b
   (read-jsonl "output/batch/batch_67df5faa13f08190b9a130d96d26ef7f_output.jsonl"))
 
@@ -41,13 +44,46 @@
         text (get-in message path)
         pattern #"\[(?s).*\]"]
     (try
-      (parse-json-with-comments (re-find pattern text))
+      {(keyword (message :custom_id)) (parse-json-with-comments (re-find pattern text))}
       (catch com.fasterxml.jackson.core.JsonParseException _ nil))))
 
-(def json-b (mapv #(get-json % "OpenAI") output-b))
+(def json-b (into {} (mapv #(get-json % "OpenAI") output-b)))
 
-(def json-c (mapv #(get-json % "Anthropic") output-c))
+(def json-c (into {} (mapv #(get-json % "Anthropic") output-c)))
 
-;; compare expected vs returned ;; => true
-(= (map (fn [[_ d]] (count d)) input-b (map count json-b)))
-(= (map (fn [[_ d]] (count d)) input-c) (map count json-c))
+(defn compare-counts
+  "Compare expected vs returned"
+  [input output]
+  (- (count (vals input)) (count (vals output)))
+
+(merge-with compare-counts input-b json-b)
+
+(merge-with compare-counts input-c json-c)
+
+(defn meta-map
+  [input output]
+  (let [datasets (mapcat (fn [[_ dataset]] dataset) input)
+        dataset-ids (map :id datasets)
+        metadata (mapcat identity output)]
+    (zipmap dataset-ids metadata)))
+
+
+(def b-datasets (meta-map input-b json-b))
+
+(spit "b-datasets.edn" b-datasets)
+
+(def c-datasets (meta-map input-c json-c))
+
+(setup)
+
+(new-syn (@u :sat))
+
+(defn submit-meta
+  "Takes input and output and applies annotations"
+  [[dataset-id meta]]
+  (set-annotations @syn dataset-id meta))
+
+(def submissions (mapv submit-meta b-datasets))
+
+(doseq [dataset b-datasets]
+  (submit-meta dataset))
