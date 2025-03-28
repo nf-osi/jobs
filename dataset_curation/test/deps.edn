@@ -3,6 +3,7 @@
  
  :deps {org.clojure/clojure {:mvn/version "1.11.1"}
         cheshire/cheshire {:mvn/version "5.13.0"}
+        luposlip/json-schema {:mvn/version "0.4.6"}
         com.github.anngvu/accent {:git/url "https://github.com/anngvu/accent"
                                   :git/sha "f6603abfc2a708016682f691bfac71e9cc9f2ba7"
                                   :deps/root ""}
