@@ -1,0 +1,717 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"DNA methylation signatures in peripheral leukocytes of patients with Schwannomatosis or sporadic schwannoma\",\n    \"creator\": \"Sheila Mansouri, Robert Allaway\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"DNA methylation\",\n      \"peripheral leukocytes\",\n      \"Schwannomatosis\",\n      \"sporadic schwannoma\",\n      \"immune cell types\",\n      \"neutrophil to lymphocyte ratio\"\n    ],\n    \"dataType\": [\n      \"chromatinActivity\"\n    ],\n    \"studyId\": \"syn24875850\",\n    \"diseaseFocus\": [\n      \"NF2-related schwannomatosis\",\n      \"SMARCB1-related schwannomatosis\",\n      \"LZTR1-related schwannomatosis\",\n      \"22q-related schwannomatosis\",\n      \"Schwannomatosis-NOS\",\n      \"Schwannomatosis-NEC\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"DNA methylation profiling on whole genomic DNA isolated from peripheral blood leukocytes from schwannomatosis and sporadic schwannoma patients to evaluate immune cell type proportions.\",\n    \"measurementTechnique\": \"methylation array\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 54,\n    \"specimenCount\": 54\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "citationMetadata": {
+        "citationSources": [
+          {
+            "startIndex": 558,
+            "endIndex": 726,
+            "uri": "https://www.ctf.org.au/page/112/schwannomatosis"
+          },
+          {
+            "startIndex": 595,
+            "endIndex": 759,
+            "uri": "https://github.com/monarch-initiative/mondo/issues/7663"
+          }
+        ]
+      },
+      "avgLogprobs": -0.0100105024917781
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5302,
+    "candidatesTokenCount": 342,
+    "totalTokenCount": 5644,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5302
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 342
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Patient Data from Evaluation of the use of antisense oligonucleotides as a personalized therapy for Neurofibromatosis Type 2 patients\",\n    \"creator\": \"Elisabeth Castellanos\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"NF2\",\n      \"antisense oligonucleotides\",\n      \"personalized therapy\",\n      \"fibroblasts\",\n      \"splicing mutations\",\n      \"truncating mutations\",\n      \"Schwannomatosis\"\n    ],\n    \"dataType\": [\n      \"drugScreen\"\n    ],\n    \"studyId\": \"syn21355225\",\n    \"diseaseFocus\": [\n      \"NF2-related schwannomatosis\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Patient data from primary fibroblasts cultures from NF2 patients, including the use of antisense oligonucleotides (AONs) to reduce the severity of NF2 truncating and splicing mutations to milder hypomorphic forms in vitro.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 15,\n     \"measurementTechnique\": \"polymerase chain reaction\",\n    \"manifestation\": [\n      \"Schwannoma\"\n    ],\n    \"subject\": [\n      \"Neurofibromatosis 2\",\n      \"Antisense oligonucleotides\",\n      \"Personalized medicine\"\n    ],\n    \"datePublished\": 2022\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.0823860766201617
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 6193,
+    "candidatesTokenCount": 351,
+    "totalTokenCount": 6544,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6193
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 351
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Immunohistochemistry\",\n    \"creator\": \"Robert Allaway\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"Immunohistochemistry\",\n      \"NF1\",\n      \"Cutaneous Neurofibroma\"\n    ],\n    \"dataType\": [],\n    \"studyId\": \"syn4984604\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ]\n  },\n  {\n    \"title\": \"NFOSI to process 2023-07-21\",\n    \"creator\": \"Thomas Yu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"Neurofibromatosis\",\n      \"NF\",\n      \"Cutaneous Neurofibroma\"\n    ],\n    \"dataType\": [],\n    \"studyId\": \"syn4984604\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ]\n  },\n  {\n    \"title\": \"Proteomics\",\n    \"creator\": \"Sara Gosline\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"Proteomics\",\n      \"NF1\",\n      \"Cutaneous Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"proteomics\"\n    ],\n    \"studyId\": \"syn4984604\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"MudPIT\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 11,\n    \"specimenCount\": 40,\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"RNA-Seq\",\n    \"creator\": \"Thomas Yu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-Seq\",\n      \"Gene Expression\",\n      \"NF1\",\n      \"Cutaneous Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn4984604\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"RNA-seq\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 44,\n    \"specimenCount\": 33,\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ],\n        \"contributor\": [\n        \"Sara Gosline\",\n        \"Robert Allaway\"\n      ]\n  },\n  {\n    \"title\": \"Raw cNF RNAseq Files\",\n    \"creator\": \"CTF\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-Seq\",\n      \"Raw Reads\",\n      \"NF1\",\n      \"Cutaneous Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn4984604\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"RNA-seq\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 11,\n    \"specimenCount\": 33,\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"Raw cNF RNAseq Files (unmerged)\",\n    \"creator\": \"CTF\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-Seq\",\n      \"Raw Reads\",\n      \"NF1\",\n      \"Cutaneous Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn4984604\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"RNA-seq\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 11,\n    \"specimenCount\": 33,\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"SNP\",\n    \"creator\": \"Sara Gosline\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"SNP Array\",\n      \"SNPs\",\n      \"NF1\",\n      \"Cutaneous Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn4984604\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"SNP array\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 11,\n    \"specimenCount\": 48,\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"Sample Information\",\n    \"creator\": \"Sara Gosline\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"Sample manifest\",\n      \"Clinical Data\",\n      \"NF1\",\n      \"Cutaneous Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\",\n      \"proteomics\",\n      \"geneExpression\",\n      \"clinical\"\n    ],\n    \"studyId\": \"syn4984604\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"whole genome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"WGS\",\n    \"creator\": \"Thomas Yu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"Whole Genome Sequencing\",\n      \"WGS\",\n      \"NF1\",\n      \"Cutaneous Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn4984604\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"whole genome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 15,\n    \"specimenCount\": 62,\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ],\n            \"contributor\": [\n        \"Sara Gosline\"\n      ]\n  },\n  {\n    \"title\": \"cNF RNA-seq quantification files (salmon)\",\n    \"creator\": \"CTF\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-Seq\",\n      \"Quantification\",\n      \"NF1\",\n      \"Cutaneous Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn4984604\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"RNA-seq\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.017966244390102033
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 6790,
+    "candidatesTokenCount": 2013,
+    "totalTokenCount": 8803,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6790
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2013
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Copy Number Variation from the Columbia University NF1 Glioma Project\",\n    \"creator\": \"Fulvio D'Angelo\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"copy number variation\",\n      \"CNV\",\n      \"glioma\",\n      \"NF1\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn6633069\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"whole exome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 56,\n    \"specimenCount\": 59,\n    \"manifestation\": [\n      \"Glioma\",\n      \"High-Grade Glioma\",\n      \"Low-Grade Glioma\"\n    ],\n    \"description\": \"Copy number variation data from the Columbia University NF1 Glioma Project.\",\n    \"includedInDataCatalog\": \"https://www.synapse.org/DataCatalog:0\"\n  },\n  {\n    \"title\": \"CopyNumberVariation\",\n    \"creator\": \"Fulvio D'Angelo\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"copy number variation\",\n      \"CNV\",\n      \"glioma\",\n      \"NF1\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn6633069\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"whole exome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 56,\n    \"specimenCount\": 59,\n    \"manifestation\": [\n      \"Glioma\",\n      \"High-Grade Glioma\",\n      \"Low-Grade Glioma\"\n    ],\n    \"description\": \"Copy number variation data from the Columbia University NF1 Glioma Project.\",\n    \"includedInDataCatalog\": \"https://www.synapse.org/DataCatalog:0\"\n  },\n  {\n    \"title\": \"GeneExpression\",\n    \"creator\": \"Fulvio D'Angelo\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"gene expression\",\n      \"RNA-seq\",\n      \"glioma\",\n      \"NF1\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn6633069\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"RNA-seq\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 29,\n    \"specimenCount\": 32,\n    \"manifestation\": [\n      \"Glioma\",\n      \"High-Grade Glioma\",\n      \"Low-Grade Glioma\"\n    ],\n    \"description\": \"Gene expression data from the Columbia University NF1 Glioma Project.\",\n    \"includedInDataCatalog\": \"https://www.synapse.org/DataCatalog:0\"\n  },\n  {\n    \"title\": \"Methylation\",\n    \"creator\": \"Fulvio D'Angelo\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"methylation\",\n      \"glioma\",\n      \"NF1\"\n    ],\n    \"dataType\": [\n      \"chromatinActivity\"\n    ],\n    \"studyId\": \"syn6633069\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"methylation array\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 31,\n    \"specimenCount\": 31,\n    \"manifestation\": [\n      \"Glioma\",\n      \"High-Grade Glioma\",\n      \"Low-Grade Glioma\"\n    ],\n    \"description\": \"Methylation data from the Columbia University NF1 Glioma Project.\",\n    \"includedInDataCatalog\": \"https://www.synapse.org/DataCatalog:0\"\n  },\n  {\n    \"title\": \"NucleotideVariation\",\n    \"creator\": \"Fulvio D'Angelo\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"nucleotide variation\",\n      \"SNV\",\n      \"INDEL\",\n      \"glioma\",\n      \"NF1\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn6633069\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"whole exome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 56,\n    \"specimenCount\": 102,\n    \"manifestation\": [\n      \"Glioma\",\n      \"High-Grade Glioma\",\n      \"Low-Grade Glioma\"\n    ],\n    \"description\": \"Nucleotide variation data from the Columbia University NF1 Glioma Project.\",\n    \"includedInDataCatalog\": \"https://www.synapse.org/DataCatalog:0\"\n  },\n  {\n    \"title\": \"WholeGenomeVariants\",\n    \"creator\": \"Fulvio D'Angelo\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"whole genome sequencing\",\n      \"WGS\",\n      \"genomic variants\",\n      \"glioma\",\n      \"NF1\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn6633069\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"whole genome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 11,\n    \"specimenCount\": 22,\n    \"manifestation\": [\n      \"Glioma\",\n      \"High-Grade Glioma\",\n      \"Low-Grade Glioma\"\n    ],\n    \"description\": \"Whole genome variant data from the Columbia University NF1 Glioma Project.\",\n    \"includedInDataCatalog\": \"https://www.synapse.org/DataCatalog:0\"\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.003556149777624534
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5667,
+    "candidatesTokenCount": 1659,
+    "totalTokenCount": 7326,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5667
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1659
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Flow Cytometry Data from MPNST Study\",\n    \"creator\": \"Lindy Zhang\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"flow cytometry\",\n      \"tumor microenvironment\",\n      \"immune cells\"\n    ],\n    \"dataType\": [\n      \"cellularPhysiology\"\n    ],\n    \"studyId\": \"syn26347297\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Flow cytometry data related to the effects of RAS signaling pathway inhibitors on tumor cells and the tumor immune microenvironment in malignant peripheral nerve sheath tumors (MPNSTs).\",\n    \"measurementTechnique\": \"flow cytometry\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ]\n  },\n  {\n    \"title\": \"Immunohistochemistry Data from MPNST Study\",\n    \"creator\": \"Lindy Zhang\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"immunohistochemistry\",\n      \"tumor microenvironment\",\n      \"RAS signaling pathway\"\n    ],\n    \"dataType\": [\n      \"image\"\n    ],\n    \"studyId\": \"syn26347297\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Immunohistochemistry data related to the effects of RAS signaling pathway inhibitors on tumor cells in malignant peripheral nerve sheath tumors (MPNSTs).\",\n    \"measurementTechnique\": \"immunohistochemistry\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "citationMetadata": {
+        "citationSources": [
+          {
+            "startIndex": 503,
+            "endIndex": 642,
+            "uri": "https://www.hopkinsmedicine.org/kimmel_cancer_center/education_training/fellowships/pediatric_hematology_oncology/research_in_fellowship.html"
+          }
+        ]
+      },
+      "avgLogprobs": -0.025553322233275104
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 4793,
+    "candidatesTokenCount": 483,
+    "totalTokenCount": 5276,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4793
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 483
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Exp008_analyzed Data\",\n    \"creator\": \"Jeffrey Field, yang yang\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"drug sensitivity\",\n      \"cancer cell lines\",\n      \"high throughput screening\"\n    ],\n    \"dataType\": [\n      \"drugScreen\",\n      \"image\",\n      \"cellularPhysiology\"\n    ],\n    \"studyId\": \"syn11817821\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Analyzed data from drug screens and immunofluorescence assays on MPNST cell lines.\",\n    \"measurementTechnique\": \"cell viability assay\",\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ],\n    \"measurementTechnique\": \"immunofluorescence\",\n    \"species\": [\n      \"Homo sapiens\"\n    ]\n  },\n  {\n    \"title\": \"Raw Data and logs\",\n    \"creator\": \"Jeffrey Field, yang yang\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"drug sensitivity\",\n      \"cancer cell lines\",\n      \"high throughput screening\"\n    ],\n    \"dataType\": [\n      \"drugScreen\"\n    ],\n    \"studyId\": \"syn11817821\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Raw data and logs from drug screens on MPNST cell lines.\",\n    \"specimenCount\": 27,\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\",\n      \"Schwannoma\"\n    ],\n    \"species\": [\n      \"Homo sapiens\"\n    ]\n  },\n  {\n    \"title\": \"exome sequencing\",\n    \"creator\": \"Jeffrey Field, Robert Allaway\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"exome sequencing\",\n      \"genomic variants\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn11817821\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Exome sequencing data from MPNST cell lines and patient samples.\",\n    \"individualCount\": 13,\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\",\n      \"Schwannoma\"\n    ],\n    \"measurementTechnique\": \"whole exome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"dataType\": [\n      \"SomaticVariants\",\n      \"GermlineVariants\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.029871855784619272
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5748,
+    "candidatesTokenCount": 742,
+    "totalTokenCount": 6490,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5748
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 742
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Drug Screen Data for Neurofibromatosis Type 1 (NF1) and Plexiform Neurofibroma\",\n    \"creator\": \"D. Wade Clapp, M.D.\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"drug screen\",\n      \"NF1\",\n      \"plexiform neurofibroma\",\n      \"HTS\",\n      \"rapamycin\",\n      \"ganetespib\",\n      \"selumetinib\",\n      \"panobinostat\"\n    ],\n    \"dataType\": [\n      \"drugScreen\"\n    ],\n    \"studyId\": \"syn4939876\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\"\n    ],\n    \"description\": \"Drug screen data from in vitro studies validating drug combinations for NF1 and plexiform neurofibroma. Includes data from primary murine embryonic Schwann cell lines, immortalized cell lines, and human-derived NF1-/- cell lines.\",\n    \"manifestation\": [\n      \"Plexiform Neurofibroma\"\n    ],\n    \"measurementTechnique\": \"compound screen\",\n    \"species\": [\n      \"Mus musculus\",\n      \"Homo sapiens\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.060119124734477634
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5100,
+    "candidatesTokenCount": 314,
+    "totalTokenCount": 5414,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5100
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 314
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Cell Viability Celigo Assays\",\n    \"creator\": \"Laurel Black\",\n    \"accessType\": \"Controlled Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"cell viability\",\n      \"image\",\n      \"gene expression\",\n      \"drug screen\",\n      \"drug combination screen\",\n      \"Malignant Peripheral Nerve Sheath Tumor\"\n    ],\n    \"dataType\": [\n      \"image\",\n      \"geneExpression\",\n      \"drugScreen\",\n      \"drugCombinationScreen\"\n    ],\n    \"studyId\": \"syn22267330\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Cell viability assays using Celigo, including images, gene expression data, and results from drug screens and drug combination screens for Malignant Peripheral Nerve Sheath Tumor cells.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 1,\n    \"measurementTechnique\": \"cell viability assay\",\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ],\n    \"conditionsOfAccess\": \"Accessing the data from this study requires a Synapse account.\",\n    \"datePublished\": 1698979200\n  },\n  {\n    \"title\": \"Imaging\",\n    \"creator\": \"Laurel Black\",\n    \"accessType\": \"Controlled Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"immunocytochemistry\",\n      \"image\",\n      \"Malignant Peripheral Nerve Sheath Tumor\"\n    ],\n    \"dataType\": [\n      \"image\"\n    ],\n    \"studyId\": \"syn22267330\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Images from immunocytochemistry experiments related to Malignant Peripheral Nerve Sheath Tumor research.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 1,\n    \"measurementTechnique\": \"immunocytochemistry\",\n        \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ],\n    \"conditionsOfAccess\": \"Accessing the data from this study requires a Synapse account.\",\n    \"datePublished\": 1698979200\n  },\n  {\n    \"title\": \"Kinomics\",\n    \"creator\": \"Laurel Black\",\n    \"accessType\": \"Controlled Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"immunoassay\",\n      \"kinomics\",\n      \"Malignant Peripheral Nerve Sheath Tumor\"\n    ],\n    \"dataType\": [\n      \"kinomics\"\n    ],\n    \"studyId\": \"syn22267330\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Kinomics data related to Malignant Peripheral Nerve Sheath Tumor research, generated using immunoassays.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 1,\n    \"measurementTechnique\": \"immunoassay\",\n        \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ],\n    \"conditionsOfAccess\": \"Accessing the data from this study requires a Synapse account.\",\n    \"datePublished\": 1698979200\n  },\n  {\n    \"title\": \"Microarray\",\n    \"creator\": \"Laurel Black\",\n    \"accessType\": \"Controlled Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"array\",\n      \"gene expression\",\n      \"Malignant Peripheral Nerve Sheath Tumor\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn22267330\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Gene expression data from microarray experiments related to Malignant Peripheral Nerve Sheath Tumor research.\",\n    \"species\": [\n      \"Rattus norvegicus\"\n    ],\n    \"individualCount\": 1,\n    \"specimenCount\": 1,\n    \"measurementTechnique\": \"array\",\n        \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ],\n    \"conditionsOfAccess\": \"Accessing the data from this study requires a Synapse account.\",\n    \"datePublished\": 1698979200\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.026804231271634352
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5880,
+    "candidatesTokenCount": 1133,
+    "totalTokenCount": 7013,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5880
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1133
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Analysis Images\",\n    \"creator\": \"Wangcun Jia, Junsoo Lee, Christina Parry\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"spatial frequency domain imaging\",\n      \"optical coherence tomography\",\n      \"image\"\n    ],\n    \"dataType\": [\n      \"image\"\n    ],\n    \"studyId\": \"syn31619419\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Analysis images generated using spatial frequency domain imaging and optical coherence tomography.\",\n    \"measurementTechnique\": \"spatial frequency domain imaging\",\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"Histology Images\",\n    \"creator\": \"Wangcun Jia\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"histology\",\n      \"brightfield microscopy\",\n      \"image\",\n      \"metadata\"\n    ],\n    \"dataType\": [\n      \"image\"\n    ],\n    \"studyId\": \"syn31619419\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Histological images of cutaneous neurofibromas.\",\n    \"measurementTechnique\": \"brightfield microscopy\",\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"OCT Data\",\n    \"creator\": \"Junsoo Lee, Christina Parry\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"optical coherence tomography\",\n      \"image\"\n    ],\n    \"dataType\": [\n      \"image\"\n    ],\n    \"studyId\": \"syn31619419\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Optical coherence tomography (OCT) data of cutaneous neurofibromas.\",\n    \"measurementTechnique\": \"optical coherence tomography\",\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"Photographs of cNF\",\n    \"creator\": \"Wangcun Jia\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"photograph\",\n      \"image\",\n      \"metadata\"\n    ],\n    \"dataType\": [\n      \"image\"\n    ],\n    \"studyId\": \"syn31619419\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Photographs of cutaneous neurofibromas (cNF).\",\n    \"measurementTechnique\": \"photograph\",\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"SFDI Data\",\n    \"creator\": \"Wangcun Jia\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"spatial frequency domain imaging\",\n      \"image\",\n      \"metadata\"\n    ],\n    \"dataType\": [\n      \"image\"\n    ],\n    \"studyId\": \"syn31619419\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Spatial frequency domain imaging (SFDI) data of cutaneous neurofibromas.\",\n    \"measurementTechnique\": \"spatial frequency domain imaging\",\n    \"manifestation\": [\n      \"Cutaneous Neurofibroma\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.012536463237577868
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5683,
+    "candidatesTokenCount": 992,
+    "totalTokenCount": 6675,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5683
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 992
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Gene expression profiling of Schwann cells and macrophages in mouse nerves and neurofibromas\",\n    \"creator\": \"Kwangmn Choi\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"gene expression\",\n      \"Schwann cells\",\n      \"macrophages\",\n      \"mouse\",\n      \"nerves\",\n      \"neurofibromas\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn4939890\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Gene expression profiles of Schwann cells and macrophages in mouse nerves and neurofibromas.\",\n    \"species\": [\n      \"Mus musculus\"\n    ],\n    \"manifestation\": [\n      \"Plexiform Neurofibroma\"\n    ],\n    \"measurementTechnique\": \"RNA array\",\n    \"datePublished\": 2017\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.030134613834210296
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5591,
+    "candidatesTokenCount": 268,
+    "totalTokenCount": 5859,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5591
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 268
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Drug screen data\",\n    \"creator\": \"Anh Nguyet Vu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"drug screen\",\n      \"3D cell culture\",\n      \"plexiform neurofibroma\",\n      \"NF1\"\n    ],\n    \"dataType\": [\n      \"drugScreen\"\n    ],\n    \"studyId\": \"syn7217928\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\"\n    ],\n    \"description\": \"Drug screening data generated using a 3D plexiform neurofibroma model system.\",\n    \"measurementTechnique\": \"3D microtissue viability\",\n    \"manifestation\": [\n      \"Plexiform Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"Drug screens with 3D Plexiform Neurofibroma Model System\",\n    \"creator\": \"Anh Nguyet Vu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"drug screen\",\n      \"3D cell culture\",\n      \"plexiform neurofibroma\",\n      \"NF1\"\n    ],\n    \"dataType\": [\n      \"drugScreen\"\n    ],\n    \"studyId\": \"syn7217928\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\"\n    ],\n    \"description\": \"Drug screening data generated using a 3D plexiform neurofibroma model system.\",\n    \"measurementTechnique\": \"3D microtissue viability\",\n    \"manifestation\": [\n      \"Plexiform Neurofibroma\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.017121546767478766
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5825,
+    "candidatesTokenCount": 430,
+    "totalTokenCount": 6255,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5825
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 430
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Mayo Clinic cohort REDCap database of de-identified phenotype and genotype information\",\n    \"creator\": \"Mayowa Osundiji\",\n    \"accessType\": \"Controlled Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"Neurofibromatosis\",\n      \"NF1\",\n      \"EHR\",\n      \"REDCap\",\n      \"phenotype\",\n      \"genotype\"\n    ],\n    \"dataType\": [\n      \"clinical\",\n      \"AggregatedData\"\n    ],\n    \"studyId\": \"syn61696875\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"De-identified phenotype and genotype information from Mayo Clinic cohort of Neurofibromatosis patients.\",\n    \"measurementTechnique\": \"genotyping\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 1,\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.029099964212488245
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5051,
+    "candidatesTokenCount": 270,
+    "totalTokenCount": 5321,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5051
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 270
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"2017 Release - Jumping Library Seq\",\n    \"creator\": \"Robert Allaway\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"jumping library\",\n      \"genomic variants\",\n      \"structural rearrangement\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"species\": [\n      \"Homo sapiens\",\n      \"Mus musculus\"\n    ],\n    \"individualCount\": 11,\n    \"specimenCount\": 12,\n    \"measurementTechnique\": \"jumping library\",\n    \"description\": \"Genomic variant data (structural rearrangement) from 11 human and mouse cell line models of meningioma and schwannoma with NF2 wildtype or NF2 deficient status. Data was generated using jumping library sequencing facilitates detection of chromosomal abnormalities such as pathogenic breakpoints.\",\n    \"manifestation\": [\n      \"Meningioma\",\n      \"Schwannoma\"\n    ]\n  },\n  {\n    \"title\": \"2017 Release - Proteomics_Kinome\",\n    \"creator\": \"Abhishek Pratap\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"proteomics\",\n      \"kinome\"\n    ],\n    \"dataType\": [\n      \"kinomics\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"species\": [\n      \"Homo sapiens\",\n      \"Mus musculus\"\n    ],\n    \"individualCount\": 11,\n    \"specimenCount\": 9,\n    \"measurementTechnique\": \"MIB/MS\",\n    \"description\": \"Processed kinomics data from NF2 mouse model dorsal root ganglion tissue several cell line models of meningioma and schwannoma after treatment with a vehicle control or one of seven small molecules.\",\n    \"manifestation\": [\n      \"Meningioma\",\n      \"Schwannoma\"\n    ]\n  },\n  {\n    \"title\": \"2019 Release - Animal Studies\",\n    \"creator\": \"Robert Allaway\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"in vivo\",\n      \"tumor volume\",\n      \"mouse model\"\n    ],\n    \"dataType\": [\n      \"Volume\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"species\": [\n      \"Mus musculus\",\n      \"Homo sapiens\"\n    ],\n    \"specimenCount\": 2,\n    \"measurementTechnique\": \"in vivo bioluminescence\",\n    \"description\": \"In vivo bioluminescence data from NF2 mouse models treated with various compounds.\",\n    \"manifestation\": [\n      \"Meningioma\"\n    ]\n  },\n  {\n    \"title\": \"2019 Release - High-Throughput Drug Screens\",\n    \"creator\": \"Robert Allaway\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"high-throughput\",\n      \"drug screen\",\n      \"cell viability\"\n    ],\n    \"dataType\": [\n      \"drugScreen\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"species\": [\n      \"Homo sapiens\",\n      \"Mus musculus\"\n    ],\n    \"individualCount\": 7,\n    \"specimenCount\": 15,\n    \"measurementTechnique\": \"cell viability assay\",\n    \"description\": \"High-throughput drug screening data from 6 cell line models of meningioma and schwannoma with NF2 wildtype or NF2 deficient status. A panel of 1912 drugs and drug-like molecules (the MIPE 4.0 library from NCATS) was screened.\",\n    \"manifestation\": [\n      \"Meningioma\",\n      \"Schwannoma\"\n    ]\n  },\n  {\n    \"title\": \"2019 Release - Proteomics_Kinome\",\n    \"creator\": \"Robert Allaway\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"proteomics\",\n      \"kinome\",\n      \"immunoassay\"\n    ],\n    \"dataType\": [\n      \"kinomics\",\n      \"immunoassay\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"species\": [\n      \"Homo sapiens\",\n      \"Mus musculus\"\n    ],\n    \"individualCount\": 3,\n    \"specimenCount\": 2,\n    \"measurementTechnique\": \"MIB/MS\",\n    \"description\": \"Processed proteomics and kinomics data from cell line models of meningioma and schwannoma.\",\n    \"manifestation\": [\n      \"Meningioma\",\n      \"Schwannoma\"\n    ]\n  },\n  {\n    \"title\": \"2019 Release - RNASeq\",\n    \"creator\": \"Serkan Erdin\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-seq\",\n      \"gene expression\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"species\": [\n      \"Homo sapiens\",\n      \"Mus musculus\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 109,\n    \"measurementTechnique\": \"RNA-seq\",\n    \"description\": \"Raw and processed RNAseq data from an Nf2fl/fl mouse model dorsal root ganglion tissue and cell line models of meningioma and schwannoma. Data were generated from cell line models of meningioma and schwannoma with vehicle control, or 12 different single agent or combinations of small molecule inhibitors.\",\n    \"contributor\": [\n      \"Robert Allaway\"\n    ],\n    \"manifestation\": [\n      \"Meningioma\",\n      \"Schwannoma\"\n    ]\n  },\n  {\n    \"title\": \"2021 - Raw Blot Images\",\n    \"creator\": \"Abbi Smith\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"raw images\",\n      \"blot images\"\n    ],\n    \"dataType\": [\n      \"image\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Raw blot images from the Synodos NF2 project.\"\n  },\n  {\n    \"title\": \"Gene Expression Quantification from RNA-seq\",\n    \"creator\": \"Robert Allaway\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"gene expression\",\n      \"RNA-seq\",\n      \"quantification\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"individualCount\": 2,\n    \"manifestation\": [\n      \"Schwannoma\"\n    ],\n    \"description\": \"Gene expression quantification data from RNA-seq experiments related to the Synodos NF2 project.\"\n  },\n  {\n    \"title\": \"NF-OSI RNASeq Reprocessing\",\n    \"creator\": \"Sara Gosline\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-seq\",\n      \"gene expression\",\n      \"reprocessing\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"individualCount\": 75,\n    \"specimenCount\": 84,\n    \"measurementTechnique\": \"RNA-seq\",\n    \"description\": \"Re-processed RNA-seq data from the NF-OSI project.\",\n    \"manifestation\": [\n      \"Meningioma\"\n    ],\n    \"series\": \"NF-OSI Processed Data\",\n    \"yearProcessed\": 2021\n  },\n  {\n    \"title\": \"Synodos NF2 Drug Screen - 2017 Release\",\n    \"creator\": \"Abhishek Pratap\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"drug screen\"\n    ],\n    \"dataType\": [\n      \"drugScreen\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Drug screening data from the Synodos NF2 project, 2017 release.\",\n    \"manifestation\": [\n      \"Meningioma\",\n      \"Schwannoma\"\n    ]\n  },\n  {\n    \"title\": \"Synodos NF2 Processed RNA-seq - 2017 Release\",\n    \"creator\": \"Robert Allaway\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-seq\",\n      \"gene expression\",\n      \"differential expression\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Processed RNA-seq data from the Synodos NF2 project, 2017 release.\",\n        \"manifestation\": [\n      \"Meningioma\",\n      \"Schwannoma\"\n    ]\n  },\n  {\n    \"title\": \"Synodos NF2 RNA-seq Raw Data - 2017 Release\",\n    \"creator\": \"Steven Angus\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-seq\",\n      \"raw data\",\n      \"gene expression\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn2343195\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 2\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"species\": [\n      \"Homo sapiens\",\n      \"Mus musculus\"\n    ],\n    \"individualCount\": 47,\n    \"specimenCount\": 205,\n    \"measurementTechnique\": \"RNA-seq\",\n    \"description\": \"Raw RNA-seq data from the Synodos NF2 project, 2017 release.\",\n    \"contributor\": [\n      \"Robert Allaway\"\n    ],\n        \"manifestation\": [\n      \"Meningioma\",\n      \"Schwannoma\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "citationMetadata": {
+        "citationSources": [
+          {
+            "startIndex": 1581,
+            "endIndex": 1741,
+            "uri": "https://www.synapse.org/#!Synapse:syn2343195"
+          },
+          {
+            "startIndex": 4873,
+            "endIndex": 5039,
+            "uri": "https://www.synapse.org/#!Synapse:syn2343195"
+          }
+        ]
+      },
+      "avgLogprobs": -0.023702857886184224
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 7693,
+    "candidatesTokenCount": 2872,
+    "totalTokenCount": 10565,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 7693
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2872
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"12 month deliverables\",\n    \"creator\": \"Gabsang Lee\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"human Schwann cells\",\n      \"cNF model\"\n    ],\n    \"dataType\": [\n      \"image\",\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn11374349\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\"\n    ],\n    \"measurementTechnique\": [\n      \"immunohistochemistry\",\n      \"quantitative PCR\",\n      \"flow cytometry\"\n    ],\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 1\n  },\n  {\n    \"title\": \"18 month deliverables\",\n    \"creator\": \"Gabsang Lee\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"human Schwann cells\",\n      \"cNF model\"\n    ],\n    \"dataType\": [\n      \"image\"\n    ],\n    \"studyId\": \"syn11374349\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\"\n    ],\n    \"measurementTechnique\": [\n      \"western blot\",\n      \"flow cytometry\",\n      \"quantitative PCR\",\n      \"immunohistochemistry\",\n      \"immunofluorescence\"\n    ],\n    \"species\": [\n      \"Homo sapiens\"\n    ]\n  },\n  {\n    \"title\": \"24 month deliverables\",\n    \"creator\": \"Gabsang Lee\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"human Schwann cells\",\n      \"cNF model\"\n    ],\n    \"dataType\": [\n      \"geneExpression\",\n      \"immunoassay\"\n    ],\n    \"studyId\": \"syn11374349\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\"\n    ],\n    \"measurementTechnique\": [\n      \"western blot\",\n      \"quantitative PCR\",\n      \"immunofluorescence\",\n      \"immunocytochemistry\"\n    ],\n    \"specimenCount\": 1\n  },\n  {\n    \"title\": \"30 month deliverables\",\n    \"creator\": \"Gabsang Lee\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"human Schwann cells\",\n      \"cNF model\"\n    ],\n    \"dataType\": [\n      \"immunoassay\",\n      \"image\",\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn11374349\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\"\n    ],\n    \"measurementTechnique\": [\n      \"immunocytochemistry\",\n      \"atomic force microscopy\",\n      \"immunofluorescence\",\n      \"RNA-seq\",\n      \"quantitative PCR\"\n    ],\n    \"specimenCount\": 1\n  },\n  {\n    \"title\": \"36 month deliverables\",\n    \"creator\": \"Gabsang Lee\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"human Schwann cells\",\n      \"cNF model\"\n    ],\n    \"dataType\": [\n      \"cellularPhysiology\",\n      \"geneExpression\",\n      \"image\",\n      \"immunoassay\"\n    ],\n    \"studyId\": \"syn11374349\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\"\n    ],\n    \"measurementTechnique\": [\n      \"cell viability assay\",\n      \"quantitative PCR\",\n      \"atomic force microscopy\",\n      \"RNA-seq\",\n      \"immunofluorescence\"\n    ],\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"specimenCount\": 16\n  },\n  {\n    \"title\": \"6 month deliverables\",\n    \"creator\": \"Gabsang Lee\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"human Schwann cells\",\n      \"cNF model\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn11374349\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\"\n    ],\n    \"measurementTechnique\": [\n      \"Sanger sequencing\"\n    ],\n    \"species\": [\n      \"Homo sapiens\"\n    ]\n  },\n  {\n    \"title\": \"Gene Expression Quantification from RNA-seq\",\n    \"creator\": \"NF Service\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"gene expression\",\n      \"RNA-seq\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn11374349\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"Other\"\n    ],\n    \"measurementTechnique\": [\n      \"RNA-seq\"\n    ],\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"specimenCount\": 16\n  },\n  {\n    \"title\": \"NFOSI-RNASeq-To-Process-2023-14-03\",\n    \"creator\": \"Gabsang Lee\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-seq\",\n      \"raw reads\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn11374349\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\"\n    ],\n    \"measurementTechnique\": [\n      \"RNA-seq\"\n    ],\n    \"species\": [\n      \"Homo sapiens\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.005394213127367424
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 6350,
+    "candidatesTokenCount": 1551,
+    "totalTokenCount": 7901,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6350
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1551
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Synodos LGG Methylation Arrays\",\n    \"creator\": \"CTF Synodos for NF1 - Low Grade Glioma project\",\n    \"accessType\": \"Controlled Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"methylation array\",\n      \"Neurofibromatosis type 1\",\n      \"Pilocytic Astrocytoma\",\n      \"Low-Grade Glioma\"\n    ],\n    \"dataType\": [\n      \"chromatinActivity\"\n    ],\n    \"studyId\": \"syn5698493\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"measurementTechnique\": \"methylation array\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 43,\n    \"specimenCount\": 43,\n    \"description\": \"Methylation array data from Synodos for NF1 - Low Grade Glioma project.\",\n    \"dataUseModifiers\": [\n      \"General Research Use\"\n    ]\n  },\n  {\n    \"title\": \"Synodos LGG RNAseq\",\n    \"creator\": \"CTF Synodos for NF1 - Low Grade Glioma project\",\n    \"accessType\": \"Controlled Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-seq\",\n      \"3D microtissue viability\",\n      \"Neurofibromatosis type 1\",\n      \"Pilocytic Astrocytoma\",\n      \"Low-Grade Glioma\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn5698493\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n     \"measurementTechnique\": \"RNA-seq\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 23,\n    \"specimenCount\": 23,\n    \"description\": \"RNAseq data from Synodos for NF1 - Low Grade Glioma project.\",\n    \"dataUseModifiers\": [\n      \"General Research Use\"\n    ]\n  },\n  {\n    \"title\": \"Synodos LGG Whole Genome Sequencing (bam)\",\n    \"creator\": \"CTF Synodos for NF1 - Low Grade Glioma project\",\n    \"accessType\": \"Controlled Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"whole genome sequencing\",\n      \"Neurofibromatosis type 1\",\n      \"Pilocytic Astrocytoma\",\n      \"Low-Grade Glioma\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn5698493\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n     \"measurementTechnique\": \"whole genome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 22,\n    \"specimenCount\": 44,\n    \"description\": \"Whole genome sequencing data from Synodos for NF1 - Low Grade Glioma project.\",\n    \"dataUseModifiers\": [\n      \"General Research Use\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.0090157278818101746
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5609,
+    "candidatesTokenCount": 796,
+    "totalTokenCount": 6405,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5609
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 796
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Animal Tumor Growth Studies\",\n    \"creator\": \"Ana Calizo, himanshi bhatia, Daniel Schefer\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"in vivo\",\n      \"tumor growth\",\n      \"drug screen\",\n      \"MPNST\",\n      \"NF1\"\n    ],\n    \"dataType\": [\n      \"drugScreen\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"In vivo tumor growth data from drug screens performed on MPNST PDX models.\",\n    \"measurementTechnique\": \"in vivo tumor growth\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 9,\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ]\n  },\n  {\n    \"title\": \"Batch 1 RNA-seq (Drug Treated Cell Lines)\",\n    \"creator\": \"UNKNOWN\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-seq\",\n      \"gene expression\",\n      \"drug treatment\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"RNA-seq data from drug-treated cell lines.\",\n    \"dataType\": [\n      \"geneExpression\"\n    ]\n  },\n  {\n    \"title\": \"Cell_growth_data_annotation_files\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"cell growth\",\n      \"annotation\"\n    ],\n    \"dataType\": [\n      \"AggregatedData\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Annotation files related to cell growth data.\",\n    \"dataType\": [\n      \"dataIndex\"\n    ]\n  },\n  {\n    \"title\": \"Drug Combo Incucyte\",\n    \"creator\": \"Sara Gosline\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"drug combination\",\n      \"Incucyte\",\n      \"cell viability\"\n    ],\n    \"dataType\": [\n      \"drugScreen\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Data from Incucyte experiments testing drug combinations.\",\n    \"measurementTechnique\": \"cell viability assay\"\n  },\n  {\n    \"title\": \"Hirbe_s5180_MGI0731_Batch2_RNAseq\",\n    \"creator\": \"Kuangying Yang, Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"RNA-seq\",\n      \"gene expression\",\n      \"MPNST\",\n      \"PDX\"\n    ],\n    \"dataType\": [\n      \"geneExpression\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"RNA-seq data from MPNST PDX models.\",\n    \"measurementTechnique\": \"RNA-seq\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 16\n  },\n  {\n    \"title\": \"Incucyte Drug Response Data\",\n    \"creator\": \"Ana Calizo\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"Incucyte\",\n      \"drug response\",\n      \"cell viability\",\n      \"MPNST\"\n    ],\n    \"dataType\": [\n      \"drugScreen\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Drug response data from Incucyte experiments.\",\n    \"measurementTechnique\": \"cell viability assay\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 4,\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ]\n  },\n  {\n    \"title\": \"JH_Samples_WEX_MAF\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"whole exome sequencing\",\n      \"somatic variants\",\n      \"MPNST\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Somatic variant calls from whole exome sequencing of JH samples.\",\n    \"measurementTechnique\": \"whole exome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 6,\n    \"specimenCount\": 6\n  },\n  {\n    \"title\": \"MGI_DT-2862929_Batch2_WEX\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"whole exome sequencing\",\n      \"genomic variants\",\n      \"MPNST\",\n      \"Atypical Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Whole exome sequencing data from MGI Batch 2.\",\n    \"measurementTechnique\": \"whole exome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 21,\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\",\n      \"Atypical Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"MGI_DT-2862929_Batch2_WEX_BAM\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"whole exome sequencing\",\n      \"BAM files\",\n      \"genomic variants\",\n      \"MPNST\",\n      \"Atypical Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"BAM files from whole exome sequencing of MGI Batch 2 samples.\",\n    \"measurementTechnique\": \"whole exome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 14,\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\",\n      \"Atypical Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"MGI_DT-2862930_Batch2_WGS\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"whole genome sequencing\",\n      \"genomic variants\",\n      \"MPNST\",\n      \"Atypical Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Whole genome sequencing data from MGI Batch 2.\",\n    \"measurementTechnique\": \"whole genome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 22,\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\",\n      \"Atypical Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"MGI_DT_2862930_Batch2_WGS_BAM\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"whole genome sequencing\",\n      \"BAM files\",\n      \"genomic variants\",\n      \"MPNST\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"BAM files from whole genome sequencing of MGI Batch 2 samples.\",\n    \"measurementTechnique\": \"whole genome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8\n  },\n  {\n    \"title\": \"MGI_WEX_2020_Batch1_BAM\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"whole exome sequencing\",\n      \"BAM files\",\n      \"genomic variants\",\n      \"MPNST\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"BAM files from whole exome sequencing of MGI Batch 1 (2020) samples.\",\n    \"measurementTechnique\": \"whole exome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 27,\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ]\n  },\n  {\n    \"title\": \"NF-OSI_processing_01242023\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"NF-OSI\",\n      \"processing\",\n      \"BAM files\"\n    ],\n    \"dataType\": [\n      \"AlignedReads\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Processed data from NF-OSI.\",\n    \"series\": \"NF-OSI Processed Data\",\n    \"yearProcessed\": 2023\n  },\n  {\n    \"title\": \"NFOSI-processing_12192022\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"NFOSI\",\n      \"processing\",\n      \"BAM files\"\n    ],\n    \"dataType\": [\n      \"AlignedReads\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Processed data from NFOSI.\",\n    \"series\": \"NF-OSI Processed Data\",\n    \"yearProcessed\": 2022\n  },\n  {\n    \"title\": \"Proteomics\",\n    \"creator\": \"Sara Gosline, Camilo Posso\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"proteomics\",\n      \"mass spectrometry\"\n    ],\n    \"dataType\": [\n      \"proteomics\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Proteomics data.\",\n    \"measurementTechnique\": \"mass spectrometry\"\n  },\n  {\n    \"title\": \"Sample_annotation\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"sample annotation\",\n      \"metadata\"\n    ],\n    \"dataType\": [\n      \"dataIndex\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Sample annotation files.\",\n        \"dataType\": [\n      \"dataIndex\"\n    ]\n  },\n  {\n    \"title\": \"Somatic_Varaint_Calls_WEX_2020\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"somatic variants\",\n      \"whole exome sequencing\",\n      \"MAF files\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Somatic variant calls from whole exome sequencing (2020).\",\n    \"measurementTechnique\": \"whole exome sequencing\"\n  },\n  {\n    \"title\": \"Updated Somatic Variant Calls\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"somatic variants\",\n      \"variant calls\",\n      \"MPNST\",\n      \"Atypical Neurofibroma\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Updated somatic variant calls for MPNST and Atypical Neurofibroma samples.\",\n    \"measurementTechnique\": \"whole exome sequencing\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 7,\n    \"specimenCount\": 14,\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\",\n      \"Atypical Neurofibroma\"\n    ]\n  },\n  {\n    \"title\": \"WGS_CNVKIT_MGI2020_2862930\",\n    \"creator\": \"Yang Lyu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"whole genome sequencing\",\n      \"CNVkit\",\n      \"copy number variation\"\n    ],\n    \"dataType\": [\n      \"CopyNumberVariants\"\n    ],\n    \"studyId\": \"syn21984813\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"NTAP\",\n      \"NIH-NCI\"\n    ],\n    \"description\": \"Copy number variation analysis using CNVkit on whole genome sequencing data.\",\n    \"measurementTechnique\": \"whole genome sequencing\"\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.010766870942026156
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 9706,
+    "candidatesTokenCount": 4203,
+    "totalTokenCount": 13909,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 9706
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4203
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"CTF-UCF-Cenix Complete Compound Drug Screen\",\n    \"creator\": \"Abhishek Pratap\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"drug screen\",\n      \"high content screening\",\n      \"phenotypic screening\",\n      \"mouse Schwann cells\",\n      \"NF2\",\n      \"merlin-deficient\",\n      \"dose-response\",\n      \"nuclear phenotypes\"\n    ],\n    \"dataType\": [\n      \"drugScreen\",\n      \"image\",\n      \"cellularPhysiology\"\n    ],\n    \"studyId\": \"syn5562324\",\n    \"diseaseFocus\": [\n      \"NF2-related schwannomatosis\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Complete compound drug screen data from a collaboration between CTF, UCF, and Cenix Bioscience. Data includes results from screening 95 drugs on MS01 (NF2-/-) and MS11 (NF2 wild-type) mouse Schwann cells.\",\n    \"contributor\": [\n      \"Children's Tumor Foundation\",\n      \"Dr. Cristina Fernandez-Valle (UCF)\",\n      \"Cenix Bioscience\"\n    ],\n    \"measurementTechnique\": \"high content screen\",\n    \"manifestation\": [\n      \"Schwannoma\"\n    ],\n    \"species\": [\n      \"Mus musculus\"\n    ],\n        \"datePublished\": 1678886400\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.082611498625382127
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 4879,
+    "candidatesTokenCount": 368,
+    "totalTokenCount": 5247,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4879
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 368
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"MPNST Cell Line Methylation Arrays\",\n    \"creator\": \"Hereditary Cancer Laboratory at the Germans Trias i Pujol Research Institute (IGTP)\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"cell line\",\n      \"methylation array\",\n      \"epigenomics\"\n    ],\n    \"dataType\": [\n      \"chromatinActivity\"\n    ],\n    \"studyId\": \"syn22392179\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Methylation array data for 8 MPNST cell lines.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 8,\n    \"measurementTechnique\": \"methylation array\"\n  },\n  {\n    \"title\": \"MPNST Cell Line SNP Arrays\",\n    \"creator\": \"Hereditary Cancer Laboratory at the Germans Trias i Pujol Research Institute (IGTP)\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"cell line\",\n      \"SNP array\",\n      \"genomics\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn22392179\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"SNP array data for 8 MPNST cell lines.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 8,\n    \"measurementTechnique\": \"SNP array\"\n  },\n  {\n    \"title\": \"MPNST Cell Line Whole Exome Sequencing\",\n    \"creator\": \"Hereditary Cancer Laboratory at the Germans Trias i Pujol Research Institute (IGTP)\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"cell line\",\n      \"whole exome sequencing\",\n      \"genomics\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn22392179\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Whole exome sequencing data for 8 MPNST cell lines.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 8,\n    \"measurementTechnique\": \"whole exome sequencing\"\n  },\n  {\n    \"title\": \"MPNST Cell Line Whole Genome Sequencing\",\n    \"creator\": \"Hereditary Cancer Laboratory at the Germans Trias i Pujol Research Institute (IGTP)\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"cell line\",\n      \"whole genome sequencing\",\n      \"genomics\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn22392179\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Whole genome sequencing data for 8 MPNST cell lines.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 8,\n    \"measurementTechnique\": \"whole genome sequencing\"\n  },\n  {\n    \"title\": \"Methylation\",\n    \"creator\": \"Bernat Gel Moreno\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"cell line\",\n      \"methylation array\",\n      \"epigenomics\"\n    ],\n    \"dataType\": [\n      \"chromatinActivity\"\n    ],\n    \"studyId\": \"syn22392179\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Methylation array data for 8 MPNST cell lines.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 8,\n    \"measurementTechnique\": \"methylation array\"\n  },\n  {\n    \"title\": \"SNP_array\",\n    \"creator\": \"Bernat Gel Moreno\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"cell line\",\n      \"SNP array\",\n      \"genomics\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn22392179\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"SNP array data for 8 MPNST cell lines.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 8,\n    \"measurementTechnique\": \"SNP array\"\n  },\n  {\n    \"title\": \"WES\",\n    \"creator\": \"Bernat Gel Moreno\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"cell line\",\n      \"whole exome sequencing\",\n      \"genomics\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn22392179\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Whole exome sequencing data for 8 MPNST cell lines.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 8,\n    \"measurementTechnique\": \"whole exome sequencing\"\n  },\n  {\n    \"title\": \"WGS\",\n    \"creator\": \"Bernat Gel Moreno\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"MPNST\",\n      \"cell line\",\n      \"whole genome sequencing\",\n      \"genomics\"\n    ],\n    \"dataType\": [\n      \"genomicVariants\"\n    ],\n    \"studyId\": \"syn22392179\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Whole genome sequencing data for 8 MPNST cell lines.\",\n    \"species\": [\n      \"Homo sapiens\"\n    ],\n    \"individualCount\": 8,\n    \"specimenCount\": 8,\n    \"measurementTechnique\": \"whole genome sequencing\"\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.0017683565313361875
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 7691,
+    "candidatesTokenCount": 1769,
+    "totalTokenCount": 9460,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 7691
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1769
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"Drug-Target Explorer Database v4\",\n    \"creator\": \"Robert Allaway\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"CC BY-SA\",\n    \"keywords\": [\n      \"drug-target interaction\",\n      \"polypharmacology\",\n      \"chemical biology\",\n      \"oncology\",\n      \"cheminformatics\",\n      \"drug discovery\"\n    ],\n    \"dataType\": [\n      \"drugScreen\",\n      \"network\"\n    ],\n    \"studyId\": \"syn11672851\",\n    \"diseaseFocus\": [\n      \"Multiple\"\n    ],\n    \"funder\": [\n      \"Independent\"\n    ],\n    \"description\": \"Database of experimentally-derived drug-target interactions from ChEMBL v28, ChemicalProbes.org (03-10-2021), DGIdb 4.2.0, and DrugBank 5.1.8. Enables exploration of chemical-biological interaction space for oncology drug discovery. Can be queried using drug names or structures to identify structurally similar molecules and targets.\",\n    \"includedInDataCatalog\": \"https://www.synapse.org/DataCatalog:0\",\n    \"measurementTechnique\": \"compound screen\",\n    \"subject\": [\n      \"Drug Target Interaction\",\n      \"Chemical Biology\",\n      \"Oncology\",\n      \"Drug Discovery\",\n      \"Cheminformatics\"\n    ],\n    \"datePublished\": 1698806400\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.085466633437375511
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5905,
+    "candidatesTokenCount": 353,
+    "totalTokenCount": 6258,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5905
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 353
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n[\n  {\n    \"title\": \"IHC Quantification Data\",\n    \"creator\": \"Anh Nguyet Vu\",\n    \"accessType\": \"Open Access\",\n    \"license\": \"UNKNOWN\",\n    \"keywords\": [\n      \"immunohistochemistry\",\n      \"raw counts\",\n      \"MPNST\",\n      \"Malignant Peripheral Nerve Sheath Tumor\",\n      \"Neurofibromatosis type 1\"\n    ],\n    \"dataType\": [\n      \"raw counts\"\n    ],\n    \"studyId\": \"syn37861830\",\n    \"diseaseFocus\": [\n      \"Neurofibromatosis type 1\"\n    ],\n    \"funder\": [\n      \"CTF\"\n    ],\n    \"description\": \"Immunohistochemistry quantification data for Malignant Peripheral Nerve Sheath Tumor (MPNST) samples from mice.\",\n    \"measurementTechnique\": \"immunohistochemistry\",\n    \"species\": [\n      \"Mus musculus\"\n    ],\n    \"manifestation\": [\n      \"Malignant Peripheral Nerve Sheath Tumor (MPNST)\"\n    ]\n  }\n]\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.041294733683268227
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 5263,
+    "candidatesTokenCount": 249,
+    "totalTokenCount": 5512,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 5263
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 249
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash"
+}

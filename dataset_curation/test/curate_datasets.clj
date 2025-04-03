@@ -29,6 +29,15 @@ A project has one or more table(s) within the project, where each table represen
 Your goal is to create high-quality dataset metadata for these tables that conform to the JSON schema below.
 Also below is pre-summarized information from the project and tables that can be used for forming accurate and useful metadata.")
 
+(def prompt-supplement
+"The result will be submitted to an important data catalog; researchers depend on you! Here's your review checklist to help provide great results:
+1. For fields like measurementTechnique, diseaseFocus, dataType, manifestation, use only the exact, predefined values specified in the schema's enum list. Do not use variations or other terms.
+2. Ensure every field's value matches its required schema type; avoid using `null` unless explicitly permitted by the schema for that field.
+3. The output MUST be valid JSON according to RFC 8259. Do not include comments.")
+
+(def batch-instructions-v2
+  (str batch-instructions "\n\n" prompt-supplement))
+
 (defn render-userid-result
   "Use for row results with coltype `USERID`"
   [client query-result]
@@ -60,7 +69,7 @@ Also below is pre-summarized information from the project and tables that can be
 
 (defn pre-summarize
   [client table-id]
-        ;; inferred-access (label-access client (first sample-files))
+  ;; inferred-access (label-access client (first sample-files))
   (let [queries (make-queries table-id)]
     (for [[k label query] queries]
       (try
@@ -71,7 +80,7 @@ Also below is pre-summarized information from the project and tables that can be
           (str "- " label ": ?"))))))
 
 
-(defn as-markdown [input]
+(defn make-project-specific-text [input]
   (let [[project-id tables] input]
     (str "# Project ID: " project-id "\n\n"
          (get-entity-wiki @syn project-id) "\n\n"
@@ -86,13 +95,29 @@ Also below is pre-summarized information from the project and tables that can be
                 tables)))))
 
 (defn make-prompt 
-  [instructions schema data]
+  [instructions schema text]
   (str instructions "\n\n"  
   "# JSON Schema\n"
   "```\n" 
   schema 
   "\n```\n\n" 
-  (as-markdown data) "\n"))
+  text "\n"))
+
+(def all-input-files
+  ["input/batch/A.json" "input/batch/B.json" "input/batch/C.json"])
+
+(def input (mapcat #(json/parse-string (slurp %)) all-input-files))
+
+(def project-specific-text
+  (mapv (fn [project]
+          {:project (first project)
+           :text (make-project-specific-text project)
+           })
+        input))
+
+;; (spit "project-contexts.edn" (pr-str project-specific-text))
+
+(def schema (slurp "input/batch/PortalDataset.json"))
 
 (defn simulated-wrap-commit
   [{:keys [data entity_id collection_id product_name]}]
@@ -121,13 +146,7 @@ Also below is pre-summarized information from the project and tables that can be
       (save-messages agent (str "runs/messages/" (name batch-key) "-" batch-idx ".edn"))
       (reset-messages agent))))
 
-(defn read-batch-data
-  [batch-key]
-  (->>(get-in run-config [batch-key :input-data])
-      (slurp)
-      (json/parse-string)))
-
-(def run-config
+(def xp-config
   {:A
    {:label "A-A"
     :input-data "input/agentic/A.json"
@@ -156,6 +175,15 @@ Also below is pre-summarized information from the project and tables that can be
     :provider "Anthropic"
     :model "claude-3-7-sonnet-20250219"
     :agentic false}
+   :G
+   {:label "G"
+    :input-data "input/batch/A.json"
+    :test-data "input/batch/G.jsonl"
+    :result-data "output/batch/G.json"
+    :schema "input/batch/PortalDataset.json"
+    :provider "Google"
+    :model "gemini-2.0-flash"
+    :agentic false}
    :toy
    {:label "toy"
     :input-data "input/toy/data.json"
@@ -166,9 +194,16 @@ Also below is pre-summarized information from the project and tables that can be
     :agentic false}
    })
 
+
 (def system-prompt "You are Syndi, a highly competent and helpful data assistant.")
 
-(defn add-to-anthropic-batch-dataset
+(defn read-batch-data
+  [batch-key]
+  (->>(get-in xp-config [batch-key :input-data])
+      (slurp)
+      (json/parse-string)))
+
+(defn add-to-anthropic-dataset
   [dataset-file id text]
   (let [m {"custom_id" id
            "params" {
@@ -180,9 +215,10 @@ Also below is pre-summarized information from the project and tables that can be
                      "content" text}]
                      }
            }]
-  (spit dataset-file (json/generate-string m) :append true)))
+  (spit dataset-file (json/generate-string m) :append true)
+  (println "Added data for " id)))
 
-(defn add-to-openai-batch-dataset
+(defn add-to-openai-dataset
   [dataset-file id text]
   (let [m {"custom_id" id
            "method" "POST"
@@ -196,28 +232,38 @@ Also below is pre-summarized information from the project and tables that can be
   (spit dataset-file (json/generate-string m) :append true)
   (println "Added data for " id)))
 
+(defn add-to-gemini-dataset
+  [dataset-file id text]
+  (let [m {:custom_id id
+           :text {"system_instruction" {"parts" [{"text" system-prompt}]}
+                   "contents" [{"parts" [{"text" text}]}]}
+           }]
+    (spit dataset-file (json/generate-string m) :append true)
+    (println "Added data for " id)))
+
 (defn delegate-batch-builder
   [provider dataset-file id text]
-  (if (= "OpenAI" provider)
-    (add-to-openai-batch-dataset dataset-file id text)
-    (add-to-openai-batch-dataset dataset-file id text)))
+  (case provider 
+    "OpenAI" (add-to-openai-dataset dataset-file id text)
+    "Anthropic" (add-to-anthropic-dataset dataset-file id text)
+    "Google" (add-to-gemini-dataset dataset-file id text)))
 
 (defn create-batch-dataset
-  [batch-key]
-  (let [input (read-batch-data batch-key)
-        instructions batch-instructions
-        schema (slurp (get-in run-config [batch-key :schema]))
-        provider (get-in run-config [batch-key :provider])
-        dataset-file (get-in run-config [batch-key :test-data])]
-    (doseq [project input]
-      (->>(make-prompt instructions schema project)
-         (delegate-batch-builder provider dataset-file (project 0))))))
+  "Get keys (project ids) from the batch file, and use to subset the project contexts to build prompt."
+  [instructions schema dataset-file provider projects]
+  (let [project-contexts (clojure.edn/read-string (slurp "project-contexts.edn"))
+        input-contexts (if (nil? projects) project-contexts (select-keys project-contexts projects))]
+    (doseq [project input-contexts]
+      (->>(make-prompt instructions schema (project :text))
+          (delegate-batch-builder provider dataset-file (project :project))))))
 
-(defn run-batch!
+(create-batch-dataset batch-instructions-v2 schema "input/batch2/openai.jsonl" "OpenAI" nil)
+
+(defn run-agent!
   [{:keys [batch-id]}]
   (let [batch-key (keyword batch-id)
         batch-data (read-batch-data batch-key)
-        agent (get-in run-config [batch-key :agent])
+        agent (get-in xp-config [batch-key :agent])
         project-root (System/getProperty "user.dir")
         log-dir (str project-root "/runs/")]
   (println "Logging will use " log-dir)
