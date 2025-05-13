@@ -2,6 +2,8 @@
 title: "AI Model Review Analysis"
 output:
   html_document:
+    toc: true
+    toc_depth: 5
     fig_width: 8
 ---
 
@@ -41,7 +43,7 @@ Protocol for human evaluation can be found in https://github.com/nf-osi/jobs/iss
 
 To retrieve the latest data, export CSV from [GSheet](https://docs.google.com/spreadsheets/d/181QppRA4XP16GBoweE837218mw6kqBiXK0ewquLiB1s/edit?gid=0#gid=0).
 
-### --- 1. Preprocessing 
+### 1. Preprocessing 
 
 #### Load and Prepare Data
 
@@ -102,7 +104,7 @@ data_latest <- data %>%
 cat("Rows after deduplication based on ID and latest timestamp:", nrow(data_latest))
 ```
 
-### --- 3. Quantitative Model Comparison ---
+### 2. Quantitative Model Comparison ---
 
 #### Summary statistics for each model's scores
 ```{r}
@@ -152,7 +154,7 @@ score_boxplot <- ggplot(scores_long, aes(x = Model, y = Score, fill = Model)) +
 print(score_boxplot)
 ```
 
-### --- 4. Reviewer Preference for Top Model ---
+### 3. Reviewer Preference for Top Model ---
 
 #### Frequency of each model (or tie) being the top scorer
 ```{r}
@@ -205,7 +207,7 @@ ggsave("top_model_preference_chart.png", plot = preference_plot, width = 10, hei
 ## cat("Top model preference chart saved as 'top_model_preference_chart.png'\\n")
 ```    
 
-### --- 5. Most Corrected Fields ---
+### 4. Most Corrected Fields ---
 
 #### Most frequently corrected fields
 ```{r, include=F}
@@ -246,7 +248,7 @@ ggsave("most_corrected_fields_chart.png", plot = corrected_fields_plot, width = 
 ```    
 
 
-### --- 7. Model-Specific Weaknesses (Based on Highest-Scoring Model) ---
+### 5. Model-Specific Weaknesses (Based on Highest-Scoring Model) ---
 
 `Changed` fields refer to the top model of each instance. 
 We want to understand whether there are differences in what is corrected for each model. 
@@ -313,7 +315,7 @@ model_field_correction_summary <- model_specific_corrections_data %>%
 knitr::kable(model_field_correction_summary)
 ```
 
-### Top N corrected fields by model
+#### Top N corrected fields by model
 ```{r, include=FALSE}
 
 top_n_to_show <- 5
@@ -395,7 +397,7 @@ model_req_opt_plot <- ggplot(model_field_detail_summary,
 model_req_opt_plot
 ```
     
-### 8. Evaluation Patterns by Reviewer
+### 6. Evaluation Patterns by Reviewer
 
 #### Summary of activity for each reviewer
 ```{r}
@@ -521,7 +523,7 @@ reviewer_corrections_plot <- ggplot(plot_data_reviewer_specific,
 reviewer_corrections_plot
 ```
 
-### Qualitative Analysis
+### 7. Qualitative Analysis
 
 (Courtesy of Claude Sonnet 3.7)
 
