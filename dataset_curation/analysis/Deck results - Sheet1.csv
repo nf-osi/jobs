@@ -1,0 +1,176 @@
+User,Timestamp,Index,ID,Score A,Score B,Score C,Notes,Changed
+avu,2025-04-02T05:02:25.348Z,0,syn53185351,0,6,0,accessType is incorrect -- should be public,
+avu,2025-04-02T05:06:51.629Z,1,syn64954915,4,7,6,accessType should be public,
+avu,2025-04-02T05:08:40.283Z,2,syn64954916,3,7,6,accessType should be public; dataType more accurate on highest-scoring,
+avu,2025-04-02T05:10:44.969Z,3,syn65468086,0,0,8,accessType should be public,
+avu,2025-04-02T05:13:03.943Z,4,syn31802704,0,5,7,Highest-scoring card got diseaseFocus correct; accessType should be public,
+avu,2025-04-02T05:15:21.862Z,5,syn51915976,5,6,7,accessType more correct on highest-scoring,
+avu,2025-04-02T05:16:48.654Z,6,syn64954697,0,0,0,"DUPLICATE, REMOVE DATASET AND IGNORE IN ANALYSIS!",
+avu,2025-04-02T05:19:17.962Z,7,syn64954698,5,6,7,accessType more accurate in highest-scoring dataset; dataType less redundant,
+avu,2025-04-02T05:20:33.616Z,8,syn64954699,5,6,7,,
+avu,2025-04-02T05:23:46.587Z,9,syn64954700,5,7,6,Need to update accessType for selected; too many keywords for 2nd-place,
+avu,2025-04-02T05:26:19.215Z,10,syn64954701,4,6,5,Not impressed with any of the titles; also need to correct accessType; deducted points for too many redundant keywords,
+avu,2025-04-02T05:28:42.603Z,11,syn64954827,2,5,7,2nd-place seems to be missing contributors; first-place has manifestation!,
+avu,2025-04-02T05:29:28.261Z,12,syn64954828,2,4,7,,
+avu,2025-04-02T05:30:27.026Z,13,syn64954829,2,4,7,,
+avu,2025-04-02T15:14:49.716Z,14,syn64954830,3,4,7,"Description was slight better for second-place, but DataType, AccessType, and Manifestation more accurate for first-place.",
+avu,2025-04-02T15:15:49.101Z,15,syn64954831,3,4,7,,
+avu,2025-04-02T15:17:51.585Z,16,syn64954832,3,5,7,,
+avu,2025-04-02T15:19:15.653Z,17,syn64954833,4,5,7,,
+avu,2025-04-02T15:20:46.946Z,18,syn64954834,3,4,7,,
+avu,2025-04-02T15:21:23.168Z,19,syn64954835,3,4,7,,
+avu,2025-04-02T15:21:46.813Z,20,syn64954836,3,4,7,,
+avu,2025-04-02T15:42:17.352Z,21,syn64954837,2,3,7,Highest-scoring has a much better title; this instance shows a relatively larger quality difference overall,
+avu,2025-04-02T15:43:03.164Z,22,syn64954838,2,3,7,,
+avu,2025-04-02T15:43:54.104Z,23,syn64954840,3,4,7,,
+avu,2025-04-02T15:44:58.886Z,24,syn64954841,3,4,7,,
+avu,2025-04-02T15:45:29.658Z,25,syn64954842,3,4,7,,
+avu,2025-04-02T15:45:44.158Z,26,syn64954843,3,4,7,,
+avu,2025-04-02T15:46:18.685Z,27,syn64954845,3,4,7,,
+avu,2025-04-02T15:47:10.388Z,28,syn64954846,3,4,7,,
+avu,2025-04-02T15:49:41.146Z,29,syn65467786,5,6,7,"Liked second-place description slightly better, but first-place was more complete and accurate.",
+avu,2025-04-02T15:57:00.548Z,30,syn51930713,3,7,5,First-place had slightly more useful description. Need to remove NF-Service from Creator. Second-place mistake: Same person should not be listed as contributor if they are already listed as author,
+avu,2025-04-02T15:59:02.054Z,31,syn64954688,3,6,7,,
+avu,2025-04-02T16:00:37.732Z,32,syn51198953,4,6,7,Need to update creator to NF-OSI for top choice,
+avu,2025-04-02T16:05:18.031Z,33,syn64954689,5,6,7,,
+avu,2025-04-02T16:08:05.209Z,34,syn64954690,3,6,7,,
+avu,2025-04-02T17:07:25.769Z,35,syn54700333,4,7,0,DataUseModifier might be incorrect for top-choice,
+avu,2025-04-02T17:12:43.158Z,36,syn51916091,6,7,0,Description much better for highest-scoring item,
+avu,2025-04-02T17:15:31.392Z,37,syn64954766,0,0,0,EXCLUDE dataset as all QC files! DO NOT INCLUDE IN ANALYSIS,
+avu,2025-04-02T17:17:26.530Z,38,syn51199007,0,6,7,,
+avu,2025-04-02T17:19:04.131Z,39,syn52298742,0,5,6,,
+avu,2025-04-02T17:25:03.439Z,40,syn42174758,0,6,7,,
+avu,2025-04-02T17:52:52.264Z,41,syn35563963,0,6,7,,
+avu,2025-04-02T17:53:26.966Z,42,syn35563960,0,6,7,,
+avu,2025-04-02T17:53:47.014Z,43,syn35563961,0,6,7,,
+avu,2025-04-02T17:54:00.659Z,44,syn35563962,0,6,7,,
+avu,2025-04-02T17:55:58.548Z,45,syn63093965,0,6,7,,
+avu,2025-04-02T17:56:59.555Z,46,syn29783617,0,6,7,,
+avu,2025-04-02T17:59:02.841Z,47,syn64954907,5,5,7,,
+avu,2025-04-02T18:01:56.631Z,48,syn64954908,6,7,6,"Highest-scoring instance conveyed significance of dataset best, but accessType is incorrect",
+avu,2025-04-02T18:13:12.952Z,49,syn64954909,5,7,6,Highest-scorer conveys dataset significance best,
+avu,2025-04-02T23:27:06.146Z,1,syn64954915,5,7,6,,
+avu,2025-04-02T23:29:42.138Z,2,syn64954916,4,7,6,,
+avu,2025-04-02T23:31:16.050Z,3,syn65468086,0,0,8,,
+avu,2025-04-03T00:09:05.782Z,4,syn31802704,0,6,7,,
+avu,2025-04-03T00:19:15.002Z,5,syn51915976,4,6,7,,
+avu,2025-04-03T00:24:24.863Z,7,syn64954698,4,6,5,,
+avu,2025-04-03T00:27:36.725Z,8,syn64954699,3,6,7,,
+avu,2025-04-03T00:29:41.511Z,9,syn64954700,3,5,6,,
+avu,2025-04-03T00:31:34.776Z,10,syn64954701,3,6,7,,
+avu,2025-04-03T00:33:28.582Z,11,syn64954827,3,5,6,,
+avu,2025-04-03T00:35:22.676Z,12,syn64954828,2,4,7,,
+avu,2025-04-03T00:39:24.402Z,13,syn64954829,2,4,7,,
+avu,2025-04-03T00:41:46.510Z,14,syn64954830,3,4,7,,
+avu,2025-04-03T00:43:51.091Z,15,syn64954831,3,5,6,,
+avu,2025-04-03T00:48:04.607Z,16,syn64954832,3,6,7,,
+avu,2025-04-03T00:49:58.839Z,17,syn64954833,3,4,7,,
+avu,2025-04-03T00:51:09.697Z,18,syn64954834,2,3,7,,
+avu,2025-04-03T01:03:46.730Z,19,syn64954835,2,4,6,,
+avu,2025-04-03T01:05:06.066Z,20,syn64954836,2,3,6,,
+avu,2025-04-03T01:07:25.463Z,21,syn64954837,2,3,7,,
+avu,2025-04-03T01:09:50.611Z,22,syn64954838,2,4,7,,
+avu,2025-04-03T01:11:42.355Z,23,syn64954840,2,5,7,,
+avu,2025-04-03T01:13:50.369Z,24,syn64954841,2,4,7,Should be combined with the ATAC-seq DAPT dataset,
+avu,2025-04-03T01:22:51.542Z,25,syn64954842,2,4,7,,
+avu,2025-04-03T01:32:58.027Z,25,syn64954842,0,0,0,Exclude from analysis! COMBINE WITH syn22447811 (Muller glia dataset) and revise,
+avu,2025-04-03T01:34:15.990Z,25,syn64954842,2,4,6,,
+avu,2025-04-03T01:36:13.050Z,28,syn64954846,2,4,6,,
+avu,2025-04-03T01:39:55.703Z,29,syn65467786,4,6,7,,
+avu,2025-04-04T15:23:16.756Z,30,syn51930713,4,5,6,,
+avu,2025-04-04T15:29:08.517Z,31,syn64954688,4,6,5,,
+avu,2025-04-04T15:31:20.735Z,32,syn51198953,4,5,6,,
+avu,2025-04-04T15:34:15.626Z,33,syn64954689,4,5,6,,
+avu,2025-04-04T15:37:02.521Z,34,syn64954690,4,6,5,,
+jineta.banerjee,2025-04-04T17:41:47.025Z,0,syn53185351,0,8,0,,
+christina.conrad.parry,2025-04-04T17:42:40.264Z,219,syn45172099,0,5,5,,
+avu,2025-04-08T23:51:26.875Z,35,syn54700333,5,7,0,,"dataUseModifiers,keywords"
+avu,2025-04-08T23:53:35.008Z,36,syn51916091,5,7,0,Same person in both creator and contrib; description much better for highest-scoring item,"accessType,contributor,creator,measurementTechnique"
+avu,2025-04-08T23:54:34.818Z,37,syn64954766,0,0,0,Exclude from analysis!,N/A
+avu,2025-04-08T23:57:40.646Z,0,syn53185351,0,6,0,,"accessType,keywords"
+avu,2025-04-08T23:59:58.751Z,1,syn64954915,4,6,7,,"accessType,dataType"
+avu,2025-04-09T00:02:33.870Z,3,syn65468086,0,0,7,,"accessType,keywords"
+avu,2025-04-09T00:06:29.318Z,4,syn31802704,0,5,7,Same person in creator and contrib; highest-scoring card got diseaseFocus correct,"accessType,contributor,keywords"
+avu,2025-04-09T00:20:11.015Z,2,syn64954916,4,5,6,Redundant keywords,"accessType,dataType,keywords"
+avu,2025-04-10T15:18:27.811Z,38,syn51199007,0,5,6,,"accessType,contributor,keywords"
+avu,2025-04-10T15:29:24.867Z,39,syn52298742,0,6,5,,"contributor,dataType,keywords,title"
+avu,2025-04-10T15:33:09.549Z,40,syn42174758,0,5,6,,"keywords,contributor"
+avu,2025-04-10T15:34:02.210Z,41,syn35563963,0,5,7,,N/A
+avu,2025-04-10T15:35:24.104Z,42,syn35563960,0,6,7,,N/A
+avu,2025-04-10T15:36:58.231Z,43,syn35563961,0,5,6,,"contributor,dataUseModifiers"
+avu,2025-04-10T15:39:18.273Z,44,syn35563962,0,6,5,"This was one was close as 1st and 2nd had similar number of corrects, but different areas (2nd place was missing data use modifiers)","contributor,dataType"
+avu,2025-04-10T15:42:36.814Z,45,syn63093965,0,5,6,Close again. First place had better title and captured the intent of dataset better in description,contributor
+avu,2025-04-10T15:44:12.195Z,46,syn29783617,0,5,6,"First place had better title and explicit detail ""aligned to hg38"" that makes it sound like they knew what they were doing","contributor,keywords"
+avu,2025-04-10T15:51:45.028Z,47,syn64954907,6,6,7,Close,accessType
+avu,2025-04-10T15:52:52.854Z,48,syn64954908,3,6,5,Highest-scoring instance conveyed significance of dataset best,"accessType,keywords"
+avu,2025-04-10T15:55:25.319Z,49,syn64954909,3,5,4,Much better description for highest-scoring,"accessType,dataUseModifiers,keywords"
+james.moon,2025-04-14T19:23:43.449Z,60,syn64954868,0,4,0,"This study does not include data that are derived from human specimens. Therefore, this should be open access.
+Title and description should focus more on Malignant Peripheral Nerve Sheath Tumors Achilles Heel & Combinatorial Targeting of ERBB3 and Calcium Signaling.",N/A
+james.moon,2025-04-14T19:27:17.996Z,61,syn64954871,0,4,0,"Should be open access. 
+Data from Malignant Peripheral Nerve Sheath Tumors Achilles Heel should be included in the description.",N/A
+james.moon,2025-04-14T19:28:04.796Z,62,syn64954872,0,4,0,,N/A
+james.moon,2025-04-14T19:29:11.906Z,63,syn64954873,0,6,0,,N/A
+james.moon,2025-04-14T19:44:23.504Z,60,syn64954868,0,4,0,"Fixed several fields.
+Only one candidate showed up","accessType,contributor,description"
+james.moon,2025-04-14T19:47:19.096Z,61,syn64954871,0,3,0,Had to fix the Disease Focus to NF1.,"accessType,description,diseaseFocus"
+james.moon,2025-04-14T19:49:18.508Z,62,syn64954872,0,3,0,,"accessType,description,diseaseFocus"
+james.moon,2025-04-14T19:50:11.248Z,63,syn64954873,0,5,0,,"accessType,diseaseFocus"
+james.moon,2025-04-14T19:55:02.801Z,64,syn64954875,3,8,0,,accessType
+james.moon,2025-04-14T19:56:46.520Z,65,syn64954876,3,8,0,,accessType
+james.moon,2025-04-14T20:00:55.783Z,66,syn65468113,0,6,9,,N/A
+james.moon,2025-04-14T20:03:30.688Z,67,syn52299273,0,0,10,,N/A
+james.moon,2025-04-14T20:06:58.811Z,68,syn35562839,0,0,9,"Great description. Although it does say it is controlled access, the dataset itself is open access. Maybe cfDNA germline variants are okay to be available toward the public? Unsure. Otherwise, nice annotations.",accessType
+james.moon,2025-04-14T20:08:04.261Z,69,syn35562836,0,0,9,,accessType
+avu,2025-04-18T16:14:55.567Z,0,syn53185351,0,7,0,,"accessType,dataUseModifiers"
+james.moon,2025-04-22T15:18:58.225Z,110,syn51930741,2,7,6,,accessType
+james.moon,2025-04-22T15:20:27.075Z,111,syn64954760,2,8,5,,accessType
+james.moon,2025-04-22T15:22:20.531Z,112,syn51198956,0,5,8,,accessType
+james.moon,2025-04-22T15:23:34.204Z,113,syn51199729,0,5,8,,accessType
+james.moon,2025-04-22T15:25:17.115Z,114,syn65467787,2,7,5,,accessType
+james.moon,2025-04-22T15:27:30.133Z,115,syn64954677,5,7,9,,N/A
+james.moon,2025-04-22T15:29:15.879Z,116,syn64954925,6,7,8,,accessType
+james.moon,2025-04-22T15:29:52.899Z,117,syn64954745,0,7,8,,N/A
+james.moon,2025-04-22T15:30:45.944Z,118,syn64954746,0,6,7,,N/A
+james.moon,2025-04-22T15:31:20.862Z,119,syn64954747,0,8,9,,N/A
+christina.conrad.parry,2025-04-24T20:25:50.570Z,70,syn35562837,0,0,7,,"citation,conditionsOfAccess,contributor,dataUseModifiers,includedInDataCatalog,license,subject"
+christina.conrad.parry,2025-04-24T20:29:35.797Z,71,syn35562838,0,0,7,,"conditionsOfAccess,contributor,dataUseModifiers,funder,includedInDataCatalog,license,subject,citation"
+christina.conrad.parry,2025-04-24T20:31:46.366Z,72,syn29784079,0,0,8,,"conditionsOfAccess,contributor,dataUseModifiers,license,subject"
+christina.conrad.parry,2025-04-24T20:33:48.087Z,73,syn64954906,0,0,7,,"citation,conditionsOfAccess,contributor,funder,includedInDataCatalog,license,subject"
+christina.conrad.parry,2025-04-24T20:43:32.081Z,74,syn65467790,1,1,5,,"contributor,subject,dataUseModifiers,measurementTechnique,alternateName,citation,conditionsOfAccess,dataType,individualCount,license,specimenCount"
+christina.conrad.parry,2025-04-24T21:13:27.351Z,75,syn38299187,0,6,4,,"alternateName,description,diseaseFocus,funder,license,visualizeDataOn,individualCount,specimenCount"
+christina.conrad.parry,2025-04-24T21:17:25.854Z,76,syn38893832,0,7,8,,"funder,includedInDataCatalog,license,subject"
+christina.conrad.parry,2025-04-24T21:21:53.681Z,77,syn58895011,0,6,7,,"subject,license,yearProcessed"
+christina.conrad.parry,2025-04-24T21:25:27.370Z,78,syn65468212,0,0,7,,"dataUseModifiers,subject,accessType,conditionsOfAccess,includedInDataCatalog,keywords,license,manifestation"
+christina.conrad.parry,2025-04-24T21:37:16.738Z,79,syn65468144,0,0,6,,"accessType,alternateName,conditionsOfAccess,dataUseModifiers,keywords,license,measurementTechnique,specimenCount,subject"
+aditya.nath,2025-04-25T22:42:43.117Z,80,syn51915059,5,7,3,,N/A
+aditya.nath,2025-04-25T22:44:41.376Z,81,syn64954749,7,7,4,,N/A
+aditya.nath,2025-04-25T22:46:03.561Z,82,syn64954750,6,2,6,,N/A
+aditya.nath,2025-04-25T22:49:19.487Z,83,syn64954751,5,6,3,,N/A
+aditya.nath,2025-04-25T22:51:13.380Z,84,syn64954752,6,6,8,,N/A
+aditya.nath,2025-04-25T22:51:41.092Z,85,syn64954753,7,6,6,,N/A
+aditya.nath,2025-04-25T22:52:09.780Z,86,syn64954754,5,6,9,,N/A
+aditya.nath,2025-04-25T22:54:51.270Z,87,syn51930817,6,6,8,,N/A
+aditya.nath,2025-04-25T22:59:30.496Z,88,syn51199006,5,4,8,,N/A
+aditya.nath,2025-04-25T23:00:48.220Z,89,syn30865300,3,7,5,,N/A
+allawayr,2025-04-28T19:03:26.110Z,90,syn30865196,4,7,7,,N/A
+allawayr,2025-04-28T19:09:05.026Z,90,syn30865196,7,1,8,,"datePublished,measurementTechnique"
+allawayr,2025-04-28T19:54:00.001Z,91,syn30865247,5,7,8,,N/A
+allawayr,2025-04-28T19:57:29.639Z,92,syn64954825,4,7,6,,"accessType,datePublished"
+allawayr,2025-04-28T20:07:19.926Z,93,syn65467781,4,7,6,,"accessType,dataUseModifiers,datePublished,description"
+allawayr,2025-04-28T20:12:10.529Z,94,syn53604698,2,1,4,"This dataset is missing all files, and the models are either filling in very few details or hallucinating details.","conditionsOfAccess,contributor,dataUseModifiers,series"
+allawayr,2025-04-28T20:13:49.817Z,95,syn64954726,4,4,6,,"conditionsOfAccess,contributor,dataUseModifiers"
+allawayr,2025-04-28T20:16:09.480Z,96,syn64954727,4,4,6,dataset ctb/aut and data use modifiers seem to be hallucinated often,"conditionsOfAccess,contributor,dataUseModifiers"
+allawayr,2025-04-28T20:22:47.700Z,97,syn30423895,1,4,5,"The fileview schema was invalid, so I'm guessing the LLM didn't have much info to go off of here - I had to edit a lot","keywords,series,dataType,includedInDataCatalog,individualCount,specimenCount"
+allawayr,2025-04-28T20:25:08.702Z,98,syn43709762,4,4,6,,"conditionsOfAccess,contributor,creator,dataUseModifiers,keywords,yearProcessed"
+allawayr,2025-04-28T20:27:29.358Z,99,syn41825491,2,2,4,,"contributor,dataUseModifiers,individualCount"
+allawayr,2025-04-28T20:29:55.958Z,100,syn63540453,3,5,10,,"contributor,creator,dataUseModifiers,includedInDataCatalog,series"
+avu,2025-05-05T15:58:22.875Z,50,syn64954910,4,5,6,,accessType
+avu,2025-05-05T15:59:49.818Z,51,syn64954911,5,3,6,,accessType
+avu,2025-05-05T23:19:20.549Z,52,syn64954912,3,6,5,,"accessType,keywords,dataUseModifiers"
+avu,2025-05-05T23:22:33.974Z,53,syn64954913,0,6,5,Highest-scoring had more complete contributors and better description.,"accessType,dataUseModifiers"
+avu,2025-05-05T23:28:00.240Z,54,syn65467792,4,3,6,,"accessType,contributor,keywords"
+avu,2025-05-05T23:30:12.279Z,55,syn64954705,2,6,5,,accessType
+avu,2025-05-05T23:32:51.341Z,56,syn51198962,2,4,5,,"accessType,creator,keywords,dataUseModifiers"
+avu,2025-05-05T23:34:16.394Z,57,syn64954706,2,5,6,,"accessType,creator"
+avu,2025-05-05T23:40:25.140Z,58,syn64954707,0,0,0,Exclude from analysis -- redundant with syn51198962,N/A
+avu,2025-05-05T23:58:30.904Z,59,syn65467791,5,4,4,"Highest-scoring inferred one Country of Origin, though missed out on other","creator,datePublished,manifestation,dataUseModifiers,countryOfOrigin"
