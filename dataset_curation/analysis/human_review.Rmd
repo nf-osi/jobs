@@ -1,0 +1,579 @@
+---
+title: "AI Model Review Analysis"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    fig_width: 8
+---
+
+```{r setup, echo = F}
+
+knitr::opts_chunk$set(echo = F)
+
+library(dplyr)
+library(lubridate)
+library(stringr)
+library(tidyr)
+library(ggplot2)
+
+```
+
+## AI Model Review Analysis
+
+### Brief Methods
+
+Three models were compared in the dataset curation task, given the exact same prompt, data model schema, and materials to use for inferring dataset metadata.
+
+#### Models used for inference
+- Model A: gpt-4o (OpenAI)
+- Model B: Sonnet 3.7 (Anthropic)
+- Model C: Gemini Pro 2.5 (Google)
+
+##### Notes
+
+It would have been fairer to use "o3-mini" from OpenAI since the other models are to some extent considered "thinking" models. 
+However, at the time, NF did not have access to "o3-mini" via the API.
+
+#### Human Evaluation
+
+Protocol for human evaluation can be found in https://github.com/nf-osi/jobs/issues/100.
+
+### Raw Data Availability
+
+To retrieve the latest data, export CSV from [GSheet](https://docs.google.com/spreadsheets/d/181QppRA4XP16GBoweE837218mw6kqBiXK0ewquLiB1s/edit?gid=0#gid=0).
+
+### 1. Preprocessing 
+
+#### Load and Prepare Data
+
+Results data should be 'Deck results - Sheet1.csv' in your R working directory. 
+This loads data and removes instances that should be exluded from analysis. 
+For example, a dataset was just a collection of QC files, so we don't consider this a "real" dataset and it is not evaluated seriously by the reviewer.
+
+```{r}
+data_file_path <- "Deck results - Sheet1.csv"
+
+if (!file.exists(data_file_path)) {
+  stop(paste("Error: Data file not found at path:", data_file_path,
+             "\\nPlease ensure the file is in your R working directory or update the path in the script."))
+}
+
+data_raw <- read.csv(data_file_path, stringsAsFactors = FALSE, na.strings=c("","NA", "N/A", "NULL"), check.names = T)
+
+# Convert Timestamp to POSIXct (date-time object); ymd_hms <=> "YYYY-MM-DD HH:MM:SS"
+data_raw$Timestamp <- ymd_hms(data_raw$Timestamp)
+
+
+# Handle specific exclusion notes before deduplication
+# Filter out rows explicitly marked for exclusion in the 'Notes' column
+data <- data_raw %>%
+  filter(!if_else(is.na(Notes), FALSE, grepl("DUPLICATE, REMOVE DATASET AND IGNORE IN ANALYSIS!", Notes, ignore.case = TRUE))) %>%
+  filter(!if_else(is.na(Notes), FALSE, grepl("EXCLUDE dataset as all QC files!", Notes, ignore.case = TRUE))) %>%
+  filter(!if_else(is.na(Notes), FALSE, grepl("DO NOT INCLUDE IN ANALYSIS", Notes, ignore.case = TRUE))) %>%
+  filter(!if_else(is.na(Notes), FALSE, grepl("Exclude from analysis", Notes, ignore.case = TRUE))) %>%
+  filter(!if_else(is.na(Notes), FALSE, grepl("Remove in analysis", Notes, ignore.case = TRUE))) %>%
+  # Check 'Changed' column for "N/A" if it means exclude, though typically N/A in 'Changed' means no fields were changed.
+  # Assuming here that "Exclude from analysis!" in 'Notes' is the primary exclusion criterion.
+  # Also filter if scores are all zero and notes suggest exclusion
+  filter(!(Score.A == 0 & Score.B == 0 & Score.C == 0 & !is.na(Notes) &
+             (grepl("exclude", Notes, ignore.case = TRUE) | grepl("remove", Notes, ignore.case = TRUE))))
+
+
+cat("Raw data loaded. Rows:", nrow(data_raw), "\n")
+cat("Excluded from analysis:", nrow(data_raw) - nrow(data), "\n")
+cat("Rows included in analysis:", nrow(data), "\n")
+```
+
+#### Deduplication: Keep the latest review by timestamp
+
+We need to do deduplication to keep the latest one by timestamp for these reasons:
+
+- Initial evaluation was done without "Changed" fields captured as part of the process (v1). 
+Later (v2) the app and protocol was updated to capture this requirement, so one reviewer (anv) went back to test the changes and re-do the batches for consistency. 
+- Some reviewers submitted 1-2 test reviews and later went back to resubmit the data.
+
+```{r}
+data_latest <- data %>%
+  group_by(ID) %>% 
+  filter(!is.na(Timestamp)) %>% 
+  filter(Timestamp == max(Timestamp, na.rm = TRUE)) %>%
+  slice(1) %>%
+  ungroup()
+
+cat("Rows after deduplication based on ID and latest timestamp:", nrow(data_latest))
+```
+
+### 2. Quantitative Model Comparison ---
+
+#### Summary statistics for each model's scores
+```{r}
+# Reshape data to long format for easier aggregation of scores
+scores_long <- data_latest %>%
+  select(ID, Score.A, Score.B, Score.C) %>%
+  tidyr::pivot_longer(cols = starts_with("Score."),
+                      names_to = "Model",
+                      values_to = "Score") %>%
+  filter(!is.na(Score)) %>%
+  mutate(Model = case_when(Model== 'Score.A' ~ 'gpt_4o',
+                           Model == 'Score.B' ~ 'sonnet_3.7',
+                           Model == 'Score.C' ~ 'gemini_2.5pro'))
+
+ 
+# Calculate average scores, min, max, range, and standard deviation for each model
+model_comparison_summary <- scores_long %>%
+  group_by(Model) %>%
+  summarise(
+    Count = n(),
+    Average_Score = mean(Score, na.rm = TRUE),
+    Median_Score = median(Score, na.rm = TRUE),
+    Min_Score = min(Score, na.rm = TRUE),
+    Max_Score = max(Score, na.rm = TRUE),
+    Range = Max_Score - Min_Score,
+    Std_Dev = sd(Score, na.rm = TRUE),
+    .groups = 'drop' # Drop grouping structure after summarise
+  )
+
+knitr::kable(model_comparison_summary)
+```
+
+#### Visualization: Boxplot of scores by model  
+
+```{r}  
+score_boxplot <- ggplot(scores_long, aes(x = Model, y = Score, fill = Model)) +
+  geom_boxplot(na.rm = TRUE) +
+  geom_jitter(width = 0.1, alpha = 0.2, na.rm = TRUE) + # Add jitter to see individual points
+  labs(title = "Score Distribution by AI Model",
+       subtitle = paste0("Based on ", nrow(data_latest), " unique latest reviews"),
+       x = "AI Model",
+       y = "Performance Score") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
+
+print(score_boxplot)
+```
+
+### 3. Reviewer Preference for Top Model ---
+
+#### Frequency of each model (or tie) being the top scorer
+```{r}
+data_latest_prefs <- data_latest %>%
+  rowwise() %>%
+  mutate(
+    Highest_Score_Value = max(c(Score.A, Score.B, Score.C), na.rm = TRUE)
+  ) %>%
+  # Handle cases where all scores might be NA or -Inf after max if all inputs were NA
+  filter(is.finite(Highest_Score_Value)) %>%
+  mutate(
+    Top_Model_Preference = case_when(
+      Highest_Score_Value == Score.A & Highest_Score_Value == Score.B ~ "Tie gpt_4o/sonnet_3.7",
+      Highest_Score_Value == Score.A & Highest_Score_Value == Score.C ~ "Tie gpt_4o/gemini_2.5_pro",
+      Highest_Score_Value == Score.B & Highest_Score_Value == Score.C ~ "Tie sonnet_3.7/gemini_2.5_pro",
+      Highest_Score_Value == Score.A ~ "gpt_4o",
+      Highest_Score_Value == Score.B ~ "sonnet_3.7",
+      Highest_Score_Value == Score.C ~ "gemini_2.5pro",
+      TRUE ~ "No Clear Preference or All Scores NA"
+    )
+  ) %>%
+  ungroup()
+  
+  
+top_model_counts <- data_latest_prefs %>%
+  filter(Top_Model_Preference != "No Clear Preference or All Scores NA") %>%
+  count(Top_Model_Preference, sort = TRUE, name = "Frequency")
+
+knitr::kable(top_model_counts)
+```
+
+
+#### Visualization: Bar chart of top model preferences
+
+```{r}
+preference_plot <- ggplot(top_model_counts, aes(x = reorder(Top_Model_Preference, Frequency), y = Frequency, fill = Top_Model_Preference)) +
+  geom_bar(stat = "identity") +
+  coord_flip() + # Horizontal bars for better readability of labels
+  labs(title = "Reviewer Preference for Top AI Model",
+       subtitle = "Based on highest score per reviewed item",
+       x = "Model/Tie Scenario",
+       y = "Number of Times Rated Highest") +
+  guides(fill="none") + # Hide legend if fill is mapped to x-axis variable
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
+
+print(preference_plot)
+ggsave("top_model_preference_chart.png", plot = preference_plot, width = 10, height = 7, dpi = 300)
+## cat("Top model preference chart saved as 'top_model_preference_chart.png'\\n")
+```    
+
+### 4. Most Corrected Fields ---
+
+#### Most frequently corrected fields
+```{r, include=F}
+#'Changed' column contains comma-separated fields that were corrected.
+# Split these, clean them, and count frequencies.
+corrected_fields_summary <- data_latest %>%
+  filter(!is.na(Changed) & Changed != "" & Changed != "N/A") %>% # Ensure 'Changed' has content
+  select(ID, Changed) %>%
+  # Split comma-separated strings into multiple rows
+  mutate(Changed_Field = strsplit(as.character(Changed), ",")) %>%
+  tidyr::unnest(Changed_Field) %>%
+  # Trim whitespace from each field name
+  mutate(Changed_Field = str_trim(Changed_Field)) %>%
+  filter(Changed_Field != "") %>% # Remove any empty strings resulting from split
+  count(Changed_Field, sort = TRUE, name = "Correction_Frequency")
+  
+knitr::kable(corrected_fields_summary)
+    
+```
+
+#### Visualization: Bar chart of the top N most corrected fields
+```{r}
+  
+top_n_fields <- 15 # Show top 15
+corrected_fields_plot <- ggplot(head(corrected_fields_summary, top_n_fields),
+                                aes(x = reorder(Changed_Field, Correction_Frequency), y = Correction_Frequency)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  coord_flip() +
+  labs(title = paste("Top", top_n_fields, "Most Corrected Fields"),
+       x = "Field Name",
+       y = "Number of Times Corrected") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+corrected_fields_plot
+ggsave("most_corrected_fields_chart.png", plot = corrected_fields_plot, width = 10, height = 8, dpi = 300)
+# cat("Most corrected fields chart saved as 'most_corrected_fields_chart.png'\\n")
+```    
+
+
+### 5. Model-Specific Weaknesses (Based on Highest-Scoring Model) ---
+
+`Changed` fields refer to the top model of each instance. 
+We want to understand whether there are differences in what is corrected for each model. 
+
+#### Summary of corrected fields attributed to each highest-scoring model
+```{r, include=FALSE}
+# Use the 'data_latest_prefs' dataframe which already identifies the 'Top_Model_Preference' (highest-scoring model)
+# and has the original Score columns. We need to join it with the 'Changed' column from 'data_latest'.
+
+# Select relevant columns from data_latest (ID and Changed)
+changed_data_to_join <- data_latest %>%
+  select(ID, User, Timestamp, Changed) # Assuming ID, User, Timestamp are unique keys after deduplication,
+# or just ID if that's the unique key for data_latest_prefs
+
+# Join with data_latest_prefs to link Top_Model_Preference with Changed fields
+# Ensure the join keys correctly match how data_latest_prefs was formed.
+# If data_latest_prefs was derived from data_latest, an ID-based join should work.
+# We also need to make sure we only consider rows where 'Changed' is not NA and not empty.
+
+# Re-create or ensure data_latest_prefs includes the ID for joining
+# The previous step for data_latest_prefs might not have carried all original IDs if some had no valid scores.
+# Let's redefine data_latest_prefs carefully to include ID and the Top_Model_Preference.
+
+# Earlier step (Review Preference for Top Model) should have created data_latest_prefs.
+# We'll assume it has ID and Top_Model_Preference.
+# We need to ensure we have the `Changed` column associated with these.
+  
+model_specific_corrections_data <- data_latest %>%
+  # First, determine the highest scoring model for each row in data_latest
+  rowwise() %>%
+  mutate(
+    Score.A = as.numeric(Score.A),
+    Score.B = as.numeric(Score.B),
+    Score.C = as.numeric(Score.C),
+    Highest_Score_Value_Temp = max(c(Score.A, Score.B, Score.C), na.rm = TRUE)
+  ) %>%
+  filter(is.finite(Highest_Score_Value_Temp)) %>% # Ensure there was a valid highest score
+  mutate(
+    Corrected_Model_Name = case_when(
+      Highest_Score_Value_Temp == Score.A & Highest_Score_Value_Temp == Score.B & Highest_Score_Value_Temp == Score.C ~ "3-way tie",
+      Highest_Score_Value_Temp == Score.A ~ "gpt_4o",
+      Highest_Score_Value_Temp == Score.B ~ "sonnet_3.7",
+      Highest_Score_Value_Temp == Score.C ~ "gemini_2.5_pro",
+      TRUE ~ "Other"
+    )
+  ) %>%
+  ungroup() %>%
+  # Filter for actual models, not ties or unknowns, if we only want to attribute to a single model
+  filter(Corrected_Model_Name %in% c("gpt_4o", "sonnet_3.7", "gemini_2.5_pro")) %>%
+  filter(!is.na(Changed) & Changed != "" & Changed != "N/A") %>%
+  select(ID, Corrected_Model_Name, Changed) %>%
+  mutate(Changed_Field = strsplit(as.character(Changed), ",")) %>%
+  tidyr::unnest(Changed_Field) %>%
+  mutate(Changed_Field = str_trim(Changed_Field)) %>%
+  filter(Changed_Field != "")
+  
+
+# Count correction frequency per model and per field
+model_field_correction_summary <- model_specific_corrections_data %>%
+  group_by(Corrected_Model_Name, Changed_Field) %>%
+  summarise(Correction_Frequency = n(), .groups = 'drop') %>%
+  arrange(Corrected_Model_Name, desc(Correction_Frequency))
+
+knitr::kable(model_field_correction_summary)
+```
+
+#### Top N corrected fields by model
+```{r, include=FALSE}
+
+top_n_to_show <- 5
+model_specific_top_corrections <- model_field_correction_summary %>%
+  group_by(Corrected_Model_Name) %>%
+  slice_max(order_by = Correction_Frequency, n = top_n_to_show, with_ties = FALSE) %>%
+  ungroup()
+
+knitr::kable(model_specific_top_corrections)
+```
+
+#### Visualization: Grouped bar chart
+
+```{r}
+# Filter for top N fields overall for clarity in the plot, or plot all if not too many
+# For this plot, let's take fields that appear reasonably often
+fields_to_plot_model_specific <- model_field_correction_summary %>%
+  group_by(Changed_Field) %>%
+  summarise(Total_Corrections = sum(Correction_Frequency)) %>%
+  arrange(desc(Total_Corrections)) %>%
+  slice_head(n = 15) # Top 15 overall corrected fields
+
+plot_data_model_specific <- model_field_correction_summary %>%
+  filter(Changed_Field %in% fields_to_plot_model_specific$Changed_Field)
+
+
+model_specific_corrections_plot <- ggplot(plot_data_model_specific, 
+                                            aes(x = reorder(Changed_Field, Correction_Frequency), 
+                                                y = Correction_Frequency, 
+                                                fill = Corrected_Model_Name)) +
+  geom_bar(stat = "identity", position = position_dodge(preserve = "single")) +
+  coord_flip() +
+  # facet_wrap(~ Corrected_Model_Name, scales = "free_y", ncol = 1) + # Separate plot for each model
+  labs(title = "Most Common Corrections by Highest-Scoring Model",
+       subtitle = "Fields corrected when the model was rated highest",
+       x = "Corrected Field",
+       y = "Frequency of Correction") +
+  theme_minimal() +
+  theme(legend.position = "right",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        strip.text = element_text(face="bold")) +
+  scale_fill_brewer(palette = "Set2") # Color palette for models
+
+model_specific_corrections_plot
+```
+
+
+```{r}
+# https://github.com/nf-osi/nf-metadata-dictionary/blob/0aefe2c99d7a6c068f829a2dacdeb324941fdd5a/registered-json-schemas/PortalDataset.json
+required_fields <- c(
+  "title", "creator", "studyId", "keywords", "dataType",
+  "diseaseFocus", "funder", "accessType", "license"
+)
+
+model_specific_corrections_data_typed <- model_specific_corrections_data %>%
+  mutate(Field_Type = ifelse(Changed_Field %in% required_fields, "required", "optional"))
+
+model_field_detail_summary <- model_specific_corrections_data_typed %>%
+      group_by(Corrected_Model_Name, Changed_Field, Field_Type) %>%
+      summarise(Correction_Frequency = n(), .groups = 'drop') %>%
+      arrange(Corrected_Model_Name, Field_Type, desc(Correction_Frequency))
+
+
+model_req_opt_plot <- ggplot(model_field_detail_summary,
+                             aes(x = Corrected_Model_Name,
+                                 y = Correction_Frequency,
+                                 fill = Field_Type)) +
+      geom_bar(stat = "identity", position = position_stack()) + # Use position_dodge() for grouped bars
+      labs(title = "Required vs. Optional Field Corrections by Highest-Scoring Model",
+           x = "Model",
+           y = "Total Number of Corrected Fields",
+           fill = "Field Type") +
+      theme_minimal() +
+      theme(plot.title = element_text(hjust = 0.5),
+            axis.text.x = element_text(angle = 15, hjust = 1)) + 
+      scale_fill_manual(values = c("required" = "tomato3", "optional" = "skyblue3")) 
+
+model_req_opt_plot
+```
+    
+### 6. Evaluation Patterns by Reviewer
+
+#### Summary of activity for each reviewer
+```{r}
+# First, calculate the number of distinct corrections for each reviewed item
+data_with_correction_counts <- data_latest %>%
+  mutate(
+    Num_Distinct_Corrections = sapply(Changed, function(x) {
+      if (is.na(x) || x == "" || x == "N/A") {
+        return(0)
+      } else {
+        # Split by comma, trim whitespace, remove empty strings, then count unique
+        length(unique(na.omit(str_trim(unlist(strsplit(x, ","))))[nzchar(unique(na.omit(str_trim(unlist(strsplit(x, ","))))))]))
+      }
+    })
+  )
+
+reviewer_activity_summary <- data_with_correction_counts %>%
+  filter(!is.na(User) & User != "") %>% # Ensure User is not NA or empty
+  group_by(User) %>%
+  summarise(
+    Total_Items_Reviewed = n_distinct(ID), # Count of unique items reviewed
+    Avg_Score_A = mean(Score.A, na.rm = TRUE),
+    Avg_Score_B = mean(Score.B, na.rm = TRUE),
+    Avg_Score_C = mean(Score.C, na.rm = TRUE),
+    Total_Instances_With_Corrections = sum(Num_Distinct_Corrections > 0, na.rm = TRUE), # Count rows where at least one correction was made
+    Total_Distinct_Corrections_Made = sum(Num_Distinct_Corrections, na.rm = TRUE), # Sum of all distinct corrections across all items reviewed by user
+    Avg_Distinct_Corrections_Per_Item = mean(Num_Distinct_Corrections, na.rm = TRUE), # Average distinct corrections per item reviewed
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Total_Items_Reviewed))
+
+knitr::kable(reviewer_activity_summary)
+
+```
+
+#### Visualization: Average corrections by reviewer
+```{r}
+avg_corrections_plot <- ggplot(reviewer_activity_summary, 
+                               aes(x = reorder(User, Avg_Distinct_Corrections_Per_Item), 
+                                   y = Avg_Distinct_Corrections_Per_Item,
+                                   fill = User)) + # Added fill for better visual distinction
+  geom_bar(stat = "identity", show.legend = FALSE) + # No legend if User is on x-axis
+  geom_text(aes(label=sprintf("%.2f", Avg_Distinct_Corrections_Per_Item)), vjust=-0.3, size=3.5) + # Add text labels for values
+  coord_flip() + # Horizontal bars can be easier to read with many users
+  labs(title = "Average Number of Distinct Corrections per Item by Reviewer",
+       x = "Reviewer",
+       y = "Average Distinct Corrections per Item Reviewed") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+print(avg_corrections_plot)
+```
+
+
+```{r, include=FALSE}
+# Process the 'Changed' column and group by User and Changed_Field
+reviewer_correction_data <- data_latest %>%
+  filter(!is.na(User) & User != "") %>% # Ensure User is not NA or empty
+  filter(!is.na(Changed) & Changed != "" & Changed != "N/A") %>% # Ensure 'Changed' has content
+  select(User, Changed) %>%
+  mutate(Changed_Field = strsplit(as.character(Changed), ",")) %>%
+  tidyr::unnest(Changed_Field) %>%
+  mutate(Changed_Field = str_trim(Changed_Field)) %>%
+  filter(Changed_Field != "") # Remove any empty strings resulting from split
+  
+ 
+# Count correction frequency per reviewer and per field
+reviewer_field_correction_summary <- reviewer_correction_data %>%
+  group_by(User, Changed_Field) %>%
+  summarise(Correction_Frequency = n(), .groups = 'drop') %>%
+  arrange(User, desc(Correction_Frequency))
+
+cat("\\nSummary of corrected fields by each reviewer:\\n")
+knitr::kable(reviewer_field_correction_summary)
+```
+
+
+```{r, include=FALSE}
+top_n_to_show_reviewer <- 5
+reviewer_specific_top_corrections <- reviewer_field_correction_summary %>%
+  group_by(User) %>%
+  slice_max(order_by = Correction_Frequency, n = top_n_to_show_reviewer, with_ties = FALSE) %>%
+  ungroup()
+
+knitr::kable(reviewer_specific_top_corrections)
+```
+
+#### Visualization: Faceted bar chart for reviewer correction patterns
+
+```{r}
+# For clarity, might want to filter for reviewers with a minimum number of corrections
+# or for fields that are corrected more than a certain threshold.
+# For now, plot the top N overall corrected fields, faceted by user.
+
+fields_to_plot_reviewer_specific <- reviewer_field_correction_summary %>%
+  group_by(Changed_Field) %>%
+  summarise(Total_Corrections = sum(Correction_Frequency)) %>%
+  arrange(desc(Total_Corrections)) # %>%
+  # slice_head(n = 15) # Keep 15 to keep the plot manageable?
+
+plot_data_reviewer_specific <- reviewer_field_correction_summary %>%
+  filter(Changed_Field %in% fields_to_plot_reviewer_specific$Changed_Field) %>%
+  # Optionally, filter for users who have made at least X corrections to make the plot cleaner
+  group_by(User) %>%
+  # filter(sum(Correction_Frequency) > 5) %>% # Only fields with > n total corrections shown
+  ungroup()
+
+
+reviewer_corrections_plot <- ggplot(plot_data_reviewer_specific, 
+                                    aes(x = reorder(Changed_Field,Correction_Frequency), 
+                                        y = Correction_Frequency, 
+                                        fill = Changed_Field)) + 
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  coord_flip() +
+  facet_wrap(~ User, scales = "free_y", ncol = 2) + # Separate plot for each reviewer, adjust ncol as needed
+  labs(title = "Reviewer Corrections Profile",
+       x = "Corrected Field",
+       y = "Frequency of Correction") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        strip.text = element_text(face="bold"))
+      
+reviewer_corrections_plot
+```
+
+### 7. Qualitative Analysis
+
+(Courtesy of Claude Sonnet 3.7)
+
+#### Common issues
+- **AccessType** issues: The most frequently mentioned problem was incorrect "accessType" settings, with many notes indicating it "should be public"
+- **Contributor/Creator** problems: Reviewers noted instances where:
+  - The same person was incorrectly listed as both creator and contributor
+  - Contributors were missing
+  - Creator fields needed updates (e.g., "Need to update creator to NF-OSI")
+- **DataType** and **Keywords** Issues:
+  - Redundant or too many keywords
+  - Less accurate dataType fields
+  - Multiple mentions of "dataUseModifiers" needing correction
+
+#### Specific Model Strengths/Weaknesses
+
+##### Model C (Score C)
+
+- Strengths: Generally had the best descriptions, most accurate accessType, and better diseaseFocus accuracy
+- Key Feedback: "Highest-scoring has a much better title" and "More complete and accurate"
+
+##### Model B (Score B)
+
+- Strengths: Often had slightly better descriptions than Model A, but less complete than Model C
+- Weaknesses: Issues with accessType and sometimes too many keywords
+
+##### Model A (Score A)
+
+- Weaknesses: Consistently scored lower
+- Multiple entries showed a score of 0 for Model A, suggesting significant problems
+
+##### Reviewer Consistency
+
+There's general consistency in scoring patterns across reviewers, with Model C typically receiving the highest scores.
+
+
+### Discussion
+
+- Everyone gave `gemini_2.5pro` the highest average score.
+- We captured **what** you corrected, but did you have any specific insights to add on **how** you corrected something?
+  - When you made a correction, what additional resources were consulted?
+  - Did you tend to add or remove things for specific attributes?
+  - Was there something more subtle that you realized was preferred for e.g. editorial style for title or description?
+- Were there things that seemed like issues with our data model vs the AI model?
+- Were there cases that need to be additionally handled? e.g.
+  - "NFOSI-RNASeq-To-Process-*2023-14-03**" datasets redundant with original datasets. How to handle?
+  - AI needs to have option to short-circuit/raise an issue when there was no metadata in the file view
+
+### Suggestions
+
+- Improve accessType via additional AI capabilities
+- Make clearer distinction between Creator and Contributor, e.g. they should be non-overlapping
+- Define clearer guidelines for when NF-OSI is listed as Contributor or Contributor
